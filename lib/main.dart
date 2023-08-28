@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/splash.dart';
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: LoginPage(),
     );
   }
 }
