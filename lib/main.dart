@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/splash.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ScreenUtilInit(
+      designSize: const Size(360, 690),
+      builder: (context, child) => const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      // home: SplashScreen(),
-      home: LoginPage(),
+    return const GetMaterialApp(
+      home: SplashScreen(),
     );
   }
 }
