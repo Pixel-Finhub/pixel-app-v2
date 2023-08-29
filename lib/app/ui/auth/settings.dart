@@ -28,12 +28,12 @@ class SettingsPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /* Account settings container */
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
               child: Text(
                 "Account Settings",
@@ -46,11 +46,11 @@ class SettingsPage extends StatelessWidget {
 
             /* Account settings card */
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Card(
                 elevation: 1,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: Column(
                     children: [
                       /* Account settings card content */
@@ -58,7 +58,7 @@ class SettingsPage extends StatelessWidget {
                         onPressed: _onPressed,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(
                               Icons.person_outline,
                               color: Colors.black,
@@ -75,12 +75,12 @@ class SettingsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextButton(
                         onPressed: _onPressed,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(
                               Icons.language_outlined,
                               color: Colors.black,
@@ -90,19 +90,20 @@ class SettingsPage extends StatelessWidget {
                             Text(
                               "Language",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300,
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextButton(
                         onPressed: _onPressed,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(
                               Icons.notifications_none_outlined,
                               color: Colors.black,
@@ -112,9 +113,10 @@ class SettingsPage extends StatelessWidget {
                             Text(
                               "Notifications",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300,
+                              ),
                             ),
                           ],
                         ),
@@ -127,24 +129,25 @@ class SettingsPage extends StatelessWidget {
             /* End Account settings */
 
             /* Support and about */
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
               child: Text(
                 "Support and About",
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
 
             /* Support and about card */
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Card(
                 elevation: 1,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: Column(
                     children: [
                       /* Support and about card content */
@@ -152,7 +155,7 @@ class SettingsPage extends StatelessWidget {
                         onPressed: _onPressed,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(
                               Icons.help_outline,
                               color: Colors.black,
@@ -169,12 +172,12 @@ class SettingsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextButton(
                         onPressed: _onPressed,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(
                               Icons.privacy_tip_outlined,
                               color: Colors.black,
@@ -191,12 +194,12 @@ class SettingsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextButton(
                         onPressed: _onPressed,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(
                               Icons.info_outline,
                               color: Colors.black,
@@ -222,12 +225,12 @@ class SettingsPage extends StatelessWidget {
 
             /* Logout button */
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: TextButton(
                 onPressed: _onPressed,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.logout,
                       color: Colors.black,
@@ -246,9 +249,8 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
 
-
             /* Version */
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               child: Text(
                 "Version 1.0.0",
@@ -258,12 +260,11 @@ class SettingsPage extends StatelessWidget {
                     fontWeight: FontWeight.w300),
               ),
             ),
-          
+
             // CustomNav(currentIndex: 0)
           ],
         ),
       ),
-
       bottomNavigationBar: const CustomNav(currentIndex: 0),
     );
   }
