@@ -5,9 +5,14 @@ import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -16,6 +21,7 @@ class LoginPage extends StatelessWidget {
     var passwordTextEditController = TextEditingController();
 
     PhoneNumber number = PhoneNumber(isoCode: 'TZ');
+    bool _isPasswordVisible = false;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -99,10 +105,18 @@ class LoginPage extends StatelessWidget {
                         child: TextFormField(
                           controller: passwordTextEditController,
                           keyboardType: TextInputType.text,
-                          obscureText: true,
-                          decoration: const InputDecoration(
+                          obscureText: !_isPasswordVisible,
+                          decoration: InputDecoration(
                             hintText: "Password",
                             border: InputBorder.none,
+                            suffixIcon: IconButton(
+                              icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _isPasswordVisible = !_isPasswordVisible;
+                                });
+                              }
+                            ),
                           ),
                           // onChanged: (value) => controller.password(value),
                         ),
