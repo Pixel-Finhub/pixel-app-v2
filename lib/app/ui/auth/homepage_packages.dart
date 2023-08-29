@@ -49,11 +49,11 @@ class HomePagePackages extends StatelessWidget {
           ],
         ),
       ),
-
       body: SingleChildScrollView(
         child: Row(children: [
           Column(
             children: [
+              /* Banner card */
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
@@ -98,11 +98,170 @@ class HomePagePackages extends StatelessWidget {
                   ),
                 ),
               ),
+
+              /* Insurance packages */
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: fluidWidth(context, 100) - 20,
+                        ),
+                        /* Insurance package card */
+                        Container(
+                          padding: EdgeInsets.fromLTRB(10, 20, 0, 10),
+                          child: Text(
+                            "Our Packages",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: fluidFontSize(context, 20),
+                            ),
+                          ),
+                        ),
+
+                        /* Insurance package card */
+                        Row(children: [
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                /* unit package card */
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(top: 10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  height: fluidHeight(context, 10),
+                                  width: fluidWidth(context, 95),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Package 1",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize:
+                                                fluidFontSize(context, 15),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize:
+                                                fluidFontSize(context, 12),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                                /* unit package card */
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(top: 20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  height: fluidHeight(context, 10),
+                                  width: fluidWidth(context, 95),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Package 1",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize:
+                                                fluidFontSize(context, 15),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize:
+                                                fluidFontSize(context, 12),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                                /* unit package card */
+                                Container(
+                                  margin: EdgeInsetsDirectional.only(top: 20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade200,
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  height: fluidHeight(context, 10),
+                                  width: fluidWidth(context, 95),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Package 1",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize:
+                                                fluidFontSize(context, 15),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize:
+                                                fluidFontSize(context, 12),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ])
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ]),
       ),
-
       bottomNavigationBar: const CustomNav(currentIndex: 0),
     );
   }
