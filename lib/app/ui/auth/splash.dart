@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -84,7 +86,9 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const LoginPage());
+                  },
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 15,
