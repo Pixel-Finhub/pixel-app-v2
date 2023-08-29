@@ -49,28 +49,61 @@ class HomePagePackages extends StatelessWidget {
           ],
         ),
       ),
-      body: Row(children: [
-        Column(
-          children: [
-            Container(
-              // insurance packages slider banner card
-              height: fluidHeight(context, 30.0),
-              width: fluidWidth(context, 100),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(10.0),
+
+      body: SingleChildScrollView(
+        child: Row(children: [
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                  /* insurance packages  banner card */
+                  height: fluidHeight(context, 30.0),
+                  width: fluidWidth(context, 100) - 20,
+                  // background image in the card
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/burning-truck.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+
+                  /* Card description Content */
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Insurance Packages",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: fluidFontSize(context, 25),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Get the best insurance packages for your business.",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300,
+                            fontSize: fluidFontSize(context, 15),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
+            ],
+          ),
+        ]),
+      ),
 
-              // insurance packages slider banner card
-            ),
-
-
-          ],
-        ),
-      ]),
-
-      bottomNavigationBar: CustomNav(currentIndex: 0),
-      // BottomNavigationBar();
+      bottomNavigationBar: const CustomNav(currentIndex: 0),
     );
   }
 }
