@@ -90,7 +90,11 @@ class SplashScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Get.to(() => const LoginPage());
+                    Get.to(
+                      () => const LoginPage(),
+                      transition: Transition.rightToLeft,
+                      duration: const Duration(milliseconds: 500),
+                    );
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(
