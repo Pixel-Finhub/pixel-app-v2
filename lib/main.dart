@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/settings.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/splash.dart';
 
 void main() {
   runApp(
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
-      home: SettingsPage(),
+      home: SplashScreen(),
     );
   }
 }
