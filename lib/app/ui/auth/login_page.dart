@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/register_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
@@ -110,13 +112,14 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: "Password",
                             border: InputBorder.none,
                             suffixIcon: IconButton(
-                              icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
-                              onPressed: () {
-                                setState(() {
-                                  _isPasswordVisible = !_isPasswordVisible;
-                                });
-                              }
-                            ),
+                                icon: Icon(_isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
+                                }),
                           ),
                           // onChanged: (value) => controller.password(value),
                         ),
@@ -132,18 +135,73 @@ class _LoginPageState extends State<LoginPage> {
                 function: () {},
                 text: "Login",
               ),
-              SizedBox(
-                height: 20.0.h,
-              ),
+              // SizedBox(
+              //   height: 20.0.h,
+              // ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.bottomSheet(
+                    Container(
+                      height: 200.h,
+                      padding: EdgeInsets.only(
+                        top: 20.0.r,
+                        right: 20.0.r,
+                        left: 20.0.r,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(25.0.r),
+                          topRight: Radius.circular(25.0.r),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          const Text(
+                            "Enter your email to reset password.",
+                            style: TextStyle(
+                              color: primaryDark,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          separator_10,
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.0.w,
+                            ),
+                            child: TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                hintText: "Email",
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(defaultRadius),
+                                ),
+                              ),
+                              // onChanged: (value) => controller.email(value),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0.h,
+                          ),
+                          CustomButton(
+                            function: () {},
+                            text: "Submit",
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
                 child: const Text("Forgot Password?"),
               ),
-              SizedBox(
-                height: 10.0.h,
-              ),
+              // SizedBox(
+              //   height: 10.0.h,
+              // ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const RegisterPage());
+                },
                 child: RichText(
                   text: const TextSpan(
                     text: "Not a user? ",
@@ -168,4 +226,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-} // git flow feature finish splash
+}
