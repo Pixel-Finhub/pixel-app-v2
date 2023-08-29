@@ -93,7 +93,7 @@ class SplashScreen extends StatelessWidget {
                     Get.to(
                       () => const LoginPage(),
                       transition: Transition.rightToLeft,
-                      duration: const Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 10),
                     );
                   },
                   child: Padding(
