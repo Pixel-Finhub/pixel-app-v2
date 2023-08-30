@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 
 class InsuranceDetailsPage extends StatelessWidget {
@@ -7,19 +8,24 @@ class InsuranceDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         const SizedBox(
           height: 60,
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 10), // Added padding
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Icon(Icons.arrow_back),
+            children: const [
+              Icon(
+                Icons.arrow_back,
+              ),
               Text(
                 'Insurance Details',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Icon(Icons.notification_add)
             ],
@@ -42,9 +48,9 @@ class InsuranceDetailsPage extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(
                   10), // Added padding for the entire container
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: 10,
@@ -53,16 +59,16 @@ class InsuranceDetailsPage extends StatelessWidget {
                     child: Text(
                       'Basic plan',
                       textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w500),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 20),
                     child: Text(
                       'The name says it all, Protection against common risks during transit.',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w200, fontSize: 14),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w200, fontSize: 14),
                     ),
                   ),
                 ],
@@ -78,12 +84,12 @@ class InsuranceDetailsPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
               ),
             ),
-            const Column(
+            Column(
               children: [
                 Row(
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.check_circle,
                       color: primary,
@@ -93,33 +99,37 @@ class InsuranceDetailsPage extends StatelessWidget {
                     SizedBox(width: 10), // Adjust the spacing as needed
                     Text(
                       'Protection against common risks during transit.',
-                      style: TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w200),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w200),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.check_circle,
                       color: primary,
                       size: 17,
                     ),
                     // Replace with your desired icon
-                    SizedBox(width: 10), // Adjust the spacing as needed
-                    Text(
+                    SizedBox(
+                      width: 10.h,
+                    ), // Adjust the spacing as needed
+                    const Text(
                       'Protection against common risks during transit.',
                       style: TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w200),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w200,
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,11 +141,15 @@ class InsuranceDetailsPage extends StatelessWidget {
                       size: 17,
                     ),
                     // Replace with your desired icon
-                    SizedBox(width: 10), // Adjust the spacing as needed
-                    Text(
+                    SizedBox(
+                      width: 10.h,
+                    ), // Adjust the spacing as needed
+                    const Text(
                       'Protection against common risks during transit.',
                       style: TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w200),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w200,
+                      ),
                     ),
                   ],
                 ),
@@ -146,7 +160,7 @@ class InsuranceDetailsPage extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -179,7 +193,7 @@ class InsuranceDetailsPage extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

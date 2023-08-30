@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/settings.dart';
 import 'package:pixel_insurance_v2/app/ui/home/home_page.dart';
 import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
+import 'package:pixel_insurance_v2/app/ui/insurance/insurance_details.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 
 class CustomNav extends StatelessWidget {
@@ -38,7 +39,7 @@ class CustomNav extends StatelessWidget {
             break;
           case 2:
             Get.off(
-              () => const HomePage(),
+              () => const InsuranceDetailsPage(),
               transition: Transition.noTransition,
             );
             break;
