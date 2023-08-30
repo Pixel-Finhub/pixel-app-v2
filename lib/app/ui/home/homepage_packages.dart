@@ -269,7 +269,7 @@ class HomePagePackages extends StatelessWidget {
           ),
         ]),
       ),
-      bottomNavigationBar: const CustomNav(currentIndex: 0),
+      bottomNavigationBar: const CustomNav(currentIndex: 1),
     );
   }
 }

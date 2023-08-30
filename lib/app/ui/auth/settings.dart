@@ -265,7 +265,7 @@ class SettingsPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomNav(currentIndex: 0),
+      bottomNavigationBar: const CustomNav(currentIndex: 3),
     );
   }
 }
