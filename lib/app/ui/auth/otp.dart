@@ -18,7 +18,7 @@ class OtpScreen extends StatelessWidget {
               const SizedBox(
                 height: 70,
               ),
-              Image.asset('assets/images/OTP_Login.png'),
+              Image.asset('assets/images/otp_login.png'),
               const SizedBox(
                 height: 30,
               ),
@@ -60,7 +60,8 @@ class OtpScreen extends StatelessWidget {
                                 hintText: "5",
                                 hintStyle: TextStyle(
                                     fontSize: 24,
-                                    fontWeight: FontWeight.normal)),
+                                    fontWeight: FontWeight.normal),
+                                border: InputBorder.none),
                             onSaved: (pin1) {},
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineMedium,
@@ -91,7 +92,8 @@ class OtpScreen extends StatelessWidget {
                                 hintText: "5",
                                 hintStyle: TextStyle(
                                     fontSize: 24,
-                                    fontWeight: FontWeight.normal)),
+                                    fontWeight: FontWeight.normal),
+                                border: InputBorder.none),
                             onSaved: (pin1) {},
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineMedium,
@@ -122,7 +124,8 @@ class OtpScreen extends StatelessWidget {
                                 hintText: "5",
                                 hintStyle: TextStyle(
                                     fontSize: 24,
-                                    fontWeight: FontWeight.normal)),
+                                    fontWeight: FontWeight.normal),
+                                border: InputBorder.none),
                             onSaved: (pin1) {},
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineMedium,
@@ -153,7 +156,8 @@ class OtpScreen extends StatelessWidget {
                                 hintText: "5",
                                 hintStyle: TextStyle(
                                     fontSize: 24,
-                                    fontWeight: FontWeight.normal)),
+                                    fontWeight: FontWeight.normal),
+                                border: InputBorder.none),
                             onSaved: (pin1) {},
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineMedium,
@@ -184,7 +188,8 @@ class OtpScreen extends StatelessWidget {
                                 hintText: "5",
                                 hintStyle: TextStyle(
                                     fontSize: 24,
-                                    fontWeight: FontWeight.normal)),
+                                    fontWeight: FontWeight.normal),
+                                border: InputBorder.none),
                             onSaved: (pin1) {},
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.headlineMedium,

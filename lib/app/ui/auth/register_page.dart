@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/otp.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
 import '../theme/app_colors.dart';
@@ -117,7 +118,9 @@ class RegisterPage extends StatelessWidget {
                 height: 30.0.h,
               ),
               CustomButton(
-                function: () {},
+                function: () {
+                  Get.to(() => const OtpScreen());
+                },
                 text: "Register",
               ),
               TextButton(

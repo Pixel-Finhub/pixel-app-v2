@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                       elevation: 0,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
+                          horizontal: 30.0,
                           vertical: 3.0,
                         ),
                         child: TextFormField(
