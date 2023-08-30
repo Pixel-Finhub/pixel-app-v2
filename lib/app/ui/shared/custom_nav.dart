@@ -19,14 +19,30 @@ class CustomNav extends StatelessWidget {
       onTap: (val) {
         // to be implemented
       },
-      items: const [
+     items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Icon(
+            Icons.home_outlined,
+            color: Colors.black,
+            size: 30.0,
+          ),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
+          icon: Icon(
+            Icons.search_outlined,
+            color: Colors.black,
+            size: 30.0,
+          ),
+          label: 'Search',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.settings_outlined,
+            color: Colors.black,
+            size: 30.0,
+          ),
+          label: 'Settings',
         ),
       ],
     );
