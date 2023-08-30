@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/register_page.dart';
+import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
@@ -132,7 +133,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20.0.h,
               ),
               CustomButton(
-                function: () {},
+                function: () {
+                  Get.to(() => const HomePagePackages());
+                },
                 text: "Login",
               ),
               // SizedBox(
