@@ -110,32 +110,20 @@ class InsuranceDetailsPage extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                 child: Text(
                   'Insurance coverage risk',
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
+                  style: TextStyle(
+                      fontSize: fluidFontSize(context, 20),
+                      fontWeight: FontWeight.w400),
                 ),
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.check_circle,
-                        color: primary,
-                        size: 17,
-                      ),
-                      // Replace with your desired icon
-                      SizedBox(width: 10), // Adjust the spacing as needed
-                      Text(
-                        'Protection against common risks during transit.',
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w200),
-                      ),
-                    ],
-                  ),
+                  
                   SizedBox(
                     height: 10.h,
                   ),
