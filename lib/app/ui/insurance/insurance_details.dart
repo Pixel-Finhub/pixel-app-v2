@@ -14,11 +14,11 @@ class InsuranceDetailsPage extends StatelessWidget {
           const SizedBox(
             height: 60,
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 10), // Added padding
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Icon(
                   Icons.arrow_back,
                 ),
@@ -50,9 +50,9 @@ class InsuranceDetailsPage extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(
                     10), // Added padding for the entire container
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Padding(
                       padding: EdgeInsets.symmetric(
                         vertical: 10,
@@ -88,9 +88,9 @@ class InsuranceDetailsPage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:  [
+                    children: const [
                       Icon(
                         Icons.check_circle,
                         color: primary,
@@ -161,12 +161,12 @@ class InsuranceDetailsPage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Column(
-                children: [
+                children: const [
                   Text(
                     'Insurance coverage limit',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
@@ -178,7 +178,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                 ],
               ),
               Column(
-                children: [
+                children: const [
                   Text(
                     'Initial deductive amount',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
@@ -194,11 +194,11 @@ class InsuranceDetailsPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 SizedBox(
                   height: 20,
                   child: Text(
