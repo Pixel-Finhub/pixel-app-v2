@@ -86,11 +86,11 @@ class InsuranceDetailsPage extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(
                     10), // Added padding for the entire container
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding:  EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 20,
                       ),
