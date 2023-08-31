@@ -71,6 +71,7 @@ class RegisterPage extends StatelessWidget {
                             decoration: const InputDecoration(
                               hintText: "NIDA Number",
                               border: InputBorder.none,
+                              prefixIcon: Icon(Icons.person),
                             ),
                             // onChanged: (value) => controller.nidaNumber(value),
                           ),
