@@ -72,7 +72,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           child: InternationalPhoneNumberInput(
                             onInputChanged: (PhoneNumber number) {
-                              // controller.phoneNumber(number.phoneNumber);
+                              print(number.phoneNumber);
+                              //controller.phoneNumber(number.phoneNumber);
                             },
                             onInputValidated: (bool value) {
                               // print(value);
@@ -181,7 +182,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           separator_10,
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: fluidWidth(context, 5)),
                             child: TextFormField(
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
@@ -198,7 +200,8 @@ class _LoginPageState extends State<LoginPage> {
                             height: 10.0.h,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: fluidWidth(context, 5)),
                             child: CustomButton(
                               function: () {},
                               text: "Submit",
