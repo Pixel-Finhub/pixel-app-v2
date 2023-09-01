@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pixel_insurance_v2/app/claiming/claiming_process1.dart';
-import 'package:pixel_insurance_v2/app/claiming/quotationpage.dart';
-import 'package:pixel_insurance_v2/app/ui/auth/splash.dart';
+import 'package:pixel_insurance_v2/app/claiming/surpotive_document.dart';
 
 void main() {
   runApp(
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
-      home: QuotationPage(),
+      home: SupportiveDocument(),
     );
   }
 }
