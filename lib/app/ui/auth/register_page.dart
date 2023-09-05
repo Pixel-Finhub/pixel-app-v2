@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:pixel_insurance_v2/app/controllers/firebase_auth_controller.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/otp.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
@@ -9,15 +10,20 @@ import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_constants.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  @override
   Widget build(BuildContext context) {
+    final controller = Get.put(FirebaseAuthController());
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     var nidaTextEditController = TextEditingController();
-    var phoneNumberTextEditController = TextEditingController();
 
     PhoneNumber number = PhoneNumber(isoCode: 'TZ');
 
@@ -86,11 +92,12 @@ class RegisterPage extends StatelessWidget {
                         ),
                         child: InternationalPhoneNumberInput(
                           onInputChanged: (PhoneNumber number) {
-                            // controller.phoneNumber(number.phoneNumber);
+                            print(number.phoneNumber);
+                            controller.phoneNumber(number.phoneNumber);
                           },
                           onInputValidated: (bool value) {
-                            print(value);
-                            // controller.phoneNumber(number.phoneNumber);
+                            print(number.phoneNumber);
+                            controller.phoneNumber(number.phoneNumber);
                           },
                           selectorConfig: const SelectorConfig(
                             selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -101,7 +108,7 @@ class RegisterPage extends StatelessWidget {
                           selectorTextStyle:
                               const TextStyle(color: Colors.black),
                           initialValue: number,
-                          textFieldController: phoneNumberTextEditController,
+                          textFieldController: controller.phoneNo,
                           formatInput: false,
                           keyboardType: TextInputType.phone,
                           inputBorder: InputBorder.none,
@@ -119,7 +126,12 @@ class RegisterPage extends StatelessWidget {
               ),
               CustomButton(
                 function: () {
-                  Get.to(() => const OtpScreen());
+                  if (formKey.currentState!.validate()) {
+                    FirebaseAuthController.instance
+                        .phoneAuthentication(controller.phoneNo.text.trim());
+                    Get.to(
+                        () => OtpScreen());
+                  }
                 },
                 text: "Register",
               ),

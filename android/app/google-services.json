@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "664803703784",
+    "project_id": "pixel-insurance",
+    "storage_bucket": "pixel-insurance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664803703784:android:538946d580c2f37d55c25d",
+        "android_client_info": {
+          "package_name": "com.example.pixel_insurance_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664803703784-m60t4sltplq50qumb2u3pccerljf51rb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pixel_insurance_v2",
+            "certificate_hash": "440944259dd9c2e54b66f957ed875f6d4125dbf1"
+          }
+        },
+        {
+          "client_id": "664803703784-8rj36u58f492cjah2sumchehakj3a6cb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhjdcdCOIt7nDA9BRb1BHOwFnVGAKdE4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664803703784-8rj36u58f492cjah2sumchehakj3a6cb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "664803703784-30dvr7845bse6glcga9mci9e6obv6rcn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pixelInsuranceV2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
