@@ -37,25 +37,28 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                padding: EdgeInsets.symmetric(
+                  // horizontal: fluidWidth(context, 5),
+                  horizontal: 5.0.w,
+                ),
                 child: Form(
                   key: formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 70.0.h,
+                      const SizedBox(
+                        height: 70.0,
                       ),
                       Center(
                         child: Image.asset(
                           'assets/images/register.png',
-                          height: fluidWidth(context, 80),
-                            width: fluidWidth(context, 80),
-                            fit: BoxFit.cover,
+                          // height: fluidWidth(context, 80),
+                          // width: fluidWidth(context, 80),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(
-                        height: 30.0.h,
+                      const SizedBox(
+                        height: 30.0,
                       ),
                       Card(
                         shape: RoundedRectangleBorder(
@@ -100,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: InternationalPhoneNumberInput(
                             onInputChanged: (PhoneNumber number) {
                               print(number.phoneNumber);
-                            controller.phoneNumber(number.phoneNumber);
+                              controller.phoneNumber(number.phoneNumber);
                             },
                             onInputValidated: (bool value) {
                               print(number.phoneNumber);
@@ -130,7 +133,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(
-                height: fluidHeight(context, 4),
+                // height: fluidHeight(context, 4),
+                height: 10.0.h,
               ),
               CustomButton(
                 function: () {
@@ -148,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
-                      fontSize: fluidFontSize(context, 16),
+                      // fontSize: fluidFontSize(context, 16),
                     ),
                     children: [
                       TextSpan(
@@ -156,7 +160,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
-                          fontSize: fluidFontSize(context, 16)
+                          // fontSize: fluidFontSize(context, 16),
                         ),
                       ),
                     ],

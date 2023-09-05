@@ -36,21 +36,24 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                padding: EdgeInsets.symmetric(
+                  // horizontal: fluidWidth(context, 5),
+                  horizontal: 5.0.w,
+                ),
                 child: Form(
                   key: formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: fluidHeight(context, 5),
+                        // height: fluidHeight(context, 5),
+                        height: 5.0.h,
                       ),
                       Center(
                         child: Image.asset(
                           'assets/images/login_person.png',
-                          height: fluidWidth(context, 80),
-                          width: fluidWidth(context, 80),
+                          // height: fluidWidth(context, 80),
+                          // width: fluidWidth(context, 80),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -85,9 +88,10 @@ class _LoginPageState extends State<LoginPage> {
                             ignoreBlank: false,
                             autoFocus: false,
                             autoValidateMode: AutovalidateMode.disabled,
-                            selectorTextStyle: TextStyle(
+                            selectorTextStyle: const TextStyle(
                                 color: Colors.black,
-                                fontSize: fluidFontSize(context, 15),
+                                // fontSize: fluidFontSize(context, 15),
+                                fontSize: 15,
                                 fontWeight: FontWeight.w200),
                             initialValue: number,
                             textFieldController: phoneNumberTextEditController,
@@ -143,8 +147,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20.0.h,
               ),
               Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                padding: EdgeInsets.symmetric(
+                    // horizontal: fluidWidth(context, 5),
+                    horizontal: 5.0.w),
                 child: CustomButton(
                   function: () {
                     Get.to(() => const HomePagePackages());
@@ -175,15 +180,17 @@ class _LoginPageState extends State<LoginPage> {
                           Text(
                             "Enter your email to reset password.",
                             style: TextStyle(
-                              color: primaryDark,
-                              fontWeight: FontWeight.w500,
-                              fontSize: fluidFontSize(context, 18),
-                            ),
+                                color: primaryDark,
+                                fontWeight: FontWeight.w500,
+                                // fontSize: fluidFontSize(context, 18),
+                                fontSize: 18.0.h),
                           ),
                           separator_10,
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: fluidWidth(context, 5)),
+                              // horizontal: fluidWidth(context, 5),
+                              horizontal: 5.0.h,
+                            ),
                             child: TextFormField(
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
@@ -201,7 +208,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: fluidWidth(context, 5)),
+                              // horizontal: fluidWidth(context, 5),
+                              horizontal: 5.0.w,
+                            ),
                             child: CustomButton(
                               function: () {},
                               text: "Submit",
