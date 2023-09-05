@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/notification_setings_page.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/profile_editing_page.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
@@ -252,35 +254,7 @@ Widget buildSettingsItem(
 
 void _showEditProfileBottomSheet(BuildContext context) {
   Get.bottomSheet(
-    Container(
-      height: 200.h,
-      padding: EdgeInsets.only(
-        top: 20.0.r,
-        right: 20.0.r,
-        left: 20.0.r,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25.0.r),
-          topRight: Radius.circular(25.0.r),
-        ),
-        color: Colors.white,
-      ),
-      child: Column(
-        children: [
-          Text(
-            "Edit your profile details",
-            style: TextStyle(
-              color: primaryDark,
-              fontWeight: FontWeight.w500,
-              fontSize: 18.0.h,
-            ),
-          ),
-          // Add your profile editing UI here
-          // ...
-        ],
-      ),
-    ),
+    ProfileEditingPage(),
   );
 }
 
@@ -321,35 +295,10 @@ void _showLanguageSettingsBottomSheet(BuildContext context) {
 
 // Notification Settings Bottom Sheet
 void _showNotificationSettingsBottomSheet(BuildContext context) {
-  Get.bottomSheet(
-    Container(
-      height: 200.h,
-      padding: EdgeInsets.only(
-        top: 20.0.r,
-        right: 20.0.r,
-        left: 20.0.r,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25.0.r),
-          topRight: Radius.circular(25.0.r),
-        ),
-        color: Colors.white,
-      ),
-      child: Column(
-        children: [
-          Text(
-            "Notification Preferences:",
-            style: TextStyle(
-              color: primaryDark,
-              fontWeight: FontWeight.w500,
-              fontSize: 18.0.h,
-            ),
-          ),
-          // Add your notification preferences UI here
-          // For example, you can add toggles for different notification options
-        ],
-      ),
-    ),
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return NotificationSettingsBottomSheet();
+    },
   );
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
+import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class ProfileEditingPage extends StatelessWidget {
   const ProfileEditingPage({Key? key}) : super(key: key);
@@ -8,46 +10,79 @@ class ProfileEditingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Profile"),
+        toolbarHeight: 70.0,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.close, color: Colors.black, size: 30),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          "Update Profile",
+          style: TextStyle(
+              color: primaryDark,
+              fontSize: fluidFontSize(context, 30),
+              fontWeight: FontWeight.w400),
+        ),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 60.0,
-              backgroundImage: AssetImage('assets/profile_image.png'),
-            ),
-            SizedBox(height: 20.0),
-            ProfileInputField(
-              iconPath: 'assets/icons/user.svg',
-              labelText: 'First Name',
-              initialValue: 'John', // Set the initial value here
-            ),
-            ProfileInputField(
-              iconPath: 'assets/icons/user.svg',
-              labelText: 'Last Name',
-              initialValue: 'Doe', // Set the initial value here
-            ),
-            ProfileInputField(
-              iconPath: 'assets/icons/phone.svg',
-              labelText: 'Mobile Number',
-              initialValue: '123-456-7890', // Set the initial value here
-            ),
-            ProfileInputField(
-              iconPath: 'assets/icons/email.svg',
-              labelText: 'Email',
-              initialValue: 'johndoe@example.com', // Set the initial value here
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                // Implement the update profile logic here
-              },
-              child: Text("Update Profile"),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const ProfileInputField(
+                iconPath: 'assets/icons/user.svg',
+                labelText: 'First Name',
+                initialValue: 'John', // Set the initial value here
+              ),
+              const ProfileInputField(
+                iconPath: 'assets/icons/user.svg',
+                labelText: 'Last Name',
+                initialValue: 'Doe', // Set the initial value here
+              ),
+              const ProfileInputField(
+                iconPath: 'assets/icons/phone.svg',
+                labelText: 'Mobile Number',
+                initialValue: '123-456-7890', // Set the initial value here
+              ),
+              const ProfileInputField(
+                iconPath: 'assets/icons/email.svg',
+                labelText: 'Email',
+                initialValue:
+                    'johndoe@example.com', // Set the initial value here
+              ),
+              const SizedBox(height: 5.0),
+              ElevatedButton(
+                onPressed: () {
+                  // process profile updates here
+                },
+                //  button styling
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: fluidWidth(context, 5),
+                    vertical: fluidHeight(context, 1.4),
+                  ),
+                  child: Text(
+                    "Update Profile",
+                    style: TextStyle(
+                      fontSize: fluidFontSize(context, 18),
+                      fontWeight: FontWeight.w200,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -69,7 +104,7 @@ class ProfileInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
@@ -94,7 +129,7 @@ class ProfileInputField extends StatelessWidget {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 labelText: labelText,
-                contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                 isDense: true,
               ),
             ),
@@ -106,7 +141,7 @@ class ProfileInputField extends StatelessWidget {
 }
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: ProfileEditingPage(),
   ));
 }
