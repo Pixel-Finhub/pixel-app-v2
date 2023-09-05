@@ -68,7 +68,7 @@ class SettingsPage extends StatelessWidget {
                       buildSettingsItem(
                         context,
                         Icons.person_outline,
-                        "Edit profile",
+                        "Edit Profile",
                         onPressed,
                       ),
                       buildSettingsItem(
@@ -269,7 +269,7 @@ void _showEditProfileBottomSheet(BuildContext context) {
       child: Column(
         children: [
           Text(
-            "Edit your profile details:",
+            "Edit your profile details",
             style: TextStyle(
               color: primaryDark,
               fontWeight: FontWeight.w500,
