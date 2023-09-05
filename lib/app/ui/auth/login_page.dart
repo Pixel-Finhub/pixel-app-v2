@@ -8,6 +8,8 @@ import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
+import '../home/home_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -91,6 +93,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                height: 10.0.h,
+              ),
                     Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(defaultRadius),
@@ -134,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               CustomButton(
                 function: () {
-                  Get.to(() => const HomePagePackages());
+                  Get.to(() => const HomePage());
                 },
                 text: "Login",
               ),

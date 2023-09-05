@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,7 +7,8 @@ import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen
+    extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
@@ -28,14 +31,12 @@ class SplashScreen extends StatelessWidget {
           children: [
             Text(
               "PIXEL INSURANCE",
-              style: TextStyle(
-                color: primary,
-                fontWeight: FontWeight.w200,
-                fontSize: fluidFontSize(context, 35)
-              ),
+              style: TextStyle(color: primary, fontWeight: FontWeight.w200, fontSize: fluidFontSize(context, 35)),
             ),
             Container(
-              padding: EdgeInsetsDirectional.only(top: fluidHeight(context, 10),),
+              padding: EdgeInsetsDirectional.only(
+                top: fluidHeight(context, 10),
+              ),
               height: fluidWidth(context, 85),
               width: fluidWidth(context, 85),
               child: Image.asset("assets/images/splash.png"),
@@ -85,7 +86,9 @@ class SplashScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: fluidHeight(context, 20),), //spacing from insurance splash image to call to action button
+            SizedBox(
+              height: fluidHeight(context, 20),
+            ), //spacing from insurance splash image to call to action button
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -99,8 +102,8 @@ class SplashScreen extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: fluidHeight(context, .8),
+                      horizontal: 30,
+                      vertical: fluidHeight(context, 1.4),
                     ),
                     child: Text(
                       "Get Started",
@@ -112,8 +115,11 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                   //  button styling
-
-                )
+                      style: ButtonStyle(shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(25),),
+    ),
+    )
+                ),
               ],
             ),
           ],
