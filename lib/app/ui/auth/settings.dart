@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/help_and_privacy_dialogs.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/about_app.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/language_settings_page.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/notification_setings_page.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/profile_editing_page.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
+import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
+import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -9,11 +18,8 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        /* padding for status bar */
-        toolbarHeight: 70,
+        toolbarHeight: fluidHeight(context, 8),
         elevation: 0,
-
-        /* back button */
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -23,7 +29,10 @@ class SettingsPage extends StatelessWidget {
         title: const Text(
           "Settings",
           style: TextStyle(
-              color: Colors.black, fontSize: 28, fontWeight: FontWeight.w600),
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -32,236 +41,181 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /* Account settings container */
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
-              child: Text(
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                fluidWidth(context, 5),
+                fluidHeight(context, 1),
+                0,
+                fluidHeight(context, 0),
+              ),
+              child: const Text(
                 "Account Settings",
                 style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
-
-            /* Account settings card */
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: Card(
-                elevation: 1,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                  child: Column(
-                    children: [
-                      /* Account settings card content */
-                      TextButton(
-                        onPressed: _onPressed,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.person_outline,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(width: 20),
-                            Text(
-                              "Edit profile",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextButton(
-                        onPressed: _onPressed,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.language_outlined,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(width: 20),
-                            Text(
-                              "Language",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextButton(
-                        onPressed: _onPressed,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.notifications_none_outlined,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(width: 20),
-                            Text(
-                              "Notifications",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            /* End Account settings */
-
-            /* Support and about */
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 0, 10),
-              child: Text(
-                "Support and About",
-                style: TextStyle(
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-
-            /* Support and about card */
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              padding: EdgeInsets.fromLTRB(
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+              ),
               child: Card(
                 elevation: 1,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                  padding: EdgeInsets.all(fluidHeight(context, 2)),
                   child: Column(
                     children: [
-                      /* Support and about card content */
-                      TextButton(
-                        onPressed: _onPressed,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.help_outline,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(width: 20),
-                            Text(
-                              "Help",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        ),
+                      buildSettingsItem(
+                        context,
+                        Icons.person_outline,
+                        "Edit Profile",
+                        onPressed,
                       ),
-                      const SizedBox(height: 10),
-                      TextButton(
-                        onPressed: _onPressed,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.privacy_tip_outlined,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(width: 20),
-                            Text(
-                              "Privacy Policy",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        ),
+                      buildSettingsItem(
+                        context,
+                        Icons.language_outlined,
+                        "Language",
+                        onPressed,
                       ),
-                      const SizedBox(height: 10),
-                      TextButton(
-                        onPressed: _onPressed,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.info_outline,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(width: 20),
-                            Text(
-                              "About",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ],
-                        ),
+                      buildSettingsItem(
+                        context,
+                        Icons.notifications_none_outlined,
+                        "Notifications",
+                        onPressed,
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            /* End Support and about */
-
-            /* Logout button */
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              padding: EdgeInsets.fromLTRB(
+                fluidWidth(context, 5),
+                fluidHeight(context, 1),
+                0,
+                fluidHeight(context, 0),
+              ),
+              child: const Text(
+                "Support and About",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+              ),
+              child: Card(
+                elevation: 1,
+                child: Padding(
+                  padding: EdgeInsets.all(fluidHeight(context, 2)),
+                  child: Column(
+                    children: [
+                      buildSettingsItem(
+                        context,
+                        Icons.help_outline,
+                        "Help",
+                        () {
+                          showHelpDialog(context);
+                        },
+                      ),
+                      buildSettingsItem(
+                        context,
+                        Icons.privacy_tip_outlined,
+                        "Privacy Policy",
+                        () {
+                          showPrivacyPolicyDialog(
+                              context); // Call the function to show the Privacy Policy dialog
+                        },
+                      ),
+                      buildSettingsItem(
+                        context,
+                        Icons.info_outline,
+                        "About",
+                        () {
+                          showAboutAppDialog(
+                              context); // Call the function to show the Privacy Policy dialog
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+              ),
               child: TextButton(
-                onPressed: _onPressed,
+                onPressed: onPressed,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.logout,
                       color: Colors.black,
                       size: 30,
                     ),
-                    SizedBox(width: 20),
-                    Text(
+                    SizedBox(width: fluidWidth(context, 5)),
+                    const Text(
                       "Logout",
                       style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300),
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
-
-            /* Version */
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-              child: Text(
-                "Version 1.0.0",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w300),
+            //  text button for app version
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+                fluidWidth(context, 2),
+                fluidHeight(context, .5),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  showAppVersionDialog(context);
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.info_outline,
+                      color: Colors.black,
+                      size: 30,
+                    ),
+                    SizedBox(width: fluidWidth(context, 5)),
+                    const Text(
+                      "App Version",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-
-            // CustomNav(currentIndex: 0)
           ],
         ),
       ),
@@ -270,7 +224,73 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-//  this function is used as a place holder for all on pressed functions
-void _onPressed() {
-  // print("pressed");
+void onPressed() {
+  // Handle button press
+}
+
+Widget buildSettingsItem(
+  BuildContext context,
+  IconData icon,
+  String text,
+  VoidCallback onPressed,
+) {
+  return TextButton(
+    onPressed: () {
+      if (text == "Edit Profile") {
+        _showEditProfileBottomSheet(context);
+      } else if (text == "Language") {
+        _showLanguageSettingsBottomSheet(context);
+      } else if (text == "Notifications") {
+        _showNotificationSettingsBottomSheet(context);
+      } else {
+        // Handle other settings actions
+        onPressed();
+      }
+    },
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          color: Colors.black,
+          size: 30,
+        ),
+        const SizedBox(width: 20),
+        Text(
+          text,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+void _showEditProfileBottomSheet(BuildContext context) {
+  Get.bottomSheet(
+    const ProfileEditingPage(),
+  );
+}
+
+// Language Settings Bottom Sheet
+void _showLanguageSettingsBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return LanguageSettingsBottomSheet();
+    },
+  );
+}
+
+// Notification Settings Bottom Sheet
+void _showNotificationSettingsBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return const NotificationSettingsBottomSheet();
+    },
+  );
 }
