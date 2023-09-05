@@ -138,7 +138,12 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               CustomButton(
                 function: () {
-                  Get.to(() => OtpScreen());
+                  if (formKey.currentState!.validate()) {
+                    FirebaseAuthController.instance
+                        .phoneAuthentication(controller.phoneNo.text.trim());
+                    Get.to(
+                        () => OtpScreen());
+                  }
                 },
                 text: "Register",
               ),
@@ -147,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Get.to(() => const LoginPage());
                 },
                 child: RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: "Already a user? ",
                     style: TextStyle(
                       color: Colors.black,
