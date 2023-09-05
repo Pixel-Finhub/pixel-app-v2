@@ -126,29 +126,37 @@ class HomePage
                                           //1st Step
                                           Container(
                                             decoration: BoxDecoration(
-                                              color: Colors.grey.shade200,
+                                              color: Colors.white,
+                                              border: Border.all(
+                                                color: Colors.blue,
+                                                width: 1.5,
+                                              ),
                                               borderRadius: BorderRadius.circular(10.0),
                                             ),
                                             width: fluidWidth(context, 50),
-                                            height: fluidHeight(context, 20),
+                                            height: fluidHeight(context, 25),
                                             child: Column(
                                               children: [
                                                 Expanded(
-                                                child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                
-                image: AssetImage('assets/images/splash.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            width: fluidWidth(context, 50),
-            height: fluidHeight(context, 5),
-            child: Padding(padding: const EdgeInsets.all(10))
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(10.0),
+                                                      image: DecorationImage(
+                                                        image: AssetImage('assets/images/splash.png'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    width: fluidWidth(context, 50),
+                                                    height: fluidHeight(context, 5),
+                                                  ),
                                                 ),
+                                                const SizedBox(height: 10),
+                                                Text(
+                                                  'Select Package type',
+                                                  softWrap: true,
+                                                  textAlign: TextAlign.center,
                                                 ),
-                                                const SizedBox(height:10),
-                                                Text('This is a text paragraph we are so glad to meet you',softWrap: true,),
+                                                const SizedBox(height: 10),
                                               ],
                                             ),
                                           ),
@@ -156,35 +164,79 @@ class HomePage
                                           const SizedBox(width: 15),
                                           //2nd Step
                                           Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.shade200,
-                                                borderRadius: BorderRadius.circular(10.0),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              border: Border.all(
+                                                color: Colors.blue,
+                                                width: 1.5,
                                               ),
-                                              width: fluidWidth(context, 50),
-                                              height: fluidHeight(context, 15),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(10.0),
-                                                child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                              borderRadius: BorderRadius.circular(10.0),
+                                            ),
+                                            width: fluidWidth(context, 50),
+                                            height: fluidHeight(context, 25),
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(10.0),
+                                                      image: DecorationImage(
+                                                        image: AssetImage('assets/images/splash.png'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    width: fluidWidth(context, 50),
+                                                    height: fluidHeight(context, 5),
+                                                  ),
                                                 ),
-                                              )),
+                                                const SizedBox(height: 10),
+                                                Text(
+                                                  'Conduct cargo pre-survey',
+                                                  softWrap: true,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                const SizedBox(height: 10),
+                                              ],
+                                            ),
+                                          ),
                                           const SizedBox(width: 15),
                                           //3rd Step
                                           Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.shade200,
-                                                borderRadius: BorderRadius.circular(10.0),
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              border: Border.all(
+                                                color: Colors.blue,
+                                                width: 1.5,
                                               ),
-                                              width: fluidWidth(context, 50),
-                                              height: fluidHeight(context, 15),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(10.0),
-                                                child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                              borderRadius: BorderRadius.circular(10.0),
+                                            ),
+                                            width: fluidWidth(context, 50),
+                                            height: fluidHeight(context, 25),
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(10.0),
+                                                      image: DecorationImage(
+                                                        image: AssetImage('assets/images/splash.png'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                    width: fluidWidth(context, 50),
+                                                    height: fluidHeight(context, 5),
+                                                  ),
                                                 ),
-                                              )),
+                                                const SizedBox(height: 10),
+                                                Text(
+                                                  'Conduct cargo pre-survey',
+                                                  softWrap: true,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                const SizedBox(height: 10),
+                                              ],
+                                            ),
+                                          ),
                                         ],
                                       ))
                                 ],
