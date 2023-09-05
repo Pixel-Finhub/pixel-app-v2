@@ -14,7 +14,7 @@ class CustomButton extends Container {
     required this.function,
     required this.text,
     this.splashColor = Colors.blueGrey,
-    this.fontSize = 18,
+    this.fontSize = 16,
     this.color = Colors.blue,
     this.textColor = Colors.white,
   });
@@ -29,7 +29,7 @@ class CustomButton extends Container {
       minWidth: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Text(
         text,

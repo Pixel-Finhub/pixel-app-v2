@@ -9,6 +9,8 @@ import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
+import '../home/home_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 

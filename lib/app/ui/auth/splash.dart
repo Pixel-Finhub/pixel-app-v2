@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -103,8 +105,8 @@ class SplashScreen extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: fluidHeight(context, .8),
+                      horizontal: 30,
+                      vertical: fluidHeight(context, 1.4),
                     ),
                     child: Text(
                       "Get Started",
@@ -112,6 +114,14 @@ class SplashScreen extends StatelessWidget {
                         fontSize: fluidFontSize(context, 18),
                         fontWeight: FontWeight.w200,
                         color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  //  button styling
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
                       ),
                     ),
                   ),
