@@ -4,6 +4,42 @@ import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
+class InsuranceCoverage {
+  final String title;
+  final String description;
+  final String imagePath;
+
+  InsuranceCoverage({
+    required this.title,
+    required this.description,
+    required this.imagePath,
+  });
+}
+
+List<InsuranceCoverage> coverages = [
+  InsuranceCoverage(
+    title: 'Fire',
+    description: 'Coverage against fire-related damages.',
+    imagePath: 'assets/images/fire.png',
+  ),
+  InsuranceCoverage(
+    title: 'Road Accidents',
+    description: 'Coverage for your vehicle and accidents.',
+    imagePath: 'assets/images/fender-bender.png',
+  ),
+  InsuranceCoverage(
+    title: 'Theft',
+    description: 'Theft coverage for your vehicle and goods.',
+    imagePath: 'assets/images/thief.png',
+  ),
+  InsuranceCoverage(
+    title: 'Natural Disasters',
+    description: 'Coverage for unexpected travel events.',
+    imagePath: 'assets/images/disaster.png',
+  ),
+  // Add more coverages as needed
+];
+
 class InsuranceDetailsPage extends StatelessWidget {
   const InsuranceDetailsPage({Key? key}) : super(key: key);
 
@@ -29,7 +65,7 @@ class InsuranceDetailsPage extends StatelessWidget {
           'Insurance Description',
           style: TextStyle(
             fontSize: fluidFontSize(context, 24),
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.normal,
             color: Colors.black,
           ),
         ),
@@ -47,210 +83,271 @@ class InsuranceDetailsPage extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-          Container(
-            height: fluidHeight(context, 25),
-            width: fluidWidth(context, 100),
-            padding: const EdgeInsets.all(20),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.circular(10), // Adjust the radius as needed
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1), // Shadow color
-                    blurRadius: 2, // Spread radius
-                    offset: const Offset(1, 2), // Shadow offset
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              height: fluidHeight(context, 25),
+              width: fluidWidth(context, 100),
+              padding: const EdgeInsets.all(20),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular(10), // Adjust the radius as needed
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1), // Shadow color
+                      blurRadius: 2, // Spread radius
+                      offset: const Offset(1, 2), // Shadow offset
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius:
+                      BorderRadius.circular(10), // Same radius as the container
+                  child: Image.asset(
+                    'assets/images/burning-truck.jpg',
+                    fit: BoxFit.fitWidth,
                   ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius:
-                    BorderRadius.circular(10), // Same radius as the container
-                child: Image.asset(
-                  'assets/images/burning-truck.jpg',
-                  fit: BoxFit.fitWidth,
                 ),
               ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                child: Column(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         vertical: 10,
-                        horizontal: 20,
+                        horizontal: fluidWidth(context, 5),
                       ),
                       child: Text(
                         'Basic plan',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             fontSize: fluidFontSize(context, 20),
-                            fontWeight: FontWeight.w400),
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Text(
-                        'The name says it all, Protection against common risks during transit.',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w200,
-                          fontSize: fluidFontSize(context, 15),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: fluidWidth(context, 5)),
+                      child: Card(
+                        elevation: 1.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'The name says it all, Protection against common risks during transit.',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: fluidFontSize(context, 15),
+                                ),
+                              ),
+                              const SizedBox(height: 10.0), // Add spacing
+                              Text(
+                                'Coverage limit: 50% of transported items',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: fluidFontSize(context, 15),
+                                ),
+                              ),
+                              const SizedBox(height: 10.0), // Add spacing
+                              Text(
+                                'Initial deductible: 25% of the actual price of the transported items',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: fluidFontSize(context, 15),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-                child: Text(
-                  'Insurance coverage risk',
-                  style: TextStyle(
-                      fontSize: fluidFontSize(context, 20),
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.check_circle,
-                        color: primary,
-                        size: 17,
-                      ),
-                      // Replace with your desired icon
-                      SizedBox(
-                        width: 10.h,
-                      ), // Adjust the spacing as needed
-                      const Text(
-                        'Protection against common risks during transit.',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w200,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.check_circle,
-                        color: primary,
-                        size: 17,
-                      ),
-                      // Replace with your desired icon
-                      SizedBox(
-                        width: 10.h,
-                      ), // Adjust the spacing as needed
-                      const Text(
-                        'Protection against common risks during transit.',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w200,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    'Insurance coverage limit',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    '50% of TRANSPORTED items',
-                    style: TextStyle(fontWeight: FontWeight.w100),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'Initial deductive amount',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    '80% of package PRICE',
-                    style: TextStyle(fontWeight: FontWeight.w100),
-                  ),
-                ],
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
                   child: Text(
-                    'Insurance claim process',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    'What does it cover',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: fluidFontSize(context, 20),
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
-                Text(
-                  'The name say it all, The right size sliglty  snugs the body leha',
-                  style: TextStyle(fontWeight: FontWeight.w200),
+                // 2x2 Grid of Insurance Coverage Cards
+                GridView.builder(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: fluidWidth(context, 5),
+                    vertical: 20,
+                  ),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // 2 columns
+                    mainAxisSpacing: 10.0, // spacing between rows
+                    crossAxisSpacing: 10.0, // spacing between columns
+                  ),
+                  shrinkWrap: false,
+                  itemCount:
+                      coverages.length, // Use the length of your coverage list
+                  itemBuilder: (BuildContext context, int index) {
+                    final coverage =
+                        coverages[index]; // Get the current coverage
+
+                    return Card(
+                      elevation: 5.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Image.asset(
+                            coverage
+                                .imagePath, // Use the image path from the coverage object
+                            height: 100.0,
+                            width: 100.0,
+                            fit: BoxFit.contain,
+                          ),
+                          const SizedBox(height: 10.0),
+                          Text(
+                            coverage
+                                .title, // Use the title from the coverage object
+                            style: TextStyle(
+                              fontSize: fluidFontSize(context, 18),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 5.0),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              coverage
+                                  .description, // Use the description from the coverage object
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-                Text(
-                  'The name says it all, the right size slightly snugs',
-                  style: TextStyle(fontWeight: FontWeight.w200),
+
+                const SizedBox(
+                  height: 20,
+                ),
+
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                  child: Text(
+                    'Claim Process',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontSize: fluidFontSize(context, 20),
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: fluidWidth(context, 5),
+                    vertical: 20,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildClaimProcessStep(
+                        context,
+                        'Take photos of the damaged goods',
+                        Icons
+                            .camera_alt_rounded, // Replace with the icon you want
+                      ),
+                      _buildClaimProcessStep(
+                        context,
+                        'Fill in the claim form',
+                        Icons
+                            .assignment_rounded, // Replace with the icon you want
+                      ),
+                      _buildClaimProcessStep(
+                        context,
+                        'Submit the claim form',
+                        Icons.send_rounded, // Replace with the icon you want
+                      ),
+                      _buildClaimProcessStep(
+                        context,
+                        'Wait for approval',
+                        Icons
+                            .access_time_rounded, // Replace with the icon you want
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      // You can add more content here as needed
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-          SizedBox(
-            height: 35,
-            width: 230,
-            child: FloatingActionButton(
-              onPressed: () {},
-              shape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              child: const Text('Buy'),
-            ),
-          )
-        ]),
+          ],
+        ),
       ),
       bottomNavigationBar: const CustomNav(
         currentIndex: 2,
       ),
     );
   }
+}
+
+Widget _buildClaimProcessStep(
+    BuildContext context, String text, IconData iconData) {
+  return Container(
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(10),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.1),
+          blurRadius: 2,
+          offset: const Offset(1, 2),
+        ),
+      ],
+    ),
+    padding: const EdgeInsets.all(10),
+    margin: const EdgeInsets.symmetric(vertical: 10),
+    child: Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.blue, // Adjust the color as needed
+          ),
+          padding: const EdgeInsets.all(10),
+          child: Icon(
+            iconData,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontSize: fluidFontSize(context, 15),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
