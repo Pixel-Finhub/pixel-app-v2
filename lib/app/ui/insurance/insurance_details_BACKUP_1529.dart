@@ -139,6 +139,26 @@ class InsuranceDetailsPage extends StatelessWidget {
                 ],
               ),
             ),
+<<<<<<< HEAD
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(92, 201, 252,
+                      0.05), // Set your desired background color here
+                  borderRadius: BorderRadius.circular(
+                      10), // Set your desired border radius here
+                ),
+                padding: const EdgeInsets.all(
+                    10), // Added padding for the entire container
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.symmetric(
+=======
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -147,6 +167,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(
+>>>>>>> feature/beautification
                         vertical: 10,
                         horizontal: fluidWidth(context, 5),
                       ),
@@ -261,7 +282,123 @@ class InsuranceDetailsPage extends StatelessWidget {
                     )
                   ],
                 ),
+<<<<<<< HEAD
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                child: Text(
+                  'Insurance coverage risk',
+                  style: TextStyle(
+                      fontSize: fluidFontSize(context, 20),
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.check_circle,
+                        color: primary,
+                        size: 17,
+                      ),
+                      // Replace with your desired icon
+                      SizedBox(
+                        width: 10.h,
+                      ), // Adjust the spacing as needed
+                      const Text(
+                        'Protection against common risks during transit.',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w200,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.check_circle,
+                        color: primary,
+                        size: 17,
+                      ),
+                      // Replace with your desired icon
+                      SizedBox(
+                        width: 10.h,
+                      ), // Adjust the spacing as needed
+                      const Text(
+                        'Protection against common risks during transit.',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w200,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: const [
+                  Text(
+                    'Insurance coverage limit',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    '50% of TRANSPORTED items',
+                    style: TextStyle(fontWeight: FontWeight.w100),
+                  ),
+                ],
+              ),
+              Column(
+                children: const [
+                  Text(
+                    'Initial deductive amount',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    '80% of package PRICE',
+                    style: TextStyle(fontWeight: FontWeight.w100),
+                  ),
+                ],
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                SizedBox(
+=======
                 const SizedBox(
+>>>>>>> feature/beautification
                   height: 20,
                 ),
                 Padding(
