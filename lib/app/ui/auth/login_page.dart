@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     var passwordTextEditController = TextEditingController();
 
     PhoneNumber number = PhoneNumber(isoCode: 'TZ');
-    bool _isPasswordVisible = false;
+    bool isPasswordVisible = false;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -108,17 +108,17 @@ class _LoginPageState extends State<LoginPage> {
                         child: TextFormField(
                           controller: passwordTextEditController,
                           keyboardType: TextInputType.text,
-                          obscureText: !_isPasswordVisible,
+                          obscureText: !isPasswordVisible,
                           decoration: InputDecoration(
                             hintText: "Password",
                             border: InputBorder.none,
                             suffixIcon: IconButton(
-                                icon: Icon(_isPasswordVisible
+                                icon: Icon(isPasswordVisible
                                     ? Icons.visibility
                                     : Icons.visibility_off),
                                 onPressed: () {
                                   setState(() {
-                                    _isPasswordVisible = !_isPasswordVisible;
+                                    isPasswordVisible = !isPasswordVisible;
                                   });
                                 }),
                           ),
