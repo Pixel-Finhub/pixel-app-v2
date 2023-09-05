@@ -5,6 +5,10 @@ import 'package:pixel_insurance_v2/app/data/repositories/auth_repository.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pixel_insurance_v2/firebase_options.dart';
+import 'package:pixel_insurance_v2/app/premium/premium_package.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:pixel_insurance_v2/firebase_options.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
-      home: SplashScreen(),
+      home: PremiumPage(),
     );
   }
 }

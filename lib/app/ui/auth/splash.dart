@@ -29,13 +29,14 @@ class SplashScreen extends StatelessWidget {
             Text(
               "PIXEL INSURANCE",
               style: TextStyle(
-                color: primary,
-                fontWeight: FontWeight.w200,
-                fontSize: fluidFontSize(context, 35)
-              ),
+                  color: primary,
+                  fontWeight: FontWeight.w200,
+                  fontSize: fluidFontSize(context, 35)),
             ),
             Container(
-              padding: EdgeInsetsDirectional.only(top: fluidHeight(context, 10),),
+              padding: EdgeInsetsDirectional.only(
+                top: fluidHeight(context, 10),
+              ),
               height: fluidWidth(context, 85),
               width: fluidWidth(context, 85),
               child: Image.asset("assets/images/splash.png"),
@@ -85,16 +86,19 @@ class SplashScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: fluidHeight(context, 20),), //spacing from insurance splash image to call to action button
+            SizedBox(
+              height: fluidHeight(context, 20),
+            ), //spacing from insurance splash image to call to action button
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Get.to(
-                      () => const LoginPage(),
-                      transition: Transition.rightToLeft,
-                      duration: const Duration(milliseconds: 1),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
                     );
                   },
                   child: Padding(
@@ -111,9 +115,7 @@ class SplashScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //  button styling
-
-                )
+                ),
               ],
             ),
           ],

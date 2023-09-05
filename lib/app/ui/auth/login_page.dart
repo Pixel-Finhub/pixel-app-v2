@@ -6,6 +6,7 @@ import 'package:pixel_insurance_v2/app/ui/auth/register_page.dart';
 import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
+import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
 class LoginPage extends StatefulWidget {
@@ -34,113 +35,124 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 70.0,
-                    ),
-                    Center(
-                      child: Image.asset(
-                        'assets/images/login_person.png',
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: fluidHeight(context, 5),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30.0,
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                        side: const BorderSide(
-                          color: primary,
-                          width: 1.0,
+                      Center(
+                        child: Image.asset(
+                          'assets/images/login_person.png',
+                          height: fluidWidth(context, 80),
+                          width: fluidWidth(context, 80),
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
-                          vertical: 3.0,
-                        ),
-                        child: InternationalPhoneNumberInput(
-                          onInputChanged: (PhoneNumber number) {
-                            // controller.phoneNumber(number.phoneNumber);
-                          },
-                          onInputValidated: (bool value) {
-                            print(value);
-                            // controller.phoneNumber(number.phoneNumber);
-                          },
-                          selectorConfig: const SelectorConfig(
-                            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+
+                      /* Phone Input */
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(defaultRadius),
+                          side: const BorderSide(
+                            color: primary,
+                            width: 1.0,
                           ),
-                          ignoreBlank: false,
-                          autoFocus: false,
-                          autoValidateMode: AutovalidateMode.disabled,
-                          selectorTextStyle:
-                              const TextStyle(color: Colors.black),
-                          initialValue: number,
-                          textFieldController: phoneNumberTextEditController,
-                          formatInput: false,
-                          keyboardType: TextInputType.phone,
-                          inputBorder: InputBorder.none,
-                          onSaved: (PhoneNumber number) {
-                            print('On Saved: $number');
-                          },
                         ),
-                      ),
-                    ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                        side: const BorderSide(
-                          color: primary,
-                          width: 1.0,
-                        ),
-                      ),
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30.0,
-                          vertical: 3.0,
-                        ),
-                        child: TextFormField(
-                          controller: passwordTextEditController,
-                          keyboardType: TextInputType.text,
-                          obscureText: !isPasswordVisible,
-                          decoration: InputDecoration(
-                            hintText: "Password",
-                            border: InputBorder.none,
-                            suffixIcon: IconButton(
-                                icon: Icon(isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                onPressed: () {
-                                  setState(() {
-                                    isPasswordVisible = !isPasswordVisible;
-                                  });
-                                }),
+                        elevation: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0,
+                            vertical: 3.0,
                           ),
-                          // onChanged: (value) => controller.password(value),
+                          child: InternationalPhoneNumberInput(
+                            onInputChanged: (PhoneNumber number) {
+                              print(number.phoneNumber);
+                              //controller.phoneNumber(number.phoneNumber);
+                            },
+                            onInputValidated: (bool value) {
+                              // print(value);
+                              // controller.phoneNumber(number.phoneNumber);
+                            },
+                            selectorConfig: const SelectorConfig(
+                              selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                            ),
+                            ignoreBlank: false,
+                            autoFocus: false,
+                            autoValidateMode: AutovalidateMode.disabled,
+                            selectorTextStyle: TextStyle(
+                                color: Colors.black,
+                                fontSize: fluidFontSize(context, 15),
+                                fontWeight: FontWeight.w200),
+                            initialValue: number,
+                            textFieldController: phoneNumberTextEditController,
+                            formatInput: false,
+                            keyboardType: TextInputType.phone,
+                            inputBorder: InputBorder.none,
+                            onSaved: (PhoneNumber number) {
+                              // print('On Saved: $number');
+                            },
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(defaultRadius),
+                          side: const BorderSide(
+                            color: primary,
+                            width: 1.0,
+                          ),
+                        ),
+                        elevation: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0,
+                            vertical: 3.0,
+                          ),
+                          child: TextFormField(
+                            controller: passwordTextEditController,
+                            keyboardType: TextInputType.text,
+                            obscureText: !isPasswordVisible,
+                            decoration: InputDecoration(
+                              hintText: "Password",
+                              border: InputBorder.none,
+                              suffixIcon: IconButton(
+                                  icon: Icon(isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                  onPressed: () {
+                                    setState(() {
+                                      isPasswordVisible = !isPasswordVisible;
+                                    });
+                                  }),
+                            ),
+                            // onChanged: (value) => controller.password(value),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 20.0.h,
               ),
-              CustomButton(
-                function: () {
-                  Get.to(() => const HomePagePackages());
-                },
-                text: "Login",
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+                child: CustomButton(
+                  function: () {
+                    Get.to(() => const HomePagePackages());
+                  },
+                  text: "Login",
+                ),
               ),
-              // SizedBox(
-              //   height: 20.0.h,
-              // ),
+
               TextButton(
                 onPressed: () {
                   Get.bottomSheet(
@@ -160,18 +172,18 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             "Enter your email to reset password.",
                             style: TextStyle(
                               color: primaryDark,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
+                              fontSize: fluidFontSize(context, 18),
                             ),
                           ),
                           separator_10,
                           Padding(
                             padding: EdgeInsets.symmetric(
-                              horizontal: 10.0.w,
-                            ),
+                                horizontal: fluidWidth(context, 5)),
                             child: TextFormField(
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
@@ -187,9 +199,13 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             height: 10.0.h,
                           ),
-                          CustomButton(
-                            function: () {},
-                            text: "Submit",
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: fluidWidth(context, 5)),
+                            child: CustomButton(
+                              function: () {},
+                              text: "Submit",
+                            ),
                           )
                         ],
                       ),
