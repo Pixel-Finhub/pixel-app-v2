@@ -90,26 +90,53 @@ class InsuranceDetailsPage extends StatelessWidget {
               height: fluidHeight(context, 25),
               width: fluidWidth(context, 100),
               padding: const EdgeInsets.all(20),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.circular(10), // Adjust the radius as needed
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1), // Shadow color
-                      blurRadius: 2, // Spread radius
-                      offset: const Offset(1, 2), // Shadow offset
+              child: Stack(
+                children: [
+                  Container(
+                    width: fluidWidth(context, 100),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 2,
+                          offset: const Offset(1, 2),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(10), // Same radius as the container
-                  child: Image.asset(
-                    'assets/images/burning-truck.jpg',
-                    fit: BoxFit.fitWidth,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        'assets/images/burning-truck.jpg',
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
                   ),
-                ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.black
+                            .withOpacity(0.7), // Background color for the title
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: Text(
+                        'Basic Plan', // Replace with your package title
+                        style: TextStyle(
+                          color: Colors.white, // Text color
+                          fontSize: fluidFontSize(
+                              context, 25), // Adjust the font size as needed
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Column(
@@ -388,7 +415,7 @@ Widget _buildClaimProcessStep(
     child: Row(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.blue, // Adjust the color as needed
           ),
