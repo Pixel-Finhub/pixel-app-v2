@@ -135,7 +135,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                           horizontal: fluidWidth(context, 5)),
                       child: Card(
-                        elevation: 1.0,
+                        elevation: .50,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5.0),
                         ),
@@ -145,23 +145,83 @@ class InsuranceDetailsPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'The name says it all, Protection against common risks during transit.',
+                                'Basic package gives you the most essential coverage for your goods during transit. It covers the most common risks that you may encounter during transit. The package is already pre-configured so you just have to activate it. You can also customize the package to suit your needs.',
                                 style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   fontSize: fluidFontSize(context, 15),
                                 ),
                               ),
-                              const SizedBox(height: 10.0), // Add spacing
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: fluidWidth(context, 5),
+                      ),
+                      child: Text(
+                        'Coverage limit',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: fluidFontSize(context, 20),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: fluidWidth(context, 5)),
+                      child: Card(
+                        elevation: .50,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                               Text(
-                                'Coverage limit: 50% of transported items',
+                                'This package will cover up to 50% of the actual price of the transported items. The coverage limit can be increased by purchasing additional coverage packages.',
                                 style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   fontSize: fluidFontSize(context, 15),
                                 ),
                               ),
-                              const SizedBox(height: 10.0), // Add spacing
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: fluidWidth(context, 5),
+                      ),
+                      child: Text(
+                        'Initial deductible',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: fluidFontSize(context, 20),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: fluidWidth(context, 5)),
+                      child: Card(
+                        elevation: .50,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                               Text(
-                                'Initial deductible: 25% of the actual price of the transported items',
+                                'In order to activate this package you will have to pay an initial deductible of 10% of the actual price of the transported items. The deductible can be reduced by purchasing additional coverage packages.',
                                 style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   fontSize: fluidFontSize(context, 15),
@@ -199,7 +259,8 @@ class InsuranceDetailsPage extends StatelessWidget {
                     mainAxisSpacing: 10.0, // spacing between rows
                     crossAxisSpacing: 10.0, // spacing between columns
                   ),
-                  shrinkWrap: false,
+                  shrinkWrap: true,
+                  /*TODO: #3 #2 remove this or set it to false to prevent in grid scrolling effect */
                   itemCount:
                       coverages.length, // Use the length of your coverage list
                   itemBuilder: (BuildContext context, int index) {
