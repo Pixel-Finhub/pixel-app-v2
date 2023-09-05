@@ -9,29 +9,25 @@ class ProfileEditingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 70.0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.close, color: Colors.black, size: 30),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text(
-          "Update Profile",
-          style: TextStyle(
-              color: primaryDark,
-              fontSize: fluidFontSize(context, 30),
-              fontWeight: FontWeight.w400),
-        ),
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              //  edit profile title text
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(vertical: fluidHeight(context, 2)),
+                child: Text(
+                  "Edit Profile",
+                  style: TextStyle(
+                    fontSize: fluidFontSize(context, 24),
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
               const ProfileInputField(
                 iconPath: 'assets/icons/user.svg',
                 labelText: 'First Name',

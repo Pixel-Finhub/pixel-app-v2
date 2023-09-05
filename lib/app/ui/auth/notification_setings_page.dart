@@ -65,36 +65,7 @@ class _NotificationSettingsBottomSheetState
               },
             ),
           ),
-          const Divider(),
-          const Text(
-            "Language Preferences:",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          ListTile(
-            title: const Text("English"),
-            trailing: Checkbox(
-              value: isEnglishSelected,
-              onChanged: (value) {
-                setState(() {
-                  isEnglishSelected = value!;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text("Swahili"),
-            trailing: Checkbox(
-              value: isSwahiliSelected,
-              onChanged: (value) {
-                setState(() {
-                  isSwahiliSelected = value!;
-                });
-              },
-            ),
-          ),
+
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/help_and_privacy_dialogs.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/about_app.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/language_settings_page.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/notification_setings_page.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/profile_editing_page.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
@@ -123,19 +126,27 @@ class SettingsPage extends StatelessWidget {
                         context,
                         Icons.help_outline,
                         "Help",
-                        onPressed,
+                        () {
+                          showHelpDialog(context);
+                        },
                       ),
                       buildSettingsItem(
                         context,
                         Icons.privacy_tip_outlined,
                         "Privacy Policy",
-                        onPressed,
+                        () {
+                          showPrivacyPolicyDialog(
+                              context); // Call the function to show the Privacy Policy dialog
+                        },
                       ),
                       buildSettingsItem(
                         context,
                         Icons.info_outline,
                         "About",
-                        onPressed,
+                        () {
+                          showAboutAppDialog(
+                              context); // Call the function to show the Privacy Policy dialog
+                        },
                       ),
                     ],
                   ),
@@ -181,7 +192,9 @@ class SettingsPage extends StatelessWidget {
                 fluidHeight(context, .5),
               ),
               child: TextButton(
-                onPressed: onPressed,
+                onPressed: () {
+                  showAppVersionDialog(context);
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -216,7 +229,11 @@ void onPressed() {
 }
 
 Widget buildSettingsItem(
-    BuildContext context, IconData icon, String text, VoidCallback onPressed) {
+  BuildContext context,
+  IconData icon,
+  String text,
+  VoidCallback onPressed,
+) {
   return TextButton(
     onPressed: () {
       if (text == "Edit Profile") {
@@ -254,42 +271,17 @@ Widget buildSettingsItem(
 
 void _showEditProfileBottomSheet(BuildContext context) {
   Get.bottomSheet(
-    ProfileEditingPage(),
+    const ProfileEditingPage(),
   );
 }
 
 // Language Settings Bottom Sheet
 void _showLanguageSettingsBottomSheet(BuildContext context) {
-  Get.bottomSheet(
-    Container(
-      height: 200.h,
-      padding: EdgeInsets.only(
-        top: 20.0.r,
-        right: 20.0.r,
-        left: 20.0.r,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25.0.r),
-          topRight: Radius.circular(25.0.r),
-        ),
-        color: Colors.white,
-      ),
-      child: Column(
-        children: [
-          Text(
-            "Language Settings:",
-            style: TextStyle(
-              color: primaryDark,
-              fontWeight: FontWeight.w500,
-              fontSize: 18.0.h,
-            ),
-          ),
-          // Add your language settings UI here
-          // For example, you can add a list of languages and a way to select one
-        ],
-      ),
-    ),
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return LanguageSettingsBottomSheet();
+    },
   );
 }
 
@@ -298,7 +290,7 @@ void _showNotificationSettingsBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
-      return NotificationSettingsBottomSheet();
+      return const NotificationSettingsBottomSheet();
     },
   );
 }
