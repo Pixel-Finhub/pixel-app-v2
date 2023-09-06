@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SupportiveDocument extends StatelessWidget {
+class SupportiveDocument extends StatefulWidget {
   const SupportiveDocument({super.key});
 
+  @override
+  State<SupportiveDocument> createState() => _SupportiveDocumentState();
+}
+
+class _SupportiveDocumentState extends State<SupportiveDocument> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
