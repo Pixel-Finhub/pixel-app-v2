@@ -62,7 +62,44 @@ class _RequestFormState extends State<RequestForm> {
               ),
             ),
 
-            
+            // Add some spacing
+            const SizedBox(height: 20),
+            // Pre survey form
+            _buildSectionTitle(context, 'Details about the cargo'),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5), vertical: fluidHeight(context, 1)),
+              child: Column(
+                children: [
+                  // transportation mode
+                  buildSelectInput(
+                    options: ['Truck', 'Ship', 'Airplane'],
+                    selectedValue: 'Truck',
+                    onChanged: (String? value) {
+                      // Update the selected value
+                    },
+                  ),
+                  const SizedBox(height: 10), // Add some spacing
+
+                  // time of departure
+                  buildDateInput(context, 'Time of departure', 'Select date'),
+                  const SizedBox(height: 10), // Add some spacing
+                  
+                  // time of arrival
+                  buildDateInput(context, 'Time of arrival', 'Select date'),
+                  const SizedBox(height: 10), // Add some spacing
+
+                  // Net value of the cargo Tsh. 
+                  buildNumberInput(context, 'Net value of the cargo Tsh.', 'Enter value'),
+                  const SizedBox(height: 10), // Add some spacing
+
+                  // Gross weight of the cargo (kg)
+                  buildNumberInput(context, 'Gross weight of the cargo (kg)', 'Enter weight'),
+
+
+                ],
+              ),
+            ),
+
             _buildSendRequestButton(context),
           ],
         ),
@@ -238,4 +275,144 @@ class Item {
 
   Item(
       {required this.name, required this.imagePath, required this.borderColor});
+}
+
+// Text Input Builder
+Widget buildTextInput(BuildContext context, String label, String hintText) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(15, 10, 0, 5),
+        child: Text(label),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+            hintText: hintText,
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+// Date Input Builder
+Widget buildDateInput(BuildContext context, String label, String hintText) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(15, 10, 0, 5),
+        child: Text(label),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+            hintText: hintText,
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.calendar_today),
+              onPressed: () {
+                // Open date picker here
+              },
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+// Image Input Builder (opens camera)
+Widget buildImageInput(BuildContext context, String label, String imagePath) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(15, 10, 0, 5),
+        child: Text(label),
+      ),
+      GestureDetector(
+        onTap: () {
+          // Open camera to capture an image
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(),
+          ),
+          child: Icon(
+            Icons.camera_alt,
+            size: 50,
+
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget buildSelectInput({
+  required List<String> options,
+  String? selectedValue,
+  ValueChanged<String?>? onChanged,
+}) {
+  return DropdownButtonFormField<String>(
+    value: selectedValue,
+    onChanged: onChanged,
+    items: options.map((String option) {
+      return DropdownMenuItem<String>(
+        value: option,
+        child: Text(option),
+      );
+    }).toList(),
+    decoration: const InputDecoration(
+      labelText: 'Select an option',
+      border: OutlineInputBorder(),
+    ),
+  );
+}
+
+
+// number input builder
+Widget buildNumberInput(BuildContext context, String label, String hintText) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(15, 10, 0, 5),
+        child: Text(label),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(),
+        ),
+        child: TextFormField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+            hintText: hintText,
+          ),
+        ),
+      ),
+    ],
+  );
 }
