@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
+import 'package:pixel_insurance_v2/app/ui/utils/file_picker.dart';
+import 'package:flutter/services.dart';
 
 class RequestForm extends StatefulWidget {
   const RequestForm({Key? key}) : super(key: key);
@@ -67,7 +69,9 @@ class _RequestFormState extends State<RequestForm> {
             // Pre survey form
             _buildSectionTitle(context, 'Details about the cargo'),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5), vertical: fluidHeight(context, 1)),
+              padding: EdgeInsets.symmetric(
+                  horizontal: fluidWidth(context, 5),
+                  vertical: fluidHeight(context, 1)),
               child: Column(
                 children: [
                   // transportation mode
@@ -83,18 +87,27 @@ class _RequestFormState extends State<RequestForm> {
                   // time of departure
                   buildDateInput(context, 'Time of departure', 'Select date'),
                   const SizedBox(height: 10), // Add some spacing
-                  
+
                   // time of arrival
                   buildDateInput(context, 'Time of arrival', 'Select date'),
                   const SizedBox(height: 10), // Add some spacing
 
-                  // Net value of the cargo Tsh. 
-                  buildNumberInput(context, 'Net value of the cargo Tsh.', 'Enter value'),
+                  // Net value of the cargo Tsh.
+                  buildNumberInput(
+                      context, 'Net value of the cargo Tsh.', 'Enter value'),
                   const SizedBox(height: 10), // Add some spacing
 
                   // Gross weight of the cargo (kg)
-                  buildNumberInput(context, 'Gross weight of the cargo (kg)', 'Enter weight'),
+                  buildNumberInput(context, 'Gross weight of the cargo (kg)','Enter weight'),
+                  const SizedBox(height: 10), // Add some spacing
 
+                  // Cargo invoice
+                  buildFileFormField(context),
+                  const SizedBox(height: 10), // Add some spacing
+
+                  // image of the cargo in container
+                  buildImageInput(context, 'Image of the cargo in container','assets/images/crops.png'),
+                  const SizedBox(height: 10), // Add some spacing
 
                 ],
               ),
@@ -360,7 +373,6 @@ Widget buildImageInput(BuildContext context, String label, String imagePath) {
           child: Icon(
             Icons.camera_alt,
             size: 50,
-
           ),
         ),
       ),
@@ -368,27 +380,48 @@ Widget buildImageInput(BuildContext context, String label, String imagePath) {
   );
 }
 
+// Select Input Builder
 Widget buildSelectInput({
   required List<String> options,
-  String? selectedValue,
-  ValueChanged<String?>? onChanged,
+  required String selectedValue,
+  required void Function(String?) onChanged,
 }) {
-  return DropdownButtonFormField<String>(
-    value: selectedValue,
-    onChanged: onChanged,
-    items: options.map((String option) {
-      return DropdownMenuItem<String>(
-        value: option,
-        child: Text(option),
-      );
-    }).toList(),
-    decoration: const InputDecoration(
-      labelText: 'Select an option',
-      border: OutlineInputBorder(),
-    ),
+  return Row(
+    children: [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(15, 10, 0, 5),
+            child: Text('Transportation mode'),
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: selectedValue,
+                onChanged: onChanged,
+                items: options.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(value),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ],
   );
 }
-
 
 // number input builder
 Widget buildNumberInput(BuildContext context, String label, String hintText) {
@@ -406,6 +439,7 @@ Widget buildNumberInput(BuildContext context, String label, String hintText) {
           border: Border.all(),
         ),
         child: TextFormField(
+          keyboardType: TextInputType.number,
           decoration: InputDecoration(
             border: InputBorder.none,
             contentPadding: const EdgeInsets.symmetric(horizontal: 15),
