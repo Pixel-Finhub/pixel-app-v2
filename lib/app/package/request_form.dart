@@ -12,8 +12,30 @@ class RequestForm extends StatefulWidget {
 
 class _RequestFormState extends State<RequestForm> {
   List<Item> items = [
-    Item(name: 'Fabrics', imagePath: 'assets/images/fabrics.png', borderColor: primary),
-    Item(name: 'Rice Packs', imagePath: 'assets/images/crops.png', borderColor: Colors.blue),
+    Item(
+        name: 'Fabrics',
+        imagePath: 'assets/images/fabrics.png',
+        borderColor: primary),
+    Item(
+        name: 'Rice Packs',
+        imagePath: 'assets/images/crops.png',
+        borderColor: Colors.blue),
+    Item(
+        name: 'Fabrics',
+        imagePath: 'assets/images/fabrics.png',
+        borderColor: primary),
+    Item(
+        name: 'Rice Packs',
+        imagePath: 'assets/images/crops.png',
+        borderColor: Colors.blue),
+    Item(
+        name: 'Fabrics',
+        imagePath: 'assets/images/fabrics.png',
+        borderColor: primary),
+    Item(
+        name: 'Rice Packs',
+        imagePath: 'assets/images/crops.png',
+        borderColor: Colors.blue),
   ];
 
   @override
@@ -25,8 +47,22 @@ class _RequestFormState extends State<RequestForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSectionTitle(context, 'Item to transport'),
-            _buildItemGrid(context),
-            const SizedBox(height: 50),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
+              child: _buildItemGrid(context),
+            ),
+            const SizedBox(height: 20), // Add some spacing
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Add item to the grid
+                  // _addItem();
+                },
+                child: const Text('Add Item'),
+              ),
+            ),
+
+            
             _buildSendRequestButton(context),
           ],
         ),
@@ -80,67 +116,89 @@ class _RequestFormState extends State<RequestForm> {
   }
 
   Widget _buildItemGrid(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: items.length,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildItemCard(context, items[index]);
-        },
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3, // Number of cards per row
+        childAspectRatio: 1, // Maintain a 1:1 aspect ratio for cards
+      ),
+      itemCount: items.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildItemCard(context, items[index]);
+      },
+    );
+  }
+
+  Widget _buildItemCard(BuildContext context, Item item) {
+    double cardWidth = fluidWidth(context, 30); // Width of each card
+    double cardHeight = fluidHeight(context, 20);
+
+    return GestureDetector(
+      onLongPress: () {
+        // Show a confirmation dialog when the item is long-pressed
+        _showDeleteConfirmationDialog(context, item);
+      },
+      child: Card(
+        margin: EdgeInsets.symmetric(
+          horizontal: fluidWidth(context, 1),
+          vertical: fluidHeight(context, 1),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(
+            color: item.borderColor,
+          ),
+        ),
+        child: SizedBox(
+          width: cardWidth,
+          height: cardHeight,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                child: Text(
+                  item.name,
+                  textAlign: TextAlign.center, // Center the text
+                ),
+              ),
+              Image.asset(
+                item.imagePath,
+                width: fluidWidth(context, 15), // Maintain aspect ratio
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 
-Widget _buildItemCard(BuildContext context, Item item) {
-  double cardWidth = (fluidWidth(context, 100) - 4 * fluidWidth(context, 1)) / 3; // Calculate card width for 3 cards per row
-
-  return Card(
-    margin: EdgeInsets.symmetric(
-      horizontal: fluidWidth(context, 1),
-      vertical: fluidHeight(context, 2),
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15),
-      side: BorderSide(
-        color: item.borderColor,
-      ),
-    ),
-    child: SizedBox(
-      width: cardWidth, // Set the card width
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 10,
+  void _showDeleteConfirmationDialog(BuildContext context, Item item) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Item'),
+          content: Text('Are you sure you want to delete ${item.name}?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('Cancel'),
             ),
-            child: Text(
-              item.name,
-              textAlign: TextAlign.center, // Center the text
+            TextButton(
+              onPressed: () {
+                _removeItem(item);
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: const Text('Delete'),
             ),
-          ),
-          Image.asset(
-            item.imagePath,
-            width: cardWidth - 20, // Adjust image width
-            height: cardWidth - 20, // Maintain aspect ratio
-            fit: BoxFit.cover, // Cover the available space
-          ),
-          IconButton(
-            onPressed: () {
-              _removeItem(item);
-            },
-            icon: const Icon(
-              Icons.delete,
-              color: Colors.red,
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+          ],
+        );
+      },
+    );
+  }
 
   void _addItem(Item item) {
     setState(() {
@@ -178,5 +236,6 @@ class Item {
   final String imagePath;
   final Color borderColor;
 
-  Item({required this.name, required this.imagePath, required this.borderColor});
+  Item(
+      {required this.name, required this.imagePath, required this.borderColor});
 }
