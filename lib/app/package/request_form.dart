@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 
-class RequestForm extends StatelessWidget {
+class RequestForm extends StatefulWidget {
   const RequestForm({super.key});
 
+  @override
+  State<RequestForm> createState() => _RequestFormState();
+}
+
+class _RequestFormState extends State<RequestForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
