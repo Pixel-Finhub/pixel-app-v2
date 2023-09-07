@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import '../utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,13 +23,13 @@ class _HomePageState extends State<HomePage> {
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.person_outline_rounded,
+              icon: const Icon(Icons.person_outline_rounded,
                   color: Colors.black, size: 30),
             ),
           ],
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text(
+          title: const Text(
             "Welcome Mr. Msangi",
             style: TextStyle(color: Colors.black),
           ),
@@ -41,7 +43,6 @@ class _HomePageState extends State<HomePage> {
                   /* Banner card */
                   CarouselSlider(
                     items: [
-                      // First Banner
                       _buildBanner(
                         context: context,
                         imagePath: "assets/images/banner1.jpg",
@@ -49,8 +50,6 @@ class _HomePageState extends State<HomePage> {
                         description:
                             "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
                       ),
-
-                      // First Banner
                       _buildBanner(
                         context: context,
                         imagePath: "assets/images/banner2.jpg",
@@ -58,8 +57,6 @@ class _HomePageState extends State<HomePage> {
                         description:
                             "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
                       ),
-
-                      // First Banner
                       _buildBanner(
                         context: context,
                         imagePath: "assets/images/banner3.jpg",
@@ -71,13 +68,11 @@ class _HomePageState extends State<HomePage> {
                     options: CarouselOptions(
                       height: fluidHeight(context, 30.0),
                       aspectRatio: 16 / 9,
-                      viewportFraction:
-                          1.0, // Set to 1 to show one banner at a time
+                      viewportFraction: 1.0, // slider duration
                       autoPlay: true, // Enable auto-play
-                      autoPlayInterval:
-                          Duration(seconds: 5), // Auto-play interval
-                      autoPlayAnimationDuration:
-                          Duration(milliseconds: 800), // Animation duration
+                      autoPlayInterval: const Duration(seconds: 5),
+                      autoPlayAnimationDuration: const Duration(
+                          milliseconds: 800), // Animation duration
                       autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
                     ),
                   ),
@@ -96,23 +91,35 @@ class _HomePageState extends State<HomePage> {
                               ),
                               /* Insurance package card */
                               Container(
-                                padding: EdgeInsets.fromLTRB(10, 20, 0, 10),
-                                child: Row(children: [
-                                  Text(
-                                    "Get Insurance in few steps",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: fluidFontSize(context, 20),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 130),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: primary,
-                                    size: fluidFontSize(context, 30),
-                                  ),
-                                ]),
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 20, 0, 10),
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Get Insurance in few steps",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: fluidFontSize(context, 20),
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: primary, // Set the background color to black
+                                          borderRadius: BorderRadius.circular(25.0), // Add border radius
+                                        ),
+                                        child: IconButton(
+                                          onPressed: (){Get.to(() => HomePagePackages());},
+                                          icon: Icon(
+                                            Icons.arrow_forward,
+                                            color: Colors.white,
+                                            size: fluidFontSize(context, 24),
+                                          )
+                                        ),
+                                      ),
+                                    ]),
                               ),
 
                               //Insurance steps section
@@ -143,7 +150,8 @@ class _HomePageState extends State<HomePage> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10.0),
-                                                      image: DecorationImage(
+                                                      image:
+                                                          const DecorationImage(
                                                         image: AssetImage(
                                                             'assets/images/splash.png'),
                                                         fit: BoxFit.cover,
@@ -156,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Text(
+                                                const Text(
                                                   'Select Package type',
                                                   softWrap: true,
                                                   textAlign: TextAlign.center,
@@ -188,7 +196,8 @@ class _HomePageState extends State<HomePage> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10.0),
-                                                      image: DecorationImage(
+                                                      image:
+                                                          const DecorationImage(
                                                         image: AssetImage(
                                                             'assets/images/splash.png'),
                                                         fit: BoxFit.cover,
@@ -201,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Text(
+                                                const Text(
                                                   'Conduct cargo pre-survey',
                                                   softWrap: true,
                                                   textAlign: TextAlign.center,
@@ -232,7 +241,8 @@ class _HomePageState extends State<HomePage> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10.0),
-                                                      image: DecorationImage(
+                                                      image:
+                                                          const DecorationImage(
                                                         image: AssetImage(
                                                             'assets/images/splash.png'),
                                                         fit: BoxFit.cover,
@@ -245,7 +255,7 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Text(
+                                                const Text(
                                                   'Conduct cargo pre-survey',
                                                   softWrap: true,
                                                   textAlign: TextAlign.center,
@@ -270,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                                         /* unit package card */
 
                                         Padding(
-                                          padding: EdgeInsets.fromLTRB(
+                                          padding: const EdgeInsets.fromLTRB(
                                               10, 20, 0, 10),
                                           child: Row(
                                             children: [
@@ -471,8 +481,9 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         /* unit package card */
                                         Container(
-                                          margin: EdgeInsetsDirectional.only(
-                                              top: 20),
+                                          margin:
+                                              const EdgeInsetsDirectional.only(
+                                                  top: 20),
                                           decoration: BoxDecoration(
                                             color: Colors.grey.shade200,
                                             borderRadius:
@@ -608,7 +619,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(115, 0, 0, 0), // Set the background color to black
+                    color: const Color.fromARGB(
+                        115, 0, 0, 0), // Set the background color to black
                     borderRadius:
                         BorderRadius.circular(10.0), // Add border radius
                   ),
