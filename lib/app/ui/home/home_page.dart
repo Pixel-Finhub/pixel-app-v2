@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import '../utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,48 +39,35 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   /* Banner card */
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      /* insurance packages  banner card */
+                  CarouselSlider(
+                    items: [
+                      // First Banner
+                      _buildBanner(
+                          context,
+                          "assets/images/banner1.jpg",
+                          "Get Liability Coverage in Times of Accident.",
+                          "We Provide On-demand Insurance Service That Is Tailored According to Your Needs"),
+
+                      // Second Banner
+                      _buildBanner(
+                          context,
+                          "assets/images/banner2.jpg",
+                          "Another Banner Title",
+                          "Description for the second banner."),
+
+                      // Add more banners here...
+                    ],
+                    options: CarouselOptions(
                       height: fluidHeight(context, 30.0),
-                      width: fluidWidth(context, 100) - 20,
-                      // background image in the card
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        image: DecorationImage(
-                          image:
-                              AssetImage("assets/images/burning-truck-0.jpg"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      /* Card description Content */
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Get Liability Coverage in Times of Accident.",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: fluidFontSize(context, 25),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              "We Provide On demand Insurance Service That Is Tailored According to Your Needs",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w300,
-                                fontSize: fluidFontSize(context, 15),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      aspectRatio: 16 / 9,
+                      viewportFraction:
+                          1.0, // Set to 1 to show one banner at a time
+                      autoPlay: true, // Enable auto-play
+                      autoPlayInterval:
+                          Duration(seconds: 5), // Auto-play interval
+                      autoPlayAnimationDuration:
+                          Duration(milliseconds: 800), // Animation duration
+                      autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
                     ),
                   ),
 
@@ -571,6 +559,56 @@ class _HomePageState extends State<HomePage> {
           ]),
         ),
         bottomNavigationBar: const CustomNav(currentIndex: 0),
+      ),
+    );
+  }
+
+  Widget _buildBanner(
+    BuildContext context,
+    String imagePath,
+    String title,
+    String description,
+  ) {
+    return Container(
+      /* insurance packages banner card */
+      height: fluidHeight(context, 30.0),
+      width: fluidWidth(context, 100) - 20,
+
+      // Background image in the card
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+        ),
+      ),
+
+      /* Card description Content */
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: fluidFontSize(context, 25),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              description,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w300,
+                fontSize: fluidFontSize(context, 15),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
