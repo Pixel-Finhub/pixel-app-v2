@@ -1,33 +1,35 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
+import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import '../utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:get/get.dart';
 
-class HomePage
-    extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 70.0,
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.notifications_none_outlined, color: Colors.black, size: 30),
-          ),
+          toolbarHeight: fluidHeight(context, 5),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.person_outline_rounded, color: Colors.black, size: 30),
+              icon: const Icon(Icons.person_outline_rounded,
+                  color: Colors.black, size: 30),
             ),
           ],
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text(
+          title: const Text(
             "Welcome Mr. Msangi",
             style: TextStyle(color: Colors.black),
           ),
@@ -39,47 +41,39 @@ class HomePage
               child: Column(
                 children: [
                   /* Banner card */
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      /* insurance packages  banner card */
+                  CarouselSlider(
+                    items: [
+                      _buildBanner(
+                        context: context,
+                        imagePath: "assets/images/banner1.jpg",
+                        title: "Get Liability Coverage in transit.",
+                        description:
+                            "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
+                      ),
+                      _buildBanner(
+                        context: context,
+                        imagePath: "assets/images/banner2.jpg",
+                        title: "One of a kind on demand service",
+                        description:
+                            "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
+                      ),
+                      _buildBanner(
+                        context: context,
+                        imagePath: "assets/images/banner3.jpg",
+                        title: "Insurance for destructive scenarios",
+                        description:
+                            "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
+                      ),
+                    ],
+                    options: CarouselOptions(
                       height: fluidHeight(context, 30.0),
-                      width: fluidWidth(context, 100) - 20,
-                      // background image in the card
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/burning-truck-0.jpg"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      /* Card description Content */
-                      child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Get Liability Coverage in Times of Accident.",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: fluidFontSize(context, 25),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              "We Provide On demand Insurance Service That Is Tailored According to Your Needs",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w300,
-                                fontSize: fluidFontSize(context, 15),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 1.0, // slider duration
+                      autoPlay: true, // Enable auto-play
+                      autoPlayInterval: const Duration(seconds: 5),
+                      autoPlayAnimationDuration: const Duration(
+                          milliseconds: 800), // Animation duration
+                      autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
                     ),
                   ),
 
@@ -97,23 +91,35 @@ class HomePage
                               ),
                               /* Insurance package card */
                               Container(
-                                padding: EdgeInsets.fromLTRB(10, 20, 0, 10),
-                                child: Row(children: [
-                                  Text(
-                                    "Get Insurance in few steps",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: fluidFontSize(context, 20),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 130),
-                                  Icon(
-                                    Icons.arrow_forward,
-                                    color: primary,
-                                    size: fluidFontSize(context, 30),
-                                  ),
-                                ]),
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 20, 0, 10),
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Get Insurance in few steps",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: fluidFontSize(context, 20),
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: primary, // Set the background color to black
+                                          borderRadius: BorderRadius.circular(25.0), // Add border radius
+                                        ),
+                                        child: IconButton(
+                                          onPressed: (){Get.to(() => HomePagePackages());},
+                                          icon: Icon(
+                                            Icons.arrow_forward,
+                                            color: Colors.white,
+                                            size: fluidFontSize(context, 24),
+                                          )
+                                        ),
+                                      ),
+                                    ]),
                               ),
 
                               //Insurance steps section
@@ -131,7 +137,8 @@ class HomePage
                                                 color: Colors.blue,
                                                 width: 1.5,
                                               ),
-                                              borderRadius: BorderRadius.circular(10.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             width: fluidWidth(context, 50),
                                             height: fluidHeight(context, 25),
@@ -140,18 +147,24 @@ class HomePage
                                                 Expanded(
                                                   child: Container(
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(10.0),
-                                                      image: DecorationImage(
-                                                        image: AssetImage('assets/images/splash.png'),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      image:
+                                                          const DecorationImage(
+                                                        image: AssetImage(
+                                                            'assets/images/splash.png'),
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                    width: fluidWidth(context, 50),
-                                                    height: fluidHeight(context, 5),
+                                                    width:
+                                                        fluidWidth(context, 50),
+                                                    height:
+                                                        fluidHeight(context, 5),
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Text(
+                                                const Text(
                                                   'Select Package type',
                                                   softWrap: true,
                                                   textAlign: TextAlign.center,
@@ -170,7 +183,8 @@ class HomePage
                                                 color: Colors.blue,
                                                 width: 1.5,
                                               ),
-                                              borderRadius: BorderRadius.circular(10.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             width: fluidWidth(context, 50),
                                             height: fluidHeight(context, 25),
@@ -179,18 +193,24 @@ class HomePage
                                                 Expanded(
                                                   child: Container(
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(10.0),
-                                                      image: DecorationImage(
-                                                        image: AssetImage('assets/images/splash.png'),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      image:
+                                                          const DecorationImage(
+                                                        image: AssetImage(
+                                                            'assets/images/splash.png'),
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                    width: fluidWidth(context, 50),
-                                                    height: fluidHeight(context, 5),
+                                                    width:
+                                                        fluidWidth(context, 50),
+                                                    height:
+                                                        fluidHeight(context, 5),
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Text(
+                                                const Text(
                                                   'Conduct cargo pre-survey',
                                                   softWrap: true,
                                                   textAlign: TextAlign.center,
@@ -208,7 +228,8 @@ class HomePage
                                                 color: Colors.blue,
                                                 width: 1.5,
                                               ),
-                                              borderRadius: BorderRadius.circular(10.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
                                             ),
                                             width: fluidWidth(context, 50),
                                             height: fluidHeight(context, 25),
@@ -217,18 +238,24 @@ class HomePage
                                                 Expanded(
                                                   child: Container(
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(10.0),
-                                                      image: DecorationImage(
-                                                        image: AssetImage('assets/images/splash.png'),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      image:
+                                                          const DecorationImage(
+                                                        image: AssetImage(
+                                                            'assets/images/splash.png'),
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
-                                                    width: fluidWidth(context, 50),
-                                                    height: fluidHeight(context, 5),
+                                                    width:
+                                                        fluidWidth(context, 50),
+                                                    height:
+                                                        fluidHeight(context, 5),
                                                   ),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Text(
+                                                const Text(
                                                   'Conduct cargo pre-survey',
                                                   softWrap: true,
                                                   textAlign: TextAlign.center,
@@ -244,221 +271,302 @@ class HomePage
                               /* Customer Section*/
                               Row(children: [
                                 Expanded(
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                    /* unit package card */
-
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(10, 20, 0, 10),
-                                      child: Row(
-                                        children: [
-                                          const SizedBox(height: 5),
-                                          Text(
-                                            "What our Happy Costumers say...",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w200,
-                                              fontSize: fluidFontSize(
-                                                context,
-                                                20,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        SingleChildScrollView(
-                                          scrollDirection: Axis.horizontal,
+                                        /* unit package card */
+
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 20, 0, 10),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
-                                              // First review
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey.shade200,
-                                                  borderRadius: BorderRadius.circular(10.0),
+                                              const SizedBox(height: 5),
+                                              Text(
+                                                "What our Happy Costumers say...",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w200,
+                                                  fontSize: fluidFontSize(
+                                                    context,
+                                                    20,
+                                                  ),
                                                 ),
-                                                width: fluidWidth(context, 80),
-                                                child: Padding(
-                                                    padding: const EdgeInsets.all(10.0),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                                      mainAxisAlignment: MainAxisAlignment.center,
-                                                      children: [
-                                                        Center(
-                                                          child:
-                                                              //Costumer Image
-                                                              Container(
-                                                                  decoration: BoxDecoration(
-                                                                    color: const Color.fromARGB(62, 238, 238, 238),
-                                                                    borderRadius: BorderRadius.circular(10.0),
-                                                                  ),
-                                                                  height: fluidHeight(context, 10),
-                                                                  child: Row(
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons.person_outline_rounded,
-                                                                        color: primary,
-                                                                        size: fluidFontSize(context, 50),
-                                                                      ),
-                                                                      const SizedBox(width: 15),
-                                                                      Text(
-                                                                        "Mr Rubea Junior",
-                                                                        style: TextStyle(
-                                                                          color: Colors.black,
-                                                                          fontWeight: FontWeight.w200,
-                                                                          fontSize: fluidFontSize(context, 16),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  )),
-                                                        ),
-                                                        Text(
-                                                          "I've been using Pixel Insurance for my business for the past few years and I've been very happy with their service. They offer a wide range of coverage options and their rates are very competitive. I would definitely recommend Pixel Insurance to anyone looking for cargo insurance.",
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontWeight: FontWeight.w200,
-                                                            fontSize: fluidFontSize(context, 16),
-                                                          ),
-                                                          softWrap: true,
-                                                        )
-                                                      ],
-                                                    )),
-                                              ),
-                                              const SizedBox(width: 15),
-                                              //Second review
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey.shade200,
-                                                  borderRadius: BorderRadius.circular(10.0),
-                                                ),
-                                                width: fluidWidth(context, 80),
-                                                child: Padding(
-                                                    padding: const EdgeInsets.all(10.0),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                        Center(
-                                                          child:
-                                                              //Costumer Image
-                                                              Container(
-                                                                  decoration: BoxDecoration(
-                                                                    color: const Color.fromARGB(62, 238, 238, 238),
-                                                                    borderRadius: BorderRadius.circular(10.0),
-                                                                  ),
-                                                                  height: fluidHeight(context, 10),
-                                                                  child: Row(
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons.person_outline_rounded,
-                                                                        color: primary,
-                                                                        size: fluidFontSize(context, 50),
-                                                                      ),
-                                                                      const SizedBox(width: 15),
-                                                                      Text(
-                                                                        "Mr Rajabu Omari",
-                                                                        style: TextStyle(
-                                                                          color: Colors.black,
-                                                                          fontWeight: FontWeight.w200,
-                                                                          fontSize: fluidFontSize(context, 16),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  )),
-                                                        ),
-                                                        Text(
-                                                          "I recently had a claim with Pixel Insurance for a shipment of goods that was damaged in transit. The claim process was very smooth and easy, and I was reimbursed quickly and without any hassle. I would definitely recommend Pixel Insurance to anyone who is looking for cargo insurance.",
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                            fontWeight: FontWeight.w200,
-                                                            fontSize: fluidFontSize(context, 16),
-                                                          ),
-                                                          softWrap: true,
-                                                        )
-                                                      ],
-                                                    )),
                                               )
                                             ],
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    /* unit package card */
-                                    Container(
-                                      margin: EdgeInsetsDirectional.only(top: 20),
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                      height: fluidHeight(context, 10),
-                                      width: fluidWidth(context, 95),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                        Column(
                                           children: [
-                                            Text(
-                                              "Package 1",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: fluidFontSize(context, 15),
-                                              ),
-                                            ),
-                                            const SizedBox(height: 5),
-                                            Text(
-                                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: fluidFontSize(context, 12),
+                                            SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  // First review
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade200,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    ),
+                                                    width:
+                                                        fluidWidth(context, 80),
+                                                    child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Center(
+                                                              child:
+                                                                  //Costumer Image
+                                                                  Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: const Color
+                                                                            .fromARGB(
+                                                                            62,
+                                                                            238,
+                                                                            238,
+                                                                            238),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10.0),
+                                                                      ),
+                                                                      height: fluidHeight(
+                                                                          context,
+                                                                          10),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Icon(
+                                                                            Icons.person_outline_rounded,
+                                                                            color:
+                                                                                primary,
+                                                                            size:
+                                                                                fluidFontSize(context, 50),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 15),
+                                                                          Text(
+                                                                            "Mr Rubea Junior",
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.w200,
+                                                                              fontSize: fluidFontSize(context, 16),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      )),
+                                                            ),
+                                                            Text(
+                                                              "I've been using Pixel Insurance for my business for the past few years and I've been very happy with their service. They offer a wide range of coverage options and their rates are very competitive. I would definitely recommend Pixel Insurance to anyone looking for cargo insurance.",
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w200,
+                                                                fontSize:
+                                                                    fluidFontSize(
+                                                                        context,
+                                                                        16),
+                                                              ),
+                                                              softWrap: true,
+                                                            )
+                                                          ],
+                                                        )),
+                                                  ),
+                                                  const SizedBox(width: 15),
+                                                  //Second review
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade200,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    ),
+                                                    width:
+                                                        fluidWidth(context, 80),
+                                                    child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Center(
+                                                              child:
+                                                                  //Costumer Image
+                                                                  Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: const Color
+                                                                            .fromARGB(
+                                                                            62,
+                                                                            238,
+                                                                            238,
+                                                                            238),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10.0),
+                                                                      ),
+                                                                      height: fluidHeight(
+                                                                          context,
+                                                                          10),
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Icon(
+                                                                            Icons.person_outline_rounded,
+                                                                            color:
+                                                                                primary,
+                                                                            size:
+                                                                                fluidFontSize(context, 50),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                              width: 15),
+                                                                          Text(
+                                                                            "Mr Rajabu Omari",
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontWeight: FontWeight.w200,
+                                                                              fontSize: fluidFontSize(context, 16),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      )),
+                                                            ),
+                                                            Text(
+                                                              "I recently had a claim with Pixel Insurance for a shipment of goods that was damaged in transit. The claim process was very smooth and easy, and I was reimbursed quickly and without any hassle. I would definitely recommend Pixel Insurance to anyone who is looking for cargo insurance.",
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w200,
+                                                                fontSize:
+                                                                    fluidFontSize(
+                                                                        context,
+                                                                        16),
+                                                              ),
+                                                              softWrap: true,
+                                                            )
+                                                          ],
+                                                        )),
+                                                  )
+                                                ],
                                               ),
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    ),
+                                        /* unit package card */
+                                        Container(
+                                          margin:
+                                              const EdgeInsetsDirectional.only(
+                                                  top: 20),
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          height: fluidHeight(context, 10),
+                                          width: fluidWidth(context, 95),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Package 1",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: fluidFontSize(
+                                                        context, 15),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: fluidFontSize(
+                                                        context, 12),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
 
-                                    /* unit package card */
-                                    Container(
-                                      margin: const EdgeInsetsDirectional.only(top: 20),
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                      height: fluidHeight(context, 10),
-                                      width: fluidWidth(context, 95),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Package 1",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: fluidFontSize(context, 15),
-                                              ),
+                                        /* unit package card */
+                                        Container(
+                                          margin:
+                                              const EdgeInsetsDirectional.only(
+                                                  top: 20),
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          height: fluidHeight(context, 10),
+                                          width: fluidWidth(context, 95),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Package 1",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: fluidFontSize(
+                                                        context, 15),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: fluidFontSize(
+                                                        context, 12),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                            const SizedBox(height: 5),
-                                            Text(
-                                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: fluidFontSize(context, 12),
-                                              ),
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  ]),
+                                      ]),
                                 ),
                               ])
                             ],
@@ -473,6 +581,80 @@ class HomePage
           ]),
         ),
         bottomNavigationBar: const CustomNav(currentIndex: 0),
+      ),
+    );
+  }
+
+  Widget _buildBanner({
+    required BuildContext context,
+    required String imagePath,
+    required String title,
+    required String description,
+  }) {
+    return Container(
+      /* insurance packages banner card */
+      height: fluidHeight(context, 25.0),
+      width: fluidWidth(context, 100) - 20,
+
+      // Use a Stack to overlay image and text
+      child: Stack(
+        children: [
+          // Background image in the card
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+
+          /* Card description Content */
+          Padding(
+            padding: const EdgeInsets.all(0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(
+                        115, 0, 0, 0), // Set the background color to black
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Add border radius
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300,
+                            fontSize: fluidFontSize(context, 25),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          description,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200,
+                            fontSize: fluidFontSize(context, 15),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
