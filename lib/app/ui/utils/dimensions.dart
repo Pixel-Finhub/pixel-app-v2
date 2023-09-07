@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 double? _screenHeight;
-double? _screenWidth;
+double? _screenWidth; 
 
 void _initScreen(BuildContext context) {
   if (_screenHeight == null || _screenWidth == null) {
