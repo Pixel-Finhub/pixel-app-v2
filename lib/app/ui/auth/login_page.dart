@@ -9,24 +9,53 @@ import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController phoneNumberTextEditController =
+      TextEditingController();
+  final TextEditingController passwordTextEditController =
+      TextEditingController();
+  PhoneNumber number = PhoneNumber(isoCode: 'TZ');
+  bool isPasswordVisible = false;
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+  void _handleLogin(BuildContext context) async {
+    // TODO: Implement authentication logic here
+    final String phoneNumber = phoneNumberTextEditController.text;
+    final String password = passwordTextEditController.text;
 
-class _LoginPageState extends State<LoginPage> {
+    // TODO: Add authentication logic, error handling, and navigation
+    if (phoneNumber.isNotEmpty && password.isNotEmpty) {
+      // Simulate a loading state while authenticating
+      // You should replace this with your actual authentication logic
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+
+      // Simulate a delay for authentication (replace with actual API call)
+      await Future.delayed(Duration(seconds: 2));
+
+      // Remove loading indicator
+      Navigator.of(context).pop();
+
+      // If authentication is successful, navigate to the home page
+      Get.to(() => HomePagePackages());
+    } else {
+      // Show an error message if the fields are not filled
+      Get.snackbar(
+        'Error',
+        'Please fill in all fields',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-    var phoneNumberTextEditController = TextEditingController();
-    var passwordTextEditController = TextEditingController();
-
-    PhoneNumber number = PhoneNumber(isoCode: 'TZ');
-    bool isPasswordVisible = false;
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -47,7 +76,6 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      // height: fluidHeight(context, 5),
                       height: 5.0.h,
                     ),
                     Center(
@@ -58,8 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-
-                    /* Phone Input */
+                    // Phone Input
                     Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(defaultRadius),
@@ -87,9 +114,9 @@ class _LoginPageState extends State<LoginPage> {
                           ignoreBlank: false,
                           autoFocus: false,
                           autoValidateMode: AutovalidateMode.disabled,
-                          selectorTextStyle: TextStyle(
+                          selectorTextStyle: const TextStyle(
                               color: Colors.black,
-                              fontSize: fluidFontSize(context, 15),
+                              fontSize: 15,
                               fontWeight: FontWeight.w200),
                           initialValue: number,
                           textFieldController: phoneNumberTextEditController,
@@ -102,9 +129,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-
-
-                    /* password input */
                     Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(defaultRadius),
@@ -127,16 +151,16 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: "Password",
                             border: InputBorder.none,
                             suffixIcon: IconButton(
-                                icon: Icon(isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                onPressed: () {
-                                  setState(() {
-                                    isPasswordVisible = !isPasswordVisible;
-                                  });
-                                }),
+                              icon: Icon(isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                isPasswordVisible = !isPasswordVisible;
+                                // Force the widget to rebuild with the new visibility state
+                                Get.forceAppUpdate();
+                              },
+                            ),
                           ),
-                          // onChanged: (value) => controller.password(value),
                         ),
                       ),
                     ),
@@ -153,19 +177,14 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: CustomButton(
                 function: () {
-                  // get form inputs
-
-                  // send the inputs to backend
-
-                  // login or reject user
-                  Get.to(() => const HomePagePackages());
+                  _handleLogin(context);
                 },
                 text: "Login",
               ),
             ),
-
             TextButton(
               onPressed: () {
+                // TODO: Implement password reset logic
                 Get.bottomSheet(
                   Container(
                     height: 200.h,
@@ -186,27 +205,9 @@ class _LoginPageState extends State<LoginPage> {
                         Text(
                           "Enter your email to reset password.",
                           style: TextStyle(
-                              color: primaryDark,
-                              fontWeight: FontWeight.w400,
-                              fontSize: fluidFontSize(context, 18),
-                          ),
-                        ),
-                        separator_10,
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            // horizontal: fluidWidth(context, 5),
-                            horizontal: 5.0.h,
-                          ),
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              hintText: "Email",
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(defaultRadius),
-                              ),
-                            ),
-                            // onChanged: (value) => controller.email(value),
+                            color: primaryDark,
+                            fontWeight: FontWeight.w400,
+                            fontSize: fluidFontSize(context, 18),
                           ),
                         ),
                         SizedBox(
@@ -214,11 +215,29 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(
-                            // horizontal: fluidWidth(context, 5),
+                            horizontal: 5.0.w,
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              hintText: "Email",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(defaultRadius),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.0.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
                             horizontal: 5.0.w,
                           ),
                           child: CustomButton(
-                            function: () {},
+                            function: () {
+                              // TODO: Implement password reset submission
+                            },
                             text: "Submit",
                           ),
                         )
@@ -229,9 +248,6 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: const Text("Forgot Password?"),
             ),
-            // SizedBox(
-            //   height: 10.0.h,
-            // ),
             TextButton(
               onPressed: () {
                 Get.to(() => const RegisterPage());
