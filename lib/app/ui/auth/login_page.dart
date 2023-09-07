@@ -9,7 +9,6 @@ import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
-import '../home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -32,15 +31,16 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        minimum: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                  // horizontal: fluidWidth(context, 5),
-                  horizontal: 5.0.w,
+                  horizontal: fluidWidth(context, 5),
                 ),
                 child: Form(
                   key: formKey,
@@ -54,8 +54,8 @@ class _LoginPageState extends State<LoginPage> {
                       Center(
                         child: Image.asset(
                           'assets/images/login_person.png',
-                          // height: fluidWidth(context, 80),
-                          // width: fluidWidth(context, 80),
+                          height: 100.h ,
+                          width: 100.w,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -253,7 +253,6 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
-      ),
     );
   }
 }
