@@ -31,7 +31,7 @@ class _SupportiveDocumentState extends State<SupportiveDocument> {
                   width: fluidWidth(context, 100),
                   padding: EdgeInsets.symmetric(
                       horizontal: fluidWidth(context, 5),
-                      vertical: fluidHeight(context, 2)),
+                      vertical: fluidHeight(context, 2),),
                   child: Wrap(
                     children: [
                       Text(
