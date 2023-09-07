@@ -16,12 +16,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 70.0,
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.notifications_none_outlined,
-                color: Colors.black, size: 30),
-          ),
+          toolbarHeight: fluidHeight(context, 5),
           actions: [
             IconButton(
               onPressed: () {},
@@ -60,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       /* Card description Content */
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
