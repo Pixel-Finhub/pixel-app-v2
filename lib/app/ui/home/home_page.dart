@@ -540,6 +540,16 @@ class _HomePageState extends State<HomePage> {
 
   /* Insurance packages steps builder */
   Widget _buildStepContainer(BuildContext context, int step) {
+    const List<String> stepTitles = [
+      "Request a quote",
+      "Get a quote",
+      "Get your policy",
+    ];
+    const List<String> stepImages = [
+      "assets/images/step1.png",
+      "assets/images/step2.png",
+      "assets/images/step3.png",
+    ];
     return Container(
       margin: const EdgeInsets.all(5),
       padding: EdgeInsets.all(fluidWidth(context, 2)),
@@ -560,7 +570,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 image: const DecorationImage(
-                  image: AssetImage('assets/images/splash.png'),
+                  image: AssetImage("assets/images/splash.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -569,10 +579,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-          const Text(
-            'Select Package type',
-            softWrap: true,
+          Text(
+            stepTitles[step-1],
             textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w300,
+              fontSize: fluidFontSize(context, 15),
+            ),
           ),
           const SizedBox(height: 10),
         ],
