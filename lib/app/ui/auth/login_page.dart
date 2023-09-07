@@ -3,19 +3,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/register_page.dart';
-import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
+import 'package:pixel_insurance_v2/app/ui/home/home_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final TextEditingController phoneNumberTextEditController =
       TextEditingController();
+
   final TextEditingController passwordTextEditController =
       TextEditingController();
+
   PhoneNumber number = PhoneNumber(isoCode: 'TZ');
+
   bool isPasswordVisible = false;
 
   void _handleLogin(BuildContext context) async {
@@ -43,7 +52,7 @@ class LoginPage extends StatelessWidget {
       Navigator.of(context).pop();
 
       // If authentication is successful, navigate to the home page
-      Get.to(() => HomePagePackages());
+      Get.to(() => HomePage());
     } else {
       // Show an error message if the fields are not filled
       Get.snackbar(
@@ -250,7 +259,7 @@ class LoginPage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Get.to(() => const RegisterPage());
+                Get.to(() => RegisterPage());
               },
               child: RichText(
                 text: const TextSpan(
