@@ -43,19 +43,30 @@ class _HomePageState extends State<HomePage> {
                     items: [
                       // First Banner
                       _buildBanner(
-                          context,
-                          "assets/images/banner1.jpg",
-                          "Get Liability Coverage in Times of Accident.",
-                          "We Provide On-demand Insurance Service That Is Tailored According to Your Needs"),
+                        context: context,
+                        imagePath: "assets/images/banner1.jpg",
+                        title: "Get Liability Coverage in transit.",
+                        description:
+                            "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
+                      ),
 
-                      // Second Banner
+                      // First Banner
                       _buildBanner(
-                          context,
-                          "assets/images/banner2.jpg",
-                          "Another Banner Title",
-                          "Description for the second banner."),
+                        context: context,
+                        imagePath: "assets/images/banner2.jpg",
+                        title: "One of a kind on demand service",
+                        description:
+                            "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
+                      ),
 
-                      // Add more banners here...
+                      // First Banner
+                      _buildBanner(
+                        context: context,
+                        imagePath: "assets/images/banner3.jpg",
+                        title: "Insurance for destructive scenarios",
+                        description:
+                            "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
+                      ),
                     ],
                     options: CarouselOptions(
                       height: fluidHeight(context, 30.0),
@@ -563,52 +574,75 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _buildBanner(
-    BuildContext context,
-    String imagePath,
-    String title,
-    String description,
-  ) {
+  Widget _buildBanner({
+    required BuildContext context,
+    required String imagePath,
+    required String title,
+    required String description,
+  }) {
     return Container(
       /* insurance packages banner card */
-      height: fluidHeight(context, 30.0),
+      height: fluidHeight(context, 25.0),
       width: fluidWidth(context, 100) - 20,
 
-      // Background image in the card
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-        ),
-      ),
+      // Use a Stack to overlay image and text
+      child: Stack(
+        children: [
+          // Background image in the card
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
 
-      /* Card description Content */
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: fluidFontSize(context, 25),
-              ),
+          /* Card description Content */
+          Padding(
+            padding: const EdgeInsets.all(0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(115, 0, 0, 0), // Set the background color to black
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Add border radius
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300,
+                            fontSize: fluidFontSize(context, 25),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          description,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200,
+                            fontSize: fluidFontSize(context, 15),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 10),
-            Text(
-              description,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w300,
-                fontSize: fluidFontSize(context, 15),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
