@@ -1,6 +1,11 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
+import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -9,6 +14,14 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      /* App bar --it is supposed to be empty to give space to the splash content-- */
+      appBar: AppBar(
+        toolbarHeight: 50,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+
+      /* Splash content */
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -18,21 +31,17 @@ class SplashScreen extends StatelessWidget {
             Text(
               "PIXEL INSURANCE",
               style: TextStyle(
-                color: primary,
-                fontWeight: FontWeight.w300,
-                fontSize: 35.0.w,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
+                  color: primary,
+                  fontWeight: FontWeight.w200,
+                  fontSize: fluidFontSize(context, 35)),
             ),
             Container(
-              height: 300,
-              width: 300,
-              child: Image.asset("assets/images/SplashImage.png"),
-            ),
-            const SizedBox(
-              height: 20,
+              padding: EdgeInsetsDirectional.only(
+                top: fluidHeight(context, 10),
+              ),
+              height: fluidWidth(context, 85),
+              width: fluidWidth(context, 85),
+              child: Image.asset("assets/images/splash.png"),
             ),
             Column(
               children: [
@@ -43,7 +52,7 @@ class SplashScreen extends StatelessWidget {
                     Icon(
                       Icons.check_circle,
                       color: primary,
-                      size: 20.w,
+                      size: fluidFontSize(context, 20),
                     ),
                     const SizedBox(width: 5),
                     Text(
@@ -51,7 +60,7 @@ class SplashScreen extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w200,
-                        fontSize: 20.w,
+                        fontSize: fluidFontSize(context, 18),
                       ),
                     )
                   ],
@@ -64,7 +73,7 @@ class SplashScreen extends StatelessWidget {
                     Icon(
                       Icons.check_circle,
                       color: primary,
-                      size: 20.0.w,
+                      size: fluidFontSize(context, 20),
                     ),
                     const SizedBox(width: 5),
                     Text(
@@ -72,34 +81,51 @@ class SplashScreen extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w200,
-                        fontSize: 20.0.w,
+                        fontSize: fluidFontSize(context, 18),
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-            const Spacer(), // Added Spacer to push the button to the bottom
+            SizedBox(
+              height: fluidHeight(context, 20),
+            ), //spacing from insurance splash image to call to action button
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ),
+                    );
+                  },
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 10.w,
+                      horizontal: 30,
+                      vertical: fluidHeight(context, 1.4),
                     ),
                     child: Text(
                       "Get Started",
                       style: TextStyle(
-                        fontSize: 20.w,
-                        fontWeight: FontWeight.normal,
+                        fontSize: fluidFontSize(context, 18),
+                        fontWeight: FontWeight.w200,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                )
+                  //  button styling
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
