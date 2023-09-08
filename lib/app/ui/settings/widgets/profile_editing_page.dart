@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
@@ -110,15 +109,6 @@ class ProfileInputField extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: SvgPicture.asset(
-              iconPath,
-              width: 24.0,
-              height: 24.0,
-              color: Colors.black,
-            ),
-          ),
           Expanded(
             child: TextFormField(
               initialValue: initialValue,
@@ -136,8 +126,4 @@ class ProfileInputField extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: ProfileEditingPage(),
-  ));
-}
+

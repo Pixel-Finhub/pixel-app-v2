@@ -286,7 +286,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                     mainAxisSpacing: 10.0, // spacing between rows
                     crossAxisSpacing: 10.0, // spacing between columns
                   ),
-                  shrinkWrap: true,
+                  shrinkWrap: false,
                   /*TODO: #3 #2 remove this or set it to false to prevent in grid scrolling effect */
                   itemCount:
                       coverages.length, // Use the length of your coverage list
@@ -303,8 +303,8 @@ class InsuranceDetailsPage extends StatelessWidget {
                           Image.asset(
                             coverage
                                 .imagePath, // Use the image path from the coverage object
-                            height: 50.0,
-                            width: 50.0,
+                            height: fluidHeight(context, 5),
+                            width: fluidWidth(context, 45),
                             fit: BoxFit.contain,
                           ),
                           const SizedBox(height: 10.0),

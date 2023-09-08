@@ -11,23 +11,50 @@ import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_constants.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class RegisterPage extends StatelessWidget {
+  final controller = Get.put(FirebaseAuthController());
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController nidaTextEditController = TextEditingController();
+  PhoneNumber number = PhoneNumber(isoCode: 'TZ');
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
+  void _handleRegistration(BuildContext context) async {
+    // TODO: Implement registration logic here
+    final String nidaNumber = nidaTextEditController.text;
+    final String phoneNumber = controller.phoneNo.text.trim();
 
-class _RegisterPageState extends State<RegisterPage> {
+    // TODO: Add registration logic, error handling, and navigation
+    if (nidaNumber.isNotEmpty && phoneNumber.isNotEmpty) {
+      // Simulate a loading state while registering
+      // You should replace this with your actual registration logic
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      );
+
+      // Simulate a delay for registration (replace with actual API call)
+      await Future.delayed(Duration(seconds: 2));
+
+      // Remove loading indicator
+      Navigator.of(context).pop();
+
+      // If registration is successful, navigate to the OTP verification page
+      Get.to(() => OtpScreen());
+    } else {
+      // Show an error message if the fields are not filled
+      Get.snackbar(
+        'Error',
+        'Please fill in all fields',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(FirebaseAuthController());
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-    var nidaTextEditController = TextEditingController();
-
-    PhoneNumber number = PhoneNumber(isoCode: 'TZ');
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -38,8 +65,7 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                  // horizontal: fluidWidth(context, 5),
-                  horizontal: 5.0.w,
+                  horizontal: fluidWidth(context, 5),
                 ),
                 child: Form(
                   key: formKey,
@@ -52,8 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       Center(
                         child: Image.asset(
                           'assets/images/register.png',
-                          // height: fluidWidth(context, 80),
-                          // width: fluidWidth(context, 80),
+                          height: fluidWidth(context, 80),
+                          width: fluidWidth(context, 80),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -82,7 +108,6 @@ class _RegisterPageState extends State<RegisterPage> {
                               border: InputBorder.none,
                               prefixIcon: Icon(Icons.person),
                             ),
-                            // onChanged: (value) => controller.nidaNumber(value),
                           ),
                         ),
                       ),
@@ -133,23 +158,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               SizedBox(
-                // height: fluidHeight(context, 4),
-                height: 10.0.h,
+                height: fluidHeight(context, 4),
               ),
               CustomButton(
-                function: () {
-                  if (formKey.currentState!.validate()) {
-                    FirebaseAuthController.instance
-                        .phoneAuthentication(controller.phoneNo.text.trim());
-                    Get.to(
-                        () => OtpScreen());
-                  }
-                },
+                function: () => _handleRegistration(context),
                 text: "Register",
               ),
               TextButton(
                 onPressed: () {
-                  Get.to(() => const LoginPage());
+                  Get.to(() => LoginPage());
                 },
                 child: RichText(
                   text: const TextSpan(
@@ -157,7 +174,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w400,
-                      // fontSize: fluidFontSize(context, 16),
                     ),
                     children: [
                       TextSpan(
@@ -165,7 +181,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
-                          // fontSize: fluidFontSize(context, 16),
                         ),
                       ),
                     ],
