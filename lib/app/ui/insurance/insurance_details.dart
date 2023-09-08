@@ -389,9 +389,7 @@ class InsuranceDetailsPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomNav(
-        currentIndex: 2,
-      ),
+     
     );
   }
 }

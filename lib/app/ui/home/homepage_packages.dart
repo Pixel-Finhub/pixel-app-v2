@@ -137,22 +137,24 @@ class HomePackageState
                             /* Insurance package card */
                             Row(children: [
                               Expanded(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
+                                child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center, children: [
                                   /* unit package card */
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const InsuranceDetailsPage(),
-                      ),
-                    );
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const InsuranceDetailsPage(),
+                                        ),
+                                      );
                                     },
                                     child: Container(
                                       margin: const EdgeInsetsDirectional.only(top: 10),
                                       decoration: BoxDecoration(
                                         color: Colors.grey.shade200,
                                         borderRadius: BorderRadius.circular(10.0),
+                                        
                                       ),
                                       height: fluidHeight(context, 10),
                                       width: fluidWidth(context, 95),
@@ -186,12 +188,29 @@ class HomePackageState
                                   ),
 
                                   /* unit package card */
-                                  Container(
-                                    margin: EdgeInsetsDirectional.only(top: 20),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const InsuranceDetailsPage(),
+                                        ),
+                                      );
+                                    },
+                                  
+                                   child: Container(
+                                  
+                                    margin: const EdgeInsetsDirectional.only(top: 20),
                                     decoration: BoxDecoration(
-                                      color: Colors.grey.shade200,
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                                color: Colors.blue,
+                                                width: 1.5,
+                                              ),
+                                              
                                     ),
+                                    
                                     height: fluidHeight(context, 10),
                                     width: fluidWidth(context, 95),
                                     child: Padding(
@@ -221,9 +240,18 @@ class HomePackageState
                                       ),
                                     ),
                                   ),
-
+                                  ),
                                   /* unit package card */
-                                  Container(
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const InsuranceDetailsPage(),
+                                        ),
+                                      );
+                                    },
+                                  child: Container(
                                     margin: const EdgeInsetsDirectional.only(top: 20),
                                     decoration: BoxDecoration(
                                       color: Colors.grey.shade200,
@@ -258,6 +286,7 @@ class HomePackageState
                                       ),
                                     ),
                                   ),
+                                  )
                                 ]),
                               ),
                             ])
