@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
@@ -54,7 +55,7 @@ class InsuranceDetailsPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             // Handle back button press
-            Navigator.of(context).pop();
+            Get.back();
           },
           icon: const Icon(
             Icons.arrow_back,
@@ -286,7 +287,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                     mainAxisSpacing: 10.0, // spacing between rows
                     crossAxisSpacing: 10.0, // spacing between columns
                   ),
-                  shrinkWrap: false,
+                  shrinkWrap: true,
                   /*TODO: #3 #2 remove this or set it to false to prevent in grid scrolling effect */
                   itemCount:
                       coverages.length, // Use the length of your coverage list
@@ -389,7 +390,9 @@ class InsuranceDetailsPage extends StatelessWidget {
           ],
         ),
       ),
-     
+     bottomNavigationBar: const CustomNav(
+        currentIndex: 1,
+      )
     );
   }
 }
