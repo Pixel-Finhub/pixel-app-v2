@@ -6,6 +6,8 @@ import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
 import 'package:pixel_insurance_v2/app/ui/insurance/insurance_details.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 
+import '../insurance/my_insurance.dart';
+
 class CustomNav extends StatelessWidget {
   const CustomNav({
     Key? key,
@@ -39,7 +41,7 @@ class CustomNav extends StatelessWidget {
             break;
           case 2:
             Get.off(
-              () => const InsuranceDetailsPage(),
+              () => const MyInsurance(),
               transition: Transition.noTransition,
             );
             break;

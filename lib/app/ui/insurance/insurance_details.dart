@@ -295,7 +295,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                         coverages[index]; // Get the current coverage
 
                     return Card(
-                      elevation: 5.0,
+                      elevation: 1.0,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -303,8 +303,8 @@ class InsuranceDetailsPage extends StatelessWidget {
                           Image.asset(
                             coverage
                                 .imagePath, // Use the image path from the coverage object
-                            height: 100.0,
-                            width: 100.0,
+                            height: 50.0,
+                            width: 50.0,
                             fit: BoxFit.contain,
                           ),
                           const SizedBox(height: 10.0),
@@ -316,7 +316,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 5.0),
+                          const SizedBox(height: 3.0),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
@@ -389,9 +389,7 @@ class InsuranceDetailsPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const CustomNav(
-        currentIndex: 2,
-      ),
+     
     );
   }
 }
