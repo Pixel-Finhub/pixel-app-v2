@@ -39,20 +39,21 @@ class _LoginPageState extends State<LoginPage> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         },
       );
 
       // Simulate a delay for authentication (replace with actual API call)
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
 
       // Remove loading indicator
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
 
       // If authentication is successful, navigate to the home page
-      Get.to(() => HomePage());
+      Get.to(() => const HomePage());
     } else {
       // Show an error message if the fields are not filled
       Get.snackbar(

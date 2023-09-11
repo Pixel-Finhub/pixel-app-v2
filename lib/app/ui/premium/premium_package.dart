@@ -69,9 +69,9 @@ class PremiumPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               color: const Color(0x00f2f2f2),
               border: Border.all()),
-          child: Column(children: [
+          child: const Column(children: [
             Row(
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(010, 10, 0, 10),
                   child: Text('Plan:'),
@@ -83,7 +83,7 @@ class PremiumPage extends StatelessWidget {
               ],
             ),
             Row(
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
                   child: Text('Plan Duration:'),
@@ -95,7 +95,7 @@ class PremiumPage extends StatelessWidget {
               ],
             ),
             Row(
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
                   child: Text('Origin-Destination:'),
@@ -107,7 +107,7 @@ class PremiumPage extends StatelessWidget {
               ],
             ),
             Row(
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
                   child: Text('Coverage starting:'),
@@ -119,7 +119,7 @@ class PremiumPage extends StatelessWidget {
               ],
             ),
             Row(
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
                   child: Text('Coverage termination:'),
@@ -131,7 +131,7 @@ class PremiumPage extends StatelessWidget {
               ],
             ),
             Row(
-              children: const [
+              children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 10, 0, 10),
                   child: Text('Expire date:'),
