@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pixel_insurance_v2/app/controllers/firebase_auth_controller.dart';
@@ -13,45 +12,10 @@ import '../theme/app_constants.dart';
 
 class RegisterPage extends StatelessWidget {
   final controller = Get.put(FirebaseAuthController());
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController nidaTextEditController = TextEditingController();
-  PhoneNumber number = PhoneNumber(isoCode: 'TZ');
 
-  void _handleRegistration(BuildContext context) async {
-    // TODO: Implement registration logic here
-    final String nidaNumber = nidaTextEditController.text;
-    final String phoneNumber = controller.phoneNo.text.trim();
+  late PhoneNumber number = PhoneNumber(isoCode: 'TZ');
 
-    // TODO: Add registration logic, error handling, and navigation
-    if (nidaNumber.isNotEmpty && phoneNumber.isNotEmpty) {
-      // Simulate a loading state while registering
-      // You should replace this with your actual registration logic
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      );
-
-      // Simulate a delay for registration (replace with actual API call)
-      await Future.delayed(Duration(seconds: 2));
-
-      // Remove loading indicator
-      Navigator.of(context).pop();
-
-      // If registration is successful, navigate to the OTP verification page
-      Get.to(() => OtpScreen());
-    } else {
-      // Show an error message if the fields are not filled
-      Get.snackbar(
-        'Error',
-        'Please fill in all fields',
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
-  }
+  RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +32,7 @@ class RegisterPage extends StatelessWidget {
                   horizontal: fluidWidth(context, 5),
                 ),
                 child: Form(
-                  key: formKey,
+                  key: controller.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -101,7 +65,7 @@ class RegisterPage extends StatelessWidget {
                             vertical: 3.0,
                           ),
                           child: TextFormField(
-                            controller: nidaTextEditController,
+                            controller: controller.nidaNumber,
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: "NIDA Number",
@@ -131,8 +95,8 @@ class RegisterPage extends StatelessWidget {
                               controller.phoneNumber(number.phoneNumber);
                             },
                             onInputValidated: (bool value) {
-                              print(number.phoneNumber);
-                              controller.phoneNumber(number.phoneNumber);
+                              print(value);
+                              // controller.phoneNumber(number.phoneNumber);
                             },
                             selectorConfig: const SelectorConfig(
                               selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
@@ -161,7 +125,10 @@ class RegisterPage extends StatelessWidget {
                 height: fluidHeight(context, 4),
               ),
               CustomButton(
-                function: () => _handleRegistration(context),
+                function: () {
+                  controller.phoneAuthentication(controller.phoneNo.value.toString());
+                  Get.to(() => OtpScreen());
+                },
                 text: "Register",
               ),
               TextButton(
