@@ -3,7 +3,6 @@ import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/file_picker.dart';
-import 'package:flutter/services.dart';
 
 class RequestForm extends StatefulWidget {
   const RequestForm({Key? key}) : super(key: key);
@@ -370,7 +369,7 @@ Widget buildImageInput(BuildContext context, String label, String imagePath) {
             borderRadius: BorderRadius.circular(8),
             border: Border.all(),
           ),
-          child: Icon(
+          child: const Icon(
             Icons.camera_alt,
             size: 50,
           ),

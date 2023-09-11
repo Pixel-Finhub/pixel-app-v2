@@ -10,7 +10,7 @@ Future<void> showHelpDialog(BuildContext context) async {
         content: SizedBox(
           width: fluidWidth(context, 90), // 90% width
           height: fluidHeight(context, 90), // 90% height
-          child: SingleChildScrollView(
+          child: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 Text("Welcome to our Help Center.\n\n"
@@ -60,10 +60,10 @@ Future<void> showPrivacyPolicyDialog(BuildContext context) async {
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Privacy Policy'),
-        content: Container(
+        content: SizedBox(
           width: fluidWidth(context, 90), // 90% width
           height: fluidHeight(context, 90), // 90% height
-          child: SingleChildScrollView(
+          child: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 Text("Privacy Policy\n\n"

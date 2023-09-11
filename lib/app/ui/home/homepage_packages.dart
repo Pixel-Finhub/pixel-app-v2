@@ -123,7 +123,7 @@ class HomePackageState
                             ),
                             /* Insurance package card */
                             Container(
-                              padding: EdgeInsets.fromLTRB(10, 20, 0, 10),
+                              padding: const EdgeInsets.fromLTRB(10, 20, 0, 10),
                               child: Text(
                                 "Our Packages",
                                 style: TextStyle(

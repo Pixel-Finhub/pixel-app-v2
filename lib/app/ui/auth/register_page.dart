@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pixel_insurance_v2/app/controllers/firebase_auth_controller.dart';
@@ -17,6 +16,8 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController nidaTextEditController = TextEditingController();
   PhoneNumber number = PhoneNumber(isoCode: 'TZ');
 
+  RegisterPage({super.key});
+
   void _handleRegistration(BuildContext context) async {
     // TODO: Implement registration logic here
     final String nidaNumber = nidaTextEditController.text;
@@ -29,20 +30,20 @@ class RegisterPage extends StatelessWidget {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         },
       );
 
       // Simulate a delay for registration (replace with actual API call)
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
 
       // Remove loading indicator
       Navigator.of(context).pop();
 
       // If registration is successful, navigate to the OTP verification page
-      Get.to(() => OtpScreen());
+      Get.to(() => const OtpScreen());
     } else {
       // Show an error message if the fields are not filled
       Get.snackbar(
@@ -166,7 +167,7 @@ class RegisterPage extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Get.to(() => LoginPage());
+                  Get.to(() => const LoginPage());
                 },
                 child: RichText(
                   text: const TextSpan(

@@ -10,6 +10,8 @@ import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -39,20 +41,20 @@ class _LoginPageState extends State<LoginPage> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         },
       );
 
       // Simulate a delay for authentication (replace with actual API call)
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
 
       // Remove loading indicator
       Navigator.of(context).pop();
 
       // If authentication is successful, navigate to the home page
-      Get.to(() => HomePage());
+      Get.to(() => const HomePage());
     } else {
       // Show an error message if the fields are not filled
       Get.snackbar(

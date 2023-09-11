@@ -10,7 +10,7 @@ Future<void> showAboutAppDialog(BuildContext context) async {
         content: SizedBox(
           width: fluidWidth(context, 90), // 90% width
           height: fluidHeight(context, 90), // 90% height
-          child: SingleChildScrollView(
+          child: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 Text("Welcome to the About section of our app.\n\n"
@@ -51,7 +51,7 @@ Future<void> showAppVersionDialog(BuildContext context) async {
         content: SizedBox(
           width: fluidWidth(context, 90), // 90% width
           height: fluidHeight(context, 90), // 90% height
-          child: SingleChildScrollView(
+          child: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 Text("App Version 2.0.1\n\n"

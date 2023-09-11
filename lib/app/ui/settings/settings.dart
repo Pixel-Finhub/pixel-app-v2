@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/help_and_privacy_dialogs.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/about_app.dart';
@@ -7,7 +6,6 @@ import 'package:pixel_insurance_v2/app/ui/settings/widgets/language_settings_pag
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/notification_setings_page.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/profile_editing_page.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
-import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class SettingsPage extends StatelessWidget {

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -7,7 +6,7 @@ import 'package:file_picker/file_picker.dart';
 class FileInputBuilder extends StatefulWidget {
   final Function(File?) onFileSelected;
 
-  FileInputBuilder({required this.onFileSelected});
+  const FileInputBuilder({super.key, required this.onFileSelected});
 
   @override
   _FileInputBuilderState createState() => _FileInputBuilderState();

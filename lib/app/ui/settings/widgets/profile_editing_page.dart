@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class ProfileEditingPage extends StatelessWidget {

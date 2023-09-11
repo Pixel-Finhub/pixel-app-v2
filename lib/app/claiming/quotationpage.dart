@@ -116,7 +116,7 @@ class QuotationPage extends StatelessWidget {
                               fontWeight: FontWeight.w500,
                               color: Colors.black.withOpacity(0.6)),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                         ),
                         Text(

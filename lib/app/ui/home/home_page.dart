@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
     required String title,
     required String description,
   }) {
-    return Container(
+    return SizedBox(
       /* insurance packages banner card */
       height: fluidHeight(context, 25.0),
       width: fluidWidth(context, 100) - 20,

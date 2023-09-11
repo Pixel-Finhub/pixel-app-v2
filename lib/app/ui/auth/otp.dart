@@ -5,7 +5,7 @@ import 'package:otp_text_field/style.dart';
 import 'package:pixel_insurance_v2/app/controllers/otp_controller.dart';
 
 class OtpScreen extends StatelessWidget {
-  OtpScreen({super.key});
+  const OtpScreen({super.key});
 
 
   @override
