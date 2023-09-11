@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
-import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
+// import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class InsuranceCoverage {
   final String title;
