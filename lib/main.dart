@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/data/repositories/auth_repository.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/payment/basic_package.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pixel_insurance_v2/app/ui/insurance/insurance_details.dart';
 import 'package:pixel_insurance_v2/firebase_options.dart';
 
 
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: BasicPackagePaymentPage(),
     );
   }
 }

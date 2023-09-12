@@ -4,15 +4,13 @@ import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 import '../insurance/insurance_details.dart';
 
-class HomePagePackages
-    extends StatefulWidget {
+class HomePagePackages extends StatefulWidget {
   const HomePagePackages({Key? key}) : super(key: key);
   @override
   HomePackageState createState() => HomePackageState();
 }
 
-class HomePackageState
-    extends State<HomePagePackages> {
+class HomePackageState extends State<HomePagePackages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,157 +135,180 @@ class HomePackageState
                             /* Insurance package card */
                             Row(children: [
                               Expanded(
-                                child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center, children: [
-                                  /* unit package card */
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const InsuranceDetailsPage(),
-                                        ),
-                                      );
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsetsDirectional.only(top: 10),
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey.shade200,
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        
-                                      ),
-                                      height: fluidHeight(context, 10),
-                                      width: fluidWidth(context, 95),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10.0),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Package 1",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: fluidFontSize(context, 15),
-                                              ),
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      /* unit package card */
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const InsuranceDetailsPage(),
                                             ),
-                                            const SizedBox(height: 5),
-                                            Text(
-                                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w300,
-                                                fontSize: fluidFontSize(context, 12),
-                                              ),
+                                          );
+                                        },
+                                        child: Container(
+                                          margin:
+                                              const EdgeInsetsDirectional.only(
+                                                  top: 10),
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          height: fluidHeight(context, 10),
+                                          width: fluidWidth(context, 95),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Basic Plan",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: fluidFontSize(
+                                                        context, 15),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: fluidFontSize(
+                                                        context, 12),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
 
-                                  /* unit package card */
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const InsuranceDetailsPage(),
+                                      /* unit package card */
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const InsuranceDetailsPage(),
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          margin:
+                                              const EdgeInsetsDirectional.only(
+                                                  top: 20),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            border: Border.all(
+                                              color: Colors.blue,
+                                              width: 1.5,
+                                            ),
+                                          ),
+                                          height: fluidHeight(context, 10),
+                                          width: fluidWidth(context, 95),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Premium Plan",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: fluidFontSize(
+                                                        context, 15),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: fluidFontSize(
+                                                        context, 12),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                      );
-                                    },
-                                  
-                                   child: Container(
-                                  
-                                    margin: const EdgeInsetsDirectional.only(top: 20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      border: Border.all(
-                                                color: Colors.blue,
-                                                width: 1.5,
-                                              ),
-                                              
-                                    ),
-                                    
-                                    height: fluidHeight(context, 10),
-                                    width: fluidWidth(context, 95),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Package 1",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: fluidFontSize(context, 15),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 5),
-                                          Text(
-                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: fluidFontSize(context, 12),
-                                            ),
-                                          ),
-                                        ],
                                       ),
-                                    ),
-                                  ),
-                                  ),
-                                  /* unit package card */
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const InsuranceDetailsPage(),
+                                      /* unit package card */
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const InsuranceDetailsPage(),
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          margin:
+                                              const EdgeInsetsDirectional.only(
+                                                  top: 20),
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          height: fluidHeight(context, 10),
+                                          width: fluidWidth(context, 95),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Custom Plan",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: fluidFontSize(
+                                                        context, 15),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                Text(
+                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: fluidFontSize(
+                                                        context, 12),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
-                                      );
-                                    },
-                                  child: Container(
-                                    margin: const EdgeInsetsDirectional.only(top: 20),
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey.shade200,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    height: fluidHeight(context, 10),
-                                    width: fluidWidth(context, 95),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Package 1",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: fluidFontSize(context, 15),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 5),
-                                          Text(
-                                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: fluidFontSize(context, 12),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  )
-                                ]),
+                                      )
+                                    ]),
                               ),
                             ])
                           ],
