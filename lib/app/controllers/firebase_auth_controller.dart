@@ -5,11 +5,14 @@ import 'package:pixel_insurance_v2/app/data/repositories/auth_repository.dart';
 class FirebaseAuthController extends GetxController {
   static FirebaseAuthController get instance => Get.find();
 
+  final formKey = GlobalKey<FormState>();
+
   // text field controllers to get data from TextFields
   final email = TextEditingController();
   final password = TextEditingController();
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
+  final nidaNumber = TextEditingController();
 
   var phoneNumber = ''.obs;
 

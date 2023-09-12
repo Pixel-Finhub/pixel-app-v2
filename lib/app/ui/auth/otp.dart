@@ -7,12 +7,11 @@ import 'package:pixel_insurance_v2/app/controllers/otp_controller.dart';
 class OtpScreen extends StatelessWidget {
   OtpScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-  var otpController = Get.put(OTPController());
-  String otp = '';
-  
+    var otpController = Get.put(OTPController());
+    String otp = '';
+
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
