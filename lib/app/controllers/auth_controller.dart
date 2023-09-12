@@ -87,29 +87,28 @@ class AuthController extends GetxController {
     // Get.to(() => const HomePage());
 
     if (formKey.currentState!.validate()) {
-    // show progress dialog
-    showProgressDialog(context);
+      // show progress dialog
+      showProgressDialog(context);
 
       try {
         isLoading.value = true;
 
         final response = await http.post(Uri.parse("$baseUrl/login"), body: {
-          "phone": phoneTextEditingController.text,
+          "phone": phoneNo.value,
           "password": passwordTextEditingController.text,
         });
 
-        // ignore: unnecessary_null_comparison
-        if (response.statusCode == 200 && (response.body != null)) {
+        if (response.statusCode == 200) {
           isLoading.value = false;
 
           final responseData = json.decode(response.body);
           SharedPreferences prefs = await SharedPreferences.getInstance();
 
           prefs.setString('token', responseData['token']);
-          prefs.setInt("userId", responseData["userData"]["id"]);
-          prefs.setString("name", responseData["userData"]["name"]);
-          prefs.setString("phone", responseData["userData"]["phone"]);
-          prefs.setString("email", responseData["userData"]["email"]);
+          prefs.setInt("userId", responseData["user"]["id"]);
+
+          // ignore: use_build_context_synchronously
+          hideProgressDialog(context);
 
           Get.to(() => const HomePage());
         } else {
@@ -125,9 +124,6 @@ class AuthController extends GetxController {
       } catch (e) {
         print(e);
         return;
-      } finally {
-        // hide progress dialog when API call is done
-        hideProgressDialog(context);
       }
     } else {
       isLoading.value = false;

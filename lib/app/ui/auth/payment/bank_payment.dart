@@ -4,12 +4,7 @@ import 'package:flutter/services.dart';
 class BankPayment extends StatelessWidget {
   BankPayment({super.key});
 
-  TextEditingController cardNumberController = TextEditingController();
-  CardType cardType = CardType.Invalid;
-
-  void getCardTypeFromNum() {
-    String cardNum = CardUtils.getCleanedNumber(cardNumberController.text);
-  }
+  final TextEditingController cardNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
