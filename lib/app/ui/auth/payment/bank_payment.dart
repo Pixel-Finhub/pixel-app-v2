@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class BankPayment extends StatelessWidget {
   BankPayment({super.key});
-
-  TextEditingController cardNumberController = TextEditingController();
-  CardType cardType = CardType.Invalid;
-
-  void getCardTypeFromNum() {
-    String cardNum = CardUtils.getCleanedNumber(cardNumberController.text);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
+        toolbarHeight: 70,
         title: const Text('Pay by Master card or VISA card'),
       ),
-      body: Padding(
+      body: Container(
+        margin: EdgeInsets.all(8.0),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(children: [
           Form(
@@ -27,25 +25,28 @@ class BankPayment extends StatelessWidget {
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(19),
-                  CardNumberInputFormatter()
                 ],
                 decoration: InputDecoration(
                     hintText: "Card Number",
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    suffixIcon: SizedBox(
+                      height: 10,
+                      width: 20,
                       child: Image.asset('assets/images/visa_logo.png'),
                     ),
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Image.asset('assets/images/card_image.png'),
+                    prefixIcon: SizedBox(
+                      height: 20,
+                      width: 15,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset('assets/images/card_image.png'),
+                      ),
                     )),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                      hintText: 'Full Name',
-                      prefixIcon: Icon(Icons.usb_rounded)),
+                      hintText: 'Full Name', prefixIcon: Icon(Icons.person)),
                 ),
               ),
               Row(
@@ -61,7 +62,13 @@ class BankPayment extends StatelessWidget {
                           hintText: "CVV",
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: Image.asset('assets/images/cvv_icon.png'),
+                            child: SizedBox(
+                                height: 10,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child:
+                                      Image.asset('assets/images/cvv_icon.png'),
+                                )),
                           )),
                     ),
                   ),
@@ -80,8 +87,13 @@ class BankPayment extends StatelessWidget {
                           hintText: "MM/YY",
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10),
-                            child:
-                                Image.asset('assets/images/calende_icon.png'),
+                            child: SizedBox(
+                                height: 10,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Image.asset(
+                                      'assets/images/calende_icon.png'),
+                                )),
                           )),
                     ),
                   ),
@@ -89,42 +101,24 @@ class BankPayment extends StatelessWidget {
               )
             ]),
           ),
-          OutlinedButton.icon(
-              onPressed: () {},
-              icon: Image.asset('assets/images/scan.png'),
-              label: const Text('Scan')),
-          ElevatedButton(
-            onPressed: () {},
-           child: const Text('Buy'))
+          SizedBox(
+            height: 70,
+          ),
+          SizedBox(
+            height: 40,
+            child: OutlinedButton.icon(
+                onPressed: () {},
+                icon: Image.asset('assets/images/scan.png'),
+                label: const Text('Scan Card')),
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 40),
+              height: 40,
+              width: 200,
+              child: ElevatedButton(onPressed: () {}, child: const Text('Buy')))
         ]),
       ),
     );
-  }
-}
-
-class CardNumberInputFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    // TODO: implement formatEditUpdate
-    throw UnimplementedError();
-    if (newValue.selection.baseOffset == 0) {
-      return newValue;
-    }
-    String inputData = newValue.text;
-    StringBuffer buffer = StringBuffer();
-
-    for (var i = 0; i < inputData.length; i++) {
-      buffer.write(inputData[i]);
-      int index = i + 1;
-
-      if (index % 4 == 0 && inputData.length != index) {
-        buffer.write('  ');
-      }
-    }
-    return TextEditingValue(
-        text: buffer.toString(),
-        selection: TextSelection.collapsed(offset: buffer.toString().length));
   }
 }
 
@@ -132,8 +126,7 @@ class CardMonthInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    // TODO: implement formatEditUpdate
-    throw UnimplementedError();
+   
     var newText = newValue.text;
 
     if (newValue.selection.baseOffset == 0) {
@@ -152,4 +145,10 @@ class CardMonthInputFormatter extends TextInputFormatter {
         text: string,
         selection: TextSelection.collapsed(offset: string.length));
   }
+}
+
+void main(List<String> args) {
+  runApp(MaterialApp(
+    home: BankPayment(),
+  ));
 }

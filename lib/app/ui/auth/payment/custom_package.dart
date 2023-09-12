@@ -4,16 +4,16 @@ import 'package:pixel_insurance_v2/app/ui/auth/payment/bank_payment.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/payment/mobile_payment.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
-class BasicPackagePaymentPage extends StatefulWidget {
-  const BasicPackagePaymentPage({Key? key}) : super(key: key);
+class CustomPackagePaymentPage extends StatefulWidget {
+  const CustomPackagePaymentPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _BasicPackagePaymentPageState createState() =>
-      _BasicPackagePaymentPageState();
+  _CustomPackagePaymentPageState createState() =>
+      _CustomPackagePaymentPageState();
 }
 
-class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
+class _CustomPackagePaymentPageState extends State<CustomPackagePaymentPage> {
   int? selectedOption;
 
   @override
@@ -43,12 +43,12 @@ class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'Basic Package',
+                    'Custom Package',
                     style: TextStyle(color: Colors.white),
                   ),
                   SizedBox(height: 10),
                   Text(
-                    '400,000 Tzs',
+                    '1000,000 Tzs',
                     style: TextStyle(color: Colors.white),
                   ),
                 ],

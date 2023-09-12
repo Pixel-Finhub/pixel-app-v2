@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pixel_insurance_v2/app/ui/insurance/custom_plan_details.dart';
+import 'package:pixel_insurance_v2/app/ui/insurance/premium_insurance_details.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
@@ -203,7 +205,7 @@ class HomePackageState extends State<HomePagePackages> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  const InsuranceDetailsPage(),
+                                                  const InsuranceDetailsPagePremium(),
                                             ),
                                           );
                                         },
@@ -261,7 +263,7 @@ class HomePackageState extends State<HomePagePackages> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  const InsuranceDetailsPage(),
+                                                  const InsuranceDetailsPageCustom(),
                                             ),
                                           );
                                         },
