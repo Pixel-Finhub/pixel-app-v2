@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/payment/basic_package.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
@@ -450,7 +451,7 @@ Widget buildBuyButton(BuildContext context, String text, IconData iconData) {
         horizontal: fluidWidth(context, 5), vertical: fluidHeight(context, 5)),
     child: ElevatedButton(
       onPressed:() {
-                Get.to(() => PaymentPage());
+                Get.to(() => const BasicPackagePaymentPage());
               },
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blue, // Change button color as needed

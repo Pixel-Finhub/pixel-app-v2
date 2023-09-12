@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/payment/mobile_payment.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class BasicPackagePaymentPage extends StatefulWidget {
@@ -119,6 +121,7 @@ class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
+                      Get.to(() => const MobilePayment());
                       // Add your button's onPressed logic here
                     },
                     style: ElevatedButton.styleFrom(
@@ -139,8 +142,3 @@ class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: BasicPackagePaymentPage(),
-  ));
-}

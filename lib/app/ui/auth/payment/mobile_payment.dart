@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/payment/payment_success.dart';
 
 class MobilePayment extends StatelessWidget {
   const MobilePayment({super.key});
@@ -64,6 +65,7 @@ class MobilePayment extends StatelessWidget {
             width: 200,
             child: ElevatedButton(
                 onPressed: () {
+                  Get.to(() => const SucceessPayment());
                   //Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentSuccessPage()))
                 },
                 child: const Text("Pay")),
@@ -74,8 +76,4 @@ class MobilePayment extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: MobilePayment(),
-  ));
-}
+
