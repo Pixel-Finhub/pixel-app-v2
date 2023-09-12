@@ -3,15 +3,19 @@ import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pixel_insurance_v2/app/controllers/firebase_auth_controller.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
-import 'package:pixel_insurance_v2/app/ui/auth/otp.dart';
+// import 'package:pixel_insurance_v2/app/ui/auth/otp.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
+import '../../controllers/register_controller.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_constants.dart';
 
 class RegisterPage extends StatelessWidget {
   final controller = Get.put(FirebaseAuthController());
+
+  // changed to node api
+  final nodeAPIController = Get.put(RegisterController());
 
   late PhoneNumber number = PhoneNumber(isoCode: 'TZ');
 
@@ -32,7 +36,8 @@ class RegisterPage extends StatelessWidget {
                   horizontal: fluidWidth(context, 5),
                 ),
                 child: Form(
-                  key: controller.formKey,
+                  // key: controller.formKey,
+                  key: nodeAPIController.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -65,7 +70,7 @@ class RegisterPage extends StatelessWidget {
                             vertical: 3.0,
                           ),
                           child: TextFormField(
-                            controller: controller.nidaNumber,
+                            controller: nodeAPIController.nidaNumber,
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: "NIDA Number",
@@ -92,7 +97,7 @@ class RegisterPage extends StatelessWidget {
                           child: InternationalPhoneNumberInput(
                             onInputChanged: (PhoneNumber number) {
                               print(number.phoneNumber);
-                              controller.phoneNumber(number.phoneNumber);
+                              nodeAPIController.phoneNumber(number.phoneNumber);
                             },
                             onInputValidated: (bool value) {
                               print(value);
@@ -107,7 +112,7 @@ class RegisterPage extends StatelessWidget {
                             selectorTextStyle:
                                 const TextStyle(color: Colors.black),
                             initialValue: number,
-                            textFieldController: controller.phoneNo,
+                            textFieldController: nodeAPIController.phoneTextEditingController,
                             formatInput: false,
                             keyboardType: TextInputType.phone,
                             inputBorder: InputBorder.none,
@@ -126,8 +131,11 @@ class RegisterPage extends StatelessWidget {
               ),
               CustomButton(
                 function: () {
-                  controller.phoneAuthentication(controller.phoneNo.value.toString());
-                  Get.to(() => OtpScreen());
+                  // controller.phoneAuthentication(controller.phoneNo.value.toString());
+                  // Get.to(() => OtpScreen());
+                  nodeAPIController.registerUser(
+                    context
+                  );
                 },
                 text: "Register",
               ),
