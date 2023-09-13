@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/otp.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/register_page.dart';
 import 'package:pixel_insurance_v2/app/ui/home/home_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
@@ -232,7 +233,8 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: InputDecoration(
                               hintText: "Email",
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(defaultRadius),
+                                borderRadius:
+                                    BorderRadius.circular(defaultRadius),
                               ),
                             ),
                           ),
@@ -247,6 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: CustomButton(
                             function: () {
                               // TODO: Implement password reset submission
+                              Get.to(() => OtpScreen());
                             },
                             text: "Submit",
                           ),

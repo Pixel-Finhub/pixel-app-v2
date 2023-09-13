@@ -1,26 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:pixel_insurance_v2/app/claiming/claiming_process1.dart';
+import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 
-import '../shared/custom_nav.dart';
+class TrackClaiming extends StatelessWidget {
+  const TrackClaiming({Key? key}) : super(key: key); // Corrected super call
 
-class MyInsurance
-    extends StatefulWidget {
-  const MyInsurance({Key? key}) : super(key: key);
-
-  @override
-  MyInsuranceState createState() => MyInsuranceState();
-}
-
-class MyInsuranceState
-    extends State<MyInsurance> {
   @override
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
+    return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Track your Insurance'),
@@ -162,6 +150,11 @@ class MyInsuranceState
         currentIndex: 2,
       ),
     );
-    
-      }
+  }
 }
+
+// void main() {
+//   runApp(const MaterialApp(
+//     home: TrackClaiming(),
+//   ));
+// }

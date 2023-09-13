@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/help_and_privacy_dialogs.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/about_app.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/language_settings_page.dart';
@@ -161,7 +162,9 @@ class SettingsPage extends StatelessWidget {
                 fluidHeight(context, .5),
               ),
               child: TextButton(
-                onPressed: onPressed,
+                onPressed: () {
+                  Get.to(() => LoginPage());
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

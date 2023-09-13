@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/settings/settings.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
@@ -8,6 +10,7 @@ class ProfileEditingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: fluidWidth(context, 5)),
@@ -52,6 +55,7 @@ class ProfileEditingPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // process profile updates here
+                  Get.to(() => const SettingsPage());
                 },
                 //  button styling
                 style: ButtonStyle(
@@ -125,5 +129,3 @@ class ProfileInputField extends StatelessWidget {
     );
   }
 }
-
-
