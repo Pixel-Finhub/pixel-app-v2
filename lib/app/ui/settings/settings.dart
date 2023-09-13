@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/login_page.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/help_and_privacy_dialogs.dart';
@@ -8,7 +7,6 @@ import 'package:pixel_insurance_v2/app/ui/settings/widgets/language_settings_pag
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/notification_setings_page.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/widgets/profile_editing_page.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
-import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -165,24 +163,29 @@ class SettingsPage extends StatelessWidget {
                 onPressed: () {
                   Get.to(() => LoginPage());
                 },
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.logout,
-                      color: Colors.black,
-                      size: 30,
-                    ),
-                    SizedBox(width: fluidWidth(context, 5)),
-                    const Text(
-                      "Logout",
-                      style: TextStyle(
+                child: GestureDetector(
+                  onTap: () {
+                    Get.offAll(() => LoginPage());
+                  },
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.logout,
                         color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w300,
+                        size: 30,
                       ),
-                    ),
-                  ],
+                      SizedBox(width: fluidWidth(context, 5)),
+                      const Text(
+                        "Logout",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
