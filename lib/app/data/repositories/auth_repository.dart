@@ -22,7 +22,7 @@ class AuthenticationRepository extends GetxController {
   _setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const SplashScreen())
-        : Get.offAll(() => const HomePage());
+        : Get.offAll(() => HomePage());
   }
 
   // PhoneNumber authentication
@@ -50,8 +50,9 @@ class AuthenticationRepository extends GetxController {
 
   // verify otp function
   Future<bool> verifyOTP(String otp) async {
-    var credentials = await _auth.signInWithCredential(PhoneAuthProvider
-        .credential(verificationId: verificationId.value, smsCode: otp));
+    var credentials = await _auth.signInWithCredential(
+        PhoneAuthProvider.credential(
+            verificationId: verificationId.value, smsCode: otp));
     return credentials.user != null ? true : false;
   }
 
@@ -61,7 +62,7 @@ class AuthenticationRepository extends GetxController {
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       firebaseUser.value != null
-          ? Get.offAll(() => const HomePage())
+          ? Get.offAll(() => HomePage())
           : Get.to(() => const SplashScreen());
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);

@@ -24,7 +24,7 @@ class AuthController extends GetxController {
 
   // REGISTER
   Future<void> userRegistration(BuildContext context) async {
-    // Get.to(() => const HomePage());
+    // Get.to(() => HomePage());
 
     if (formKey.currentState!.validate()) {
       // show progress dialog
@@ -53,7 +53,7 @@ class AuthController extends GetxController {
           prefs.setString("phone", responseData["userData"]["phone"]);
           prefs.setString("email", responseData["userData"]["email"]);
 
-          Get.to(() => const HomePage());
+          Get.to(() => HomePage());
         } else {
           isLoading.value = false;
 
@@ -84,7 +84,7 @@ class AuthController extends GetxController {
 
   // LOGIN
   Future<void> userLogin(BuildContext context) async {
-    // Get.to(() => const HomePage());
+    // Get.to(() => HomePage());
 
     if (formKey.currentState!.validate()) {
       // show progress dialog
@@ -106,11 +106,15 @@ class AuthController extends GetxController {
 
           prefs.setString('token', responseData['token']);
           prefs.setInt("userId", responseData["user"]["id"]);
+          prefs.setString(
+              "firstName", responseData["user"]["firstName"] ?? 'Anonymous');
+          prefs.setString("phone", responseData["user"]["phone"]);
+          prefs.setString("email", responseData["user"]["email"] ?? 'anonymous@pixelinsurance.co');
 
           // ignore: use_build_context_synchronously
           hideProgressDialog(context);
 
-          Get.to(() => const HomePage());
+          Get.to(() => HomePage());
         } else {
           isLoading.value = false;
 

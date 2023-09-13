@@ -29,7 +29,7 @@ class CustomNav extends StatelessWidget {
         switch (val) {
           case 0:
             Get.off(
-              () => const HomePage(),
+              () => HomePage(),
               transition: Transition.noTransition,
             );
             break;

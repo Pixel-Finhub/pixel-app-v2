@@ -259,7 +259,7 @@ class ClaimingProcessOne extends StatelessWidget {
                     height: 40,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const HomePage());
+                        Get.to(() => HomePage());
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(

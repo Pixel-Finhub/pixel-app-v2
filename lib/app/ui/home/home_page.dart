@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixel_insurance_v2/app/controllers/home_controller.dart';
 import 'package:pixel_insurance_v2/app/ui/home/homepage_packages.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import '../utils/dimensions.dart';
@@ -7,7 +8,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  HomeController controller = Get.put(HomeController());
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -29,13 +32,17 @@ class _HomePageState extends State<HomePage> {
           ],
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text(
-            "Welcome Mr. Msangi",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w300,
-              fontSize: fluidFontSize(context, 20),
-            ),
+          title: GetX<HomeController>(
+            builder: (controller) {
+              return Text(
+                "Welcome back, ${controller.name.value}",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: fluidFontSize(context, 18),
+                  fontWeight: FontWeight.w600,
+                ),
+              );
+            },
           ),
           centerTitle: true,
         ),

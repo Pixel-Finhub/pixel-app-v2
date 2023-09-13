@@ -21,7 +21,7 @@ class RegisterController extends GetxController {
 
   // REGISTER
   Future<void> registerUser(BuildContext context) async {
-    // Get.to(() => const HomePage());
+    // Get.to(() => HomePage());
 
     if (formKey.currentState!.validate()) {
       // show progress dialog
@@ -44,13 +44,14 @@ class RegisterController extends GetxController {
 
           prefs.setString('token', responseData['token']);
           prefs.setInt("userId", responseData["user"]["id"]);
-          // prefs.setString("name", responseData["user"]["name"]);
-          // prefs.setString("phone", responseData["user"]["phone"]);
-          // prefs.setString("email", responseData["user"]["email"]);
+          prefs.setString(
+              "firstName", responseData["user"]["firstName"] ?? 'Anonymous');
+          prefs.setString("phone", responseData["user"]["phone"]);
+          prefs.setString("email", responseData["user"]["email"] ?? 'anonymous@pixelinsurance.co');
 
           // ignore: use_build_context_synchronously
           hideProgressDialog(context);
-          Get.to(() => const HomePage());
+          Get.to(() => HomePage());
         } else if (response.statusCode == 400) {
           isLoading.value = false;
           // print(response.body);
