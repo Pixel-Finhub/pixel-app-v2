@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/payment/payment_success.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class BankPayment extends StatelessWidget {
@@ -115,7 +117,11 @@ class BankPayment extends StatelessWidget {
               margin: EdgeInsets.only(top: 40),
               height: 40,
               width: 200,
-              child: ElevatedButton(onPressed: () {}, child: const Text('Buy')))
+              child: ElevatedButton(
+                  onPressed: () {
+                    Get.to(() => SucceessPayment());
+                  },
+                  child: const Text('Buy')))
         ]),
       ),
     );
@@ -126,7 +132,6 @@ class CardMonthInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-   
     var newText = newValue.text;
 
     if (newValue.selection.baseOffset == 0) {
