@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/data/providers/api_provider.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/otp.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/widgets/progress_indicator.dart';
 import 'package:pixel_insurance_v2/app/ui/home/home_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/index.dart';
@@ -19,6 +20,8 @@ class AuthController extends GetxController {
 
   final TextEditingController emailTextEditingController =
       TextEditingController();
+
+  final passwordResetEmail = TextEditingController();
 
   var phoneNo = ''.obs;
 
@@ -109,7 +112,8 @@ class AuthController extends GetxController {
           prefs.setString(
               "firstName", responseData["user"]["firstName"] ?? 'Anonymous');
           prefs.setString("phone", responseData["user"]["phone"]);
-          prefs.setString("email", responseData["user"]["email"] ?? 'anonymous@pixelinsurance.co');
+          prefs.setString("email",
+              responseData["user"]["email"] ?? 'anonymous@pixelinsurance.co');
 
           // ignore: use_build_context_synchronously
           hideProgressDialog(context);
@@ -144,15 +148,22 @@ class AuthController extends GetxController {
   Future<void> resetPassword(String email) async {
     // show progress dialog
     // showProgressDialog(context);
-    if (formKey.currentState!.validate()) {
+    if (passwordResetEmail.text.isNotEmpty) {
       try {
         final response = await http
-            .post(Uri.parse("$baseUrl/reset-password"), body: {"email": email});
+            .post(Uri.parse("$baseUrl/reset_password"), body: {"email": email});
 
         // ignore: unnecessary_null_comparison
         if (response.statusCode == 200 && (response.body != null)) {
-          final responseData = json.decode(response.body);
-          print(responseData);
+          // final responseData = json.decode(response.body);
+          // print(responseData);
+
+          // save email to shared preferences for OTP verification
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString("OTPEmail", email);
+
+          Get.to(() => OtpScreen());
+
           Get.snackbar(
             'Success',
             'Please check your email. Reset password link has been sent.',
@@ -191,5 +202,56 @@ class AuthController extends GetxController {
 
   void hideProgressDialog(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  Future<void> verifyOTP(BuildContext context, otp, String email) async {
+    // Get.to(() => HomePage());
+
+    if (otp.isNotEmpty) {
+      // show progress dialog
+      showProgressDialog(context);
+
+      try {
+        final response = await http.post(Uri.parse("$baseUrl/verify_otp"),
+            body: {"email": email, "otp": otp});
+
+        // ignore: unnecessary_null_comparison
+        if (response.statusCode == 200 && (response.body != null)) {
+          final responseData = json.decode(response.body);
+          print(responseData);
+
+          // save email to shared preferences for OTP verification
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString("OTPEmail", email);
+
+          // ignore: use_build_context_synchronously
+          hideProgressDialog(context);
+
+          Get.to(() => HomePage());
+
+          Get.snackbar(
+            'Success',
+            'Cool, welcome back!',
+            leftBarIndicatorColor: success,
+          );
+        } else {
+          print(response.body);
+          Get.snackbar(
+            'Error',
+            'Incorrect email.',
+            leftBarIndicatorColor: fail,
+          );
+        }
+      } catch (e) {
+        print(e);
+        return;
+      }
+    } else {
+      Get.snackbar(
+        'Error',
+        'Please enter correct OTP.',
+        leftBarIndicatorColor: fail,
+      );
+    }
   }
 }

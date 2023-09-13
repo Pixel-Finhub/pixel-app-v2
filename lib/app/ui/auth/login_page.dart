@@ -192,6 +192,8 @@ class LoginPage extends StatelessWidget {
                         ),
                         child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
+                          controller:
+                              controller.passwordResetEmail,
                           decoration: InputDecoration(
                             hintText: "Email",
                             border: OutlineInputBorder(
@@ -210,9 +212,8 @@ class LoginPage extends StatelessWidget {
                         ),
                         child: CustomButton(
                           function: () {
-                            // TODO: Implement password reset submission
                             controller.resetPassword(
-                                controller.emailTextEditingController.text);
+                                controller.passwordResetEmail.text);
                           },
                           text: "Submit",
                         ),

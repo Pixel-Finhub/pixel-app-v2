@@ -29,3 +29,8 @@ Future<String?> getEmail() async {
   var prefs = await SharedPreferences.getInstance();
   return prefs.getString("email");
 }
+
+Future<String?> getOTPEmail() async {
+  var prefs = await SharedPreferences.getInstance();
+  return prefs.getString("OTPEmail");
+}

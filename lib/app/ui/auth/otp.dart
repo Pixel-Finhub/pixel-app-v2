@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:pixel_insurance_v2/app/controllers/otp_controller.dart';
+import 'package:pixel_insurance_v2/app/controllers/auth_controller.dart';
+import 'package:pixel_insurance_v2/app/controllers/util.dart';
+// import 'package:pixel_insurance_v2/app/controllers/otp_controller.dart';
 import 'package:pixel_insurance_v2/app/ui/home/home_page.dart';
 
 class OtpScreen extends StatelessWidget {
   OtpScreen({super.key});
 
+  AuthController authController = Get.put(AuthController());
+
   @override
   Widget build(BuildContext context) {
-    var otpController = Get.put(OTPController());
+    // var otpController = Get.put(OTPController());
     String otp = '';
 
     return Scaffold(
@@ -33,10 +37,10 @@ class OtpScreen extends StatelessWidget {
             const Center(
               child: Text.rich(
                 TextSpan(
-                  text: 'Enter the code from the SMS we sent to \n',
+                  text: 'Enter the code from the SMS we sent to ',
                   children: [
                     TextSpan(
-                      text: '+255 768****78',
+                      text: 'your email',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -60,7 +64,8 @@ class OtpScreen extends StatelessWidget {
               textFieldAlignment: MainAxisAlignment.spaceAround,
               onCompleted: (code) {
                 otp = code;
-                OTPController.instance.verifyOTP(otp);
+                // OTPController.instance.verifyOTP(otp); // For Firebase OTP
+                authController.verifyOTP(context, otp, getOTPEmail() as String); // For API OTP
               },
             ),
             const SizedBox(
