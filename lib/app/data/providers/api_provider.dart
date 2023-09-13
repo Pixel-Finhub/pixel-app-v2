@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../../ui/auth/login_page.dart';
 
-const baseUrl = 'http://10.0.2.2:3000/api';
-// const baseUrl = 'https://api.pixel-insurance.patrickmamsery.works/api'; // for production
+// const baseUrl = 'http://10.0.2.2:3000/api';
+const baseUrl = 'https://api.pixel-insurance.patrickmamsery.works/api'; // for production
 
 String? token = "";
 
