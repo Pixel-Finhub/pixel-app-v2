@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:pixel_insurance_v2/app/ui/auth/otp.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/register_page.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_constants.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
+
+import '../../controllers/auth_controller.dart';
 
 class LoginPage extends StatelessWidget {
   late final PhoneNumber number = PhoneNumber(isoCode: 'TZ');
