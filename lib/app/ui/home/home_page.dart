@@ -421,7 +421,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-//"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
