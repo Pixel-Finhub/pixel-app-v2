@@ -7,6 +7,7 @@ import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
   HomePage({super.key});
 
@@ -308,11 +309,11 @@ class _HomePageState extends State<HomePage> {
       "Get a quote",
       "Get your policy",
     ];
-    const List<String> stepImages = [
-      "assets/images/step1.png",
-      "assets/images/step2.png",
-      "assets/images/step3.png",
-    ];
+    // const List<String> stepImages = [
+    //   "assets/images/step1.png",
+    //   "assets/images/step2.png",
+    //   "assets/images/step3.png",
+    // ];
     return Container(
       margin: const EdgeInsets.all(5),
       padding: EdgeInsets.all(fluidWidth(context, 2)),

@@ -10,6 +10,7 @@ import 'package:pixel_insurance_v2/app/ui/widgets/button.dart';
 
 import '../../controllers/auth_controller.dart';
 
+// ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   late final PhoneNumber number = PhoneNumber(isoCode: 'TZ');
 

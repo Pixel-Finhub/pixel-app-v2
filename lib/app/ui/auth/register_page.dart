@@ -11,6 +11,7 @@ import '../../controllers/register_controller.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_constants.dart';
 
+// ignore: must_be_immutable
 class RegisterPage extends StatelessWidget {
   final controller = Get.put(FirebaseAuthController());
 

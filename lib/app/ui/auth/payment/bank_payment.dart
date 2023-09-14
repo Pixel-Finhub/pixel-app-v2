@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/auth/payment/payment_success.dart';
-import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 class BankPayment extends StatelessWidget {
   BankPayment({super.key});

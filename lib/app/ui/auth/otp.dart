@@ -7,6 +7,7 @@ import 'package:pixel_insurance_v2/app/controllers/util.dart';
 // import 'package:pixel_insurance_v2/app/controllers/otp_controller.dart';
 import 'package:pixel_insurance_v2/app/ui/home/home_page.dart';
 
+// ignore: must_be_immutable
 class OtpScreen extends StatelessWidget {
   OtpScreen({super.key});
 
