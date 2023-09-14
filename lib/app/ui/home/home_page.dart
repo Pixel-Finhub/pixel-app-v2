@@ -193,14 +193,17 @@ class _HomePageState extends State<HomePage> {
                                                 children: [
                                                   // First review
                                                   _feedbackBuilder(
-                                                    customerName: "Juma Rubea",
-                                                    feedback:"I've been using Pixel Insurance for my business for the past few years and I've been very happy with their service. They offer a wide range of coverage options and their rates are very competitive. I would definitely recommend Pixel Insurance to anyone looking for cargo insurance."),
+                                                      customerName:
+                                                          "Juma Rubea",
+                                                      feedback:
+                                                          "I've been using Pixel Insurance for my business for the past few years and I've been very happy with their service. They offer a wide range of coverage options and their rates are very competitive. I would definitely recommend Pixel Insurance to anyone looking for cargo insurance."),
 
                                                   // second review
                                                   _feedbackBuilder(
-                                                    customerName: "Rajab Omary",
-                                                    feedback:"I recently had a claim with Pixel Insurance for a shipment of goods that was damaged in transit. The claim process was very smooth and easy, and I was reimbursed quickly and without any hassle. I would definitely recommend Pixel Insurance to anyone who is looking for cargo insurance."),
-                                                  
+                                                      customerName:
+                                                          "Rajab Omary",
+                                                      feedback:
+                                                          "I recently had a claim with Pixel Insurance for a shipment of goods that was damaged in transit. The claim process was very smooth and easy, and I was reimbursed quickly and without any hassle. I would definitely recommend Pixel Insurance to anyone who is looking for cargo insurance."),
                                                 ],
                                               ),
                                             ),
@@ -309,11 +312,11 @@ class _HomePageState extends State<HomePage> {
       "Get a quote",
       "Get your policy",
     ];
-    // const List<String> stepImages = [
-    //   "assets/images/step1.png",
-    //   "assets/images/step2.png",
-    //   "assets/images/step3.png",
-    // ];
+    List<String> stepImages = [
+      "assets/images/step1.png",
+      "assets/images/step2.png",
+      "assets/images/step3.png",
+    ];
     return Container(
       margin: const EdgeInsets.all(5),
       padding: EdgeInsets.all(fluidWidth(context, 2)),
@@ -333,9 +336,9 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                image: const DecorationImage(
-                  image: AssetImage("assets/images/splash.png"),
-                  fit: BoxFit.cover,
+                image: DecorationImage(
+                  image: AssetImage(stepImages[step - 1]),
+                  fit: BoxFit.contain,
                 ),
               ),
               width: fluidWidth(context, 50),
