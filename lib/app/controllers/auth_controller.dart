@@ -111,6 +111,8 @@ class AuthController extends GetxController {
           prefs.setInt("userId", responseData["user"]["id"]);
           prefs.setString(
               "firstName", responseData["user"]["firstName"] ?? 'Anonymous');
+          prefs.setString(
+              "lastName", responseData["user"]["lastName"] ?? 'Anonymous');
           prefs.setString("phone", responseData["user"]["phone"]);
           prefs.setString("email",
               responseData["user"]["email"] ?? 'anonymous@pixelinsurance.co');
@@ -121,6 +123,9 @@ class AuthController extends GetxController {
           Get.to(() => HomePage());
         } else {
           isLoading.value = false;
+          
+          // ignore: use_build_context_synchronously
+          hideProgressDialog(context);
 
           print(response.body);
           Get.snackbar(
@@ -135,6 +140,9 @@ class AuthController extends GetxController {
       }
     } else {
       isLoading.value = false;
+
+      // ignore: use_build_context_synchronously
+      hideProgressDialog(context);
 
       Get.snackbar(
         'Error',

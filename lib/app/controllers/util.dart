@@ -20,6 +20,11 @@ Future<String?> getFirstName() async {
   return prefs.getString("firstName");
 }
 
+Future<String?> getLastName() async {
+  var prefs = await SharedPreferences.getInstance();
+  return prefs.getString("firstName");
+}
+
 Future<String?> getPhone() async {
   var prefs = await SharedPreferences.getInstance();
   return prefs.getString("phone");

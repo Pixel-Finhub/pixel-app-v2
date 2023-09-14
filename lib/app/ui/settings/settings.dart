@@ -277,7 +277,7 @@ Widget buildSettingsItem(
 
 void _showEditProfileBottomSheet(BuildContext context) {
   Get.bottomSheet(
-    const ProfileEditingPage(),
+    ProfileEditingPage(),
   );
 }
 

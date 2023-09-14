@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/controllers/profile_controller.dart';
 import 'package:pixel_insurance_v2/app/ui/settings/settings.dart';
-import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
-class ProfileEditingPage extends StatelessWidget {
-  const ProfileEditingPage({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class ProfileEditingPage extends GetView<ProfileController> {
+  ProfileEditingPage({Key? key}) : super(key: key);
 
+  @override
+  ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,26 +33,31 @@ class ProfileEditingPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const ProfileInputField(
-                iconPath: 'assets/icons/user.svg',
-                labelText: 'First Name',
-                initialValue: 'John', // Set the initial value here
-              ),
-              const ProfileInputField(
-                iconPath: 'assets/icons/user.svg',
-                labelText: 'Last Name',
-                initialValue: 'Doe', // Set the initial value here
-              ),
-              const ProfileInputField(
-                iconPath: 'assets/icons/phone.svg',
-                labelText: 'Mobile Number',
-                initialValue: '123-456-7890', // Set the initial value here
-              ),
-              const ProfileInputField(
-                iconPath: 'assets/icons/email.svg',
-                labelText: 'Email',
-                initialValue:
-                    'johndoe@example.com', // Set the initial value here
+              Obx(
+                () => Column(
+                  children: [
+                    ProfileInputField(
+                      iconPath: 'assets/icons/user.svg',
+                      labelText: 'First Name',
+                      initialValue: controller.firstName.value, // Use controller for value
+                    ),
+                    ProfileInputField(
+                      iconPath: 'assets/icons/user.svg',
+                      labelText: 'Last Name',
+                      initialValue: controller.lastName.value, // Use controller for value
+                    ),
+                    ProfileInputField(
+                      iconPath: 'assets/icons/phone.svg',
+                      labelText: 'Mobile Number',
+                      initialValue: controller.phone.value, // Use controller for value
+                    ),
+                    ProfileInputField(
+                      iconPath: 'assets/icons/email.svg',
+                      labelText: 'Email',
+                      initialValue: controller.email.value, // Use controller for value
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 5.0),
               ElevatedButton(
