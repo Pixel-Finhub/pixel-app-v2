@@ -524,6 +524,7 @@ Widget _buildVerticalTimelineTile(
           child: Icon(
             iconData,
             color: Colors.white,
+            size: fluidFontSize(context, 15),
           ),
         ),
       ),
