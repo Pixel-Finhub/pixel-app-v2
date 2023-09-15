@@ -172,7 +172,7 @@ class InsuranceDetailsPageCustom extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/images/basic.jpg',
+                          'assets/images/custom.jpg',
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -191,7 +191,7 @@ class InsuranceDetailsPageCustom extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          'Basic Plan', // Replace with your package title
+                          'Custom Plan', // Replace with your package title
                           style: TextStyle(
                             color: Colors.white, // Text color
                             fontSize: fluidFontSize(
@@ -216,7 +216,7 @@ class InsuranceDetailsPageCustom extends StatelessWidget {
                           horizontal: fluidWidth(context, 5),
                         ),
                         child: Text(
-                          'Basic plan',
+                          'Custom plan',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               fontSize: fluidFontSize(context, 20),
@@ -237,7 +237,7 @@ class InsuranceDetailsPageCustom extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Basic package gives you the most essential coverage for your goods during transit. It covers the most common risks that you may encounter during transit. The package is already pre-configured so you just have to activate it. You can also customize the package to suit your needs.',
+                                  'This fluid plan gives you the most essential coverage for your goods during transit. It covers the most common risks that you may encounter during transit. The package is already pre-configured so you just have to activate it. You can also customize the package to suit your needs.',
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: fluidFontSize(context, 15),
