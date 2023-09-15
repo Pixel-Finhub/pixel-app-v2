@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pixel_insurance_v2/app/ui/insurance/custom_plan_details.dart';
 import 'package:pixel_insurance_v2/app/ui/insurance/premium_insurance_details.dart';
@@ -5,6 +6,93 @@ import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 
 import '../insurance/insurance_details.dart';
+
+class CustomCard extends StatelessWidget {
+  final String imagePath;
+  final String title;
+  final String text;
+  final Function() onSharePressed;
+  final Function() onExplorePressed;
+
+  const CustomCard({
+    Key? key,
+    required this.imagePath,
+    required this.title,
+    required this.text,
+    required this.onSharePressed,
+    required this.onExplorePressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Image.asset(
+            imagePath,
+            height: 160,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.grey[800],
+                  ),
+                ),
+                Container(height: 10),
+                Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey[700],
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
+                    const Spacer(),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.transparent,
+                      ),
+                      child: const Text(
+                        "SHARE",
+                        style: TextStyle(color: Colors.blue), // Adjust color
+                      ),
+                      onPressed: onSharePressed,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.transparent,
+                      ),
+                      child: const Text(
+                        "EXPLORE",
+                        style: TextStyle(color: Colors.blue), // Adjust color
+                      ),
+                      onPressed: onExplorePressed,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(height: 5),
+        ],
+      ),
+    );
+  }
+}
 
 class HomePagePackages extends StatefulWidget {
   const HomePagePackages({Key? key}) : super(key: key);
@@ -64,48 +152,25 @@ class HomePackageState extends State<HomePagePackages> {
             child: Column(
               children: [
                 /* Banner card */
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Container(
-                    /* insurance packages  banner card */
+                CarouselSlider(
+                  items: [
+                    _buildBanner(
+                      context: context,
+                      imagePath: "assets/images/burning-truck.jpg",
+                      title: "Get Liability Coverage in transit.",
+                      description:
+                          "We Provide On-demand Insurance Service That Is Tailored According to Your Needs",
+                    )
+                  ],
+                  options: CarouselOptions(
                     height: fluidHeight(context, 30.0),
-                    width: fluidWidth(context, 100) - 20,
-                    // background image in the card
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/burning-truck.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-
-                    /* Card description Content */
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Insurance Packages",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: fluidFontSize(context, 25),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            "Get the best insurance packages for your business.",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w300,
-                              fontSize: fluidFontSize(context, 15),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 1.0,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 20),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 8000),
+                    autoPlayCurve: Curves.fastOutSlowIn,
                   ),
                 ),
 
@@ -143,6 +208,43 @@ class HomePackageState extends State<HomePagePackages> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
+                                      CustomCard(
+                                        imagePath: 'assets/images/basic.jpg',
+                                        title: "Basic Coverage",
+                                        text:
+                                            "Our Basic Insurance Plan provides essential coverage to protect you in case of unexpected events. It's an ideal choice for those looking for budget-friendly insurance.",
+                                        onSharePressed: () {
+                                          // Handle share button press
+                                        },
+                                        onExplorePressed: () {
+                                          // Handle explore button press
+                                        },
+                                      ),
+                                      CustomCard(
+                                        imagePath: 'assets/images/premium.jpg',
+                                        title: "Premium Coverage",
+                                        text:
+                                            "Our Premium Insurance Plan offers comprehensive coverage with additional benefits. Enjoy peace of mind knowing you have extra protection for your valuable assets.",
+                                        onSharePressed: () {
+                                          // Handle share button press
+                                        },
+                                        onExplorePressed: () {
+                                          // Handle explore button press
+                                        },
+                                      ),
+                                      CustomCard(
+                                        imagePath: 'assets/images/custom.jpg',
+                                        title: "Custom Coverage",
+                                        text:
+                                            "Create a tailored insurance plan that suits your unique needs. With our Custom Insurance Plan, you have the flexibility to choose the coverage that matters most to you.",
+                                        onSharePressed: () {
+                                          // Handle share button press
+                                        },
+                                        onExplorePressed: () {
+                                          // Handle explore button press
+                                        },
+                                      ),
+
                                       /* unit package card */
                                       GestureDetector(
                                         onTap: () {
@@ -197,7 +299,6 @@ class HomePackageState extends State<HomePagePackages> {
                                           ),
                                         ),
                                       ),
-
                                       /* unit package card */
                                       GestureDetector(
                                         onTap: () {
@@ -327,13 +428,79 @@ class HomePackageState extends State<HomePagePackages> {
       bottomNavigationBar: const CustomNav(currentIndex: 1),
     );
   }
+
+/* Banner card builder*/
+  Widget _buildBanner({
+    required BuildContext context,
+    required String imagePath,
+    required String title,
+    required String description,
+  }) {
+    return Container(
+      /* insurance packages banner card */
+      height: fluidHeight(context, 25.0),
+      width: fluidWidth(context, 100) - 20,
+
+      // Use a Stack to overlay image and text
+      child: Stack(
+        children: [
+          // Background image in the card
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+
+          /* Card description Content */
+          Padding(
+            padding: const EdgeInsets.all(0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(
+                        115, 0, 0, 0), // Set the background color to black
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Add border radius
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300,
+                            fontSize: fluidFontSize(context, 25),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          description,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w200,
+                            fontSize: fluidFontSize(context, 15),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
-
-
-// git push
-// move to develop
-// git pull
-// git flow feature finish ui-cleaning
-// git flow feature start insurance-tracking
