@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/ui/auth/payment/premium_package.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
@@ -477,7 +478,9 @@ Widget buildBuyButton(BuildContext context, String text, IconData iconData) {
         height: 50,
         width: 230,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => const PremiumPackagePaymentPage());
+          },
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
