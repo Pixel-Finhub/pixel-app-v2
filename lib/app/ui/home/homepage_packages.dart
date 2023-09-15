@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/insurance/custom_plan_details.dart';
 import 'package:pixel_insurance_v2/app/ui/insurance/premium_insurance_details.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
@@ -11,10 +12,10 @@ class CustomCard extends StatelessWidget {
   final String imagePath;
   final String title;
   final String text;
-  final Function() onSharePressed;
-  final Function() onExplorePressed;
+  final VoidCallback onSharePressed;
+  final VoidCallback onExplorePressed;
 
-  const CustomCard({
+  CustomCard({
     Key? key,
     required this.imagePath,
     required this.title,
@@ -35,27 +36,32 @@ class CustomCard extends StatelessWidget {
         children: <Widget>[
           Image.asset(
             imagePath,
-            height: 160,
-            width: double.infinity,
+            height: fluidHeight(context, 30.0), // Adjust the height
+            width: fluidWidth(context, 100) - 20, // Adjust the width
             fit: BoxFit.cover,
           ),
           Container(
-            padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+            padding: EdgeInsets.fromLTRB(
+              fluidWidth(context, 5), // Adjust left padding
+              fluidHeight(context, 5), // Adjust top padding
+              fluidWidth(context, 5), // Adjust right padding
+              fluidHeight(context, 0), // Adjust bottom padding
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: fluidFontSize(context, 24), // Adjust font size
                     color: Colors.grey[800],
                   ),
                 ),
-                Container(height: 10),
+                SizedBox(height: fluidHeight(context, 1)), // Adjust spacing
                 Text(
                   text,
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: fluidFontSize(context, 15), // Adjust font size
                     color: Colors.grey[700],
                   ),
                 ),
@@ -66,19 +72,27 @@ class CustomCard extends StatelessWidget {
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.transparent,
                       ),
-                      child: const Text(
-                        "SHARE",
-                        style: TextStyle(color: Colors.blue), // Adjust color
-                      ),
                       onPressed: onSharePressed,
+                      child: Text(
+                        "",
+                        style: TextStyle(
+                          color: Colors.blue, // Adjust color
+                          fontSize:
+                              fluidFontSize(context, 15), // Adjust font size
+                        ),
+                      ),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.transparent,
                       ),
-                      child: const Text(
+                      child: Text(
                         "EXPLORE",
-                        style: TextStyle(color: Colors.blue), // Adjust color
+                        style: TextStyle(
+                          color: Colors.blue, // Adjust color
+                          fontSize:
+                              fluidFontSize(context, 15), // Adjust font size
+                        ),
                       ),
                       onPressed: onExplorePressed,
                     ),
@@ -87,7 +101,7 @@ class CustomCard extends StatelessWidget {
               ],
             ),
           ),
-          Container(height: 5),
+          SizedBox(height: fluidHeight(context, 0.5)), // Adjust spacing
         ],
       ),
     );
@@ -188,7 +202,7 @@ class HomePackageState extends State<HomePagePackages> {
                             ),
                             /* Insurance package card */
                             Container(
-                              padding: EdgeInsets.fromLTRB(10, 20, 0, 10),
+                              padding: const EdgeInsets.fromLTRB(10, 20, 0, 10),
                               child: Text(
                                 "Our Packages",
                                 style: TextStyle(
@@ -217,7 +231,8 @@ class HomePackageState extends State<HomePagePackages> {
                                           // Handle share button press
                                         },
                                         onExplorePressed: () {
-                                          // Handle explore button press
+                                          Get.to(() =>
+                                              const InsuranceDetailsPage());
                                         },
                                       ),
                                       CustomCard(
@@ -229,7 +244,8 @@ class HomePackageState extends State<HomePagePackages> {
                                           // Handle share button press
                                         },
                                         onExplorePressed: () {
-                                          // Handle explore button press
+                                          Get.to(() =>
+                                              const InsuranceDetailsPagePremium());
                                         },
                                       ),
                                       CustomCard(
@@ -241,176 +257,10 @@ class HomePackageState extends State<HomePagePackages> {
                                           // Handle share button press
                                         },
                                         onExplorePressed: () {
-                                          // Handle explore button press
+                                          Get.to(() =>
+                                              const InsuranceDetailsPageCustom());
                                         },
                                       ),
-
-                                      /* unit package card */
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const InsuranceDetailsPage(),
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsetsDirectional.only(
-                                                  top: 10),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey.shade200,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                          height: fluidHeight(context, 10),
-                                          width: fluidWidth(context, 95),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Basic Plan",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: fluidFontSize(
-                                                        context, 15),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 5),
-                                                Text(
-                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: fluidFontSize(
-                                                        context, 12),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      /* unit package card */
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const InsuranceDetailsPagePremium(),
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsetsDirectional.only(
-                                                  top: 20),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            border: Border.all(
-                                              color: Colors.blue,
-                                              width: 1.5,
-                                            ),
-                                          ),
-                                          height: fluidHeight(context, 10),
-                                          width: fluidWidth(context, 95),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Premium Plan",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: fluidFontSize(
-                                                        context, 15),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 5),
-                                                Text(
-                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: fluidFontSize(
-                                                        context, 12),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      /* unit package card */
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const InsuranceDetailsPageCustom(),
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsetsDirectional.only(
-                                                  top: 20),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey.shade200,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                          height: fluidHeight(context, 10),
-                                          width: fluidWidth(context, 95),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Custom Plan",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: fluidFontSize(
-                                                        context, 15),
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 5),
-                                                Text(
-                                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae.",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w300,
-                                                    fontSize: fluidFontSize(
-                                                        context, 12),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )
                                     ]),
                               ),
                             ])
