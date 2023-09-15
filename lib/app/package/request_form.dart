@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
@@ -98,7 +99,8 @@ class _RequestFormState extends State<RequestForm> {
                   const SizedBox(height: 10), // Add some spacing
 
                   // Gross weight of the cargo (kg)
-                  buildNumberInput(context, 'Gross weight of the cargo (kg)','Enter weight'),
+                  buildNumberInput(context, 'Gross weight of the cargo (kg)',
+                      'Enter weight'),
                   const SizedBox(height: 10), // Add some spacing
 
                   // Cargo invoice
@@ -106,14 +108,15 @@ class _RequestFormState extends State<RequestForm> {
                   const SizedBox(height: 10), // Add some spacing
 
                   // image of the cargo in container
-                  buildImageInput(context, 'Image of the cargo in container','assets/images/crops.png'),
+                  buildImageInput(context, 'Image of the cargo in container',
+                      'assets/images/crops.png'),
                   const SizedBox(height: 10), // Add some spacing
-
                 ],
               ),
             ),
 
-            _buildSendRequestButton(context),
+            _buildSendRequestButton(context, 'Continue to payment'),
+            SizedBox(height: fluidHeight(context, 5)),
           ],
         ),
       ),
@@ -262,19 +265,30 @@ class _RequestFormState extends State<RequestForm> {
     });
   }
 
-  Widget _buildSendRequestButton(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        height: 40,
-        width: 230,
-        child: ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(50),
+  Widget _buildSendRequestButton(
+      BuildContext context, String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 40.0),
+      child: Center(
+        child: SizedBox(
+          height: 50,
+          width: 230,
+          child: ElevatedButton(
+            onPressed: () {
+              Get.to(() => const RequestForm());
+            },
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            child: Text(
+              'Continue to payment',
+              style: TextStyle(
+                  fontSize: fluidFontSize(context, 14),
+                  fontWeight: FontWeight.w400),
             ),
           ),
-          child: const Text('Send request'),
         ),
       ),
     );

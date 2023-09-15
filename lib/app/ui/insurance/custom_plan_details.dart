@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pixel_insurance_v2/app/package/request_form.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
@@ -106,7 +107,7 @@ List<InsuranceCoverage> coverages = [
 ];
 
 class InsuranceDetailsPageCustom extends StatelessWidget {
-  const InsuranceDetailsPageCustom ({Key? key}) : super(key: key);
+  const InsuranceDetailsPageCustom({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -402,8 +403,7 @@ class InsuranceDetailsPageCustom extends StatelessWidget {
                   ),
 
                   Padding(
-                    padding: EdgeInsets.all(
-                        fluidWidth(context, 5)),
+                    padding: EdgeInsets.all(fluidWidth(context, 5)),
                     child: Text(
                       'Claim Process',
                       textAlign: TextAlign.left,
@@ -477,14 +477,16 @@ Widget buildBuyButton(BuildContext context, String text, IconData iconData) {
         height: 50,
         width: 230,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => const RequestForm());
+          },
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
           ),
           child: Text(
-            'Continue to Payment',
+            'Continue to customize',
             style: TextStyle(
                 fontSize: fluidFontSize(context, 14),
                 fontWeight: FontWeight.w400),
