@@ -36,15 +36,15 @@ class CustomCard extends StatelessWidget {
         children: <Widget>[
           Image.asset(
             imagePath,
-            height: fluidHeight(context, 30.0), // Adjust the height
+            height: fluidHeight(context, 15.0), // Adjust the height
             width: fluidWidth(context, 100) - 20, // Adjust the width
             fit: BoxFit.cover,
           ),
           Container(
             padding: EdgeInsets.fromLTRB(
-              fluidWidth(context, 5), // Adjust left padding
-              fluidHeight(context, 5), // Adjust top padding
-              fluidWidth(context, 5), // Adjust right padding
+              fluidWidth(context, 3), // Adjust left padding
+              fluidHeight(context, 1), // Adjust top padding
+              fluidWidth(context, 3), // Adjust right padding
               fluidHeight(context, 0), // Adjust bottom padding
             ),
             child: Column(
@@ -53,7 +53,7 @@ class CustomCard extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: fluidFontSize(context, 24), // Adjust font size
+                    fontSize: fluidFontSize(context, 18), // Adjust font size
                     color: Colors.grey[800],
                   ),
                 ),
@@ -61,7 +61,7 @@ class CustomCard extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(
-                    fontSize: fluidFontSize(context, 15), // Adjust font size
+                    fontSize: fluidFontSize(context, 13), // Adjust font size
                     color: Colors.grey[700],
                   ),
                 ),
@@ -86,15 +86,15 @@ class CustomCard extends StatelessWidget {
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.transparent,
                       ),
+                      onPressed: onExplorePressed,
                       child: Text(
                         "EXPLORE",
                         style: TextStyle(
                           color: Colors.blue, // Adjust color
                           fontSize:
-                              fluidFontSize(context, 15), // Adjust font size
+                              fluidFontSize(context, 14), // Adjust font size
                         ),
                       ),
-                      onPressed: onExplorePressed,
                     ),
                   ],
                 ),
