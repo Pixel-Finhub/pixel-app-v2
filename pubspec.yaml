@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   file_picker: ^5.5.0
   carousel_slider: ^4.0.0
+  timeline_tile: ^2.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -102,4 +103,4 @@ flutter:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/splash.png"
+  image_path: "assets/images/pixel.jpg"
