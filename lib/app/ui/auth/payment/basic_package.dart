@@ -20,36 +20,37 @@ class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.arrow_back),
-            color: Colors.black,
-          ),
-          backgroundColor: Colors.white,
-          title: Text(
-            'Payment Method',
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              color: primaryDark,
-              fontSize: fluidFontSize(context, 18),
-            ),
-          ),
-          centerTitle: true,
-          toolbarHeight: 70.0,
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.notifications_active,
-                color: Colors.black,
-              ),
-            ),
-          ],
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black,
         ),
-        body: SingleChildScrollView(
-          child: Column(children: [
+        backgroundColor: Colors.white,
+        title: Text(
+          'Payment Method',
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: primaryDark,
+            fontSize: fluidFontSize(context, 18),
+          ),
+        ),
+        centerTitle: true,
+        toolbarHeight: 70.0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications_active,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: fluidWidth(context, 5),
@@ -156,24 +157,36 @@ class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
 
             // Payment Options
             Container(
-              margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              margin: EdgeInsets.symmetric(
+                vertical: fluidHeight(
+                    context, 2), // Use fluid height for vertical margin
+                horizontal: fluidWidth(
+                    context, 2), // Use fluid width for horizontal margin
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5),
-                    width: 344,
-                    height: 64,
+                    margin: EdgeInsets.symmetric(
+                      vertical: fluidHeight(
+                          context, 0.5), // Use fluid height for vertical margin
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      vertical: fluidHeight(context, 0.5),
+                      horizontal: fluidHeight(context, 2),
+                    ),
+                    width: fluidWidth(context, 90),
                     decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(8)),
+                      borderRadius: BorderRadius.circular(8),
+                      border:
+                          Border.all(color: Colors.blue), // Set border color
+                    ),
                     child: Row(
                       children: [
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedOption =
-                                  1; // Update to the desired value when Text is clicked
+                              selectedOption = 1;
                             });
                           },
                           child: Row(
@@ -191,14 +204,11 @@ class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          width: 140,
-                        ),
+                        Spacer(), // Use Spacer to push the next element to the right
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedOption =
-                                  1; // Update to the desired value when Icon is clicked
+                              selectedOption = 1;
                             });
                           },
                           child: const Icon(Icons.phone),
@@ -206,111 +216,100 @@ class _BasicPackagePaymentPageState extends State<BasicPackagePaymentPage> {
                       ],
                     ),
                   ),
-                  //assets/images/bank_icon.jpeg
+                  SizedBox(height: fluidHeight(context, 1)),
+
+                  // Bank Payment Option
                   Container(
-                    height: 64,
-                    width: 344,
+                    margin: EdgeInsets.symmetric(
+                      vertical: fluidHeight(
+                          context, 0.5), // Use fluid height for vertical margin
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      vertical: fluidHeight(context, 0.5),
+                      horizontal: fluidHeight(context, 2),
+                    ),
+                    width: fluidWidth(context, 90),
                     decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(8)),
+                      borderRadius: BorderRadius.circular(8),
+                      border:
+                          Border.all(color: Colors.blue), // Set border color
+                    ),
                     child: Row(
                       children: [
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedOption =
-                                  2; // Update to the desired value when Text is clicked
+                              selectedOption = 2;
                             });
                           },
                           child: Row(
                             children: [
-                              GestureDetector(
-                                onTap: () {
+                              Radio(
+                                value: 2,
+                                groupValue: selectedOption,
+                                onChanged: (value) {
                                   setState(() {
-                                    selectedOption =
-                                        2; // Update to the desired value when Text is clicked
+                                    selectedOption = value as int?;
                                   });
                                 },
-                                child: Row(
-                                  children: [
-                                    Radio(
-                                      value: 2,
-                                      groupValue: selectedOption,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          selectedOption = value as int?;
-                                        });
-                                      },
-                                    ),
-                                    const Text('Bank'),
-                                    const SizedBox(
-                                      width: 70,
-                                    )
-                                  ],
-                                ),
                               ),
-                              const SizedBox(
-                                width: 140,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedOption =
-                                        2; // Update to the desired value when Icon is clicked
-                                  });
-                                },
-                                child: SizedBox(
-                                  width: fluidWidth(context, 6),
-                                  child: Image.asset(
-                                      'assets/images/bank_icon.jpeg'),
-                                ),
-                              ),
+                              const Text('Bank Payment'),
                             ],
                           ),
+                        ),
+                        Spacer(), // Use Spacer to push the next element to the right
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedOption = 2;
+                            });
+                          },
+                          child: const Icon(Icons.account_balance),
                         ),
                       ],
                     ),
                   ),
+                  // Complete Payment Button
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    height: 40,
+                    width: 271,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (selectedOption == 1) {
+                          Get.to(() => const MobilePayment());
+                        } else if (selectedOption == 2) {
+                          // Navigate to the Bank payment page.
+                          // Replace 'YourBankPaymentPage' with the actual page.
+                          Get.to(() => BankPayment());
+                        } else {
+                          Get.snackbar(
+                            'Error',
+                            'Please select a payment method (Mobile or Bank).',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.all(0), // Set padding to zero
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Text('Complete Payment'),
+                    ),
+                  )
                 ],
               ),
             ),
-            
-            // Complete Payment Button
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              height: 40,
-              width: 271,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: ElevatedButton(
-                onPressed: () {
-                  if (selectedOption == 1) {
-                    Get.to(() => const MobilePayment());
-                  } else if (selectedOption == 2) {
-                    // Navigate to the Bank payment page.
-                    // Replace 'YourBankPaymentPage' with the actual page.
-                    Get.to(() => BankPayment());
-                  } else {
-                    Get.snackbar(
-                      'Error',
-                      'Please select a payment method (Mobile or Bank).',
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red,
-                      colorText: Colors.white,
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(0), // Set padding to zero
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: const Text('Complete Payment'),
-              ),
-            )
-          ]),
-        ));
+          ],
+        ),
+      ),
+    );
   }
 }
