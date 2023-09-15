@@ -13,37 +13,113 @@ class RequestForm extends StatefulWidget {
   State<RequestForm> createState() => _RequestFormState();
 }
 
+class Item {
+  final String name;
+  final String imagePath;
+  final Color borderColor;
+  bool isUsed; // New attribute
+
+  Item({
+    required this.name,
+    required this.imagePath,
+    required this.borderColor,
+    this.isUsed = false, // Default value is false
+  });
+}
+
 class _RequestFormState extends State<RequestForm> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   List<Item> items = [
     Item(
-        name: 'Fabrics',
-        imagePath: 'assets/images/fabrics.png',
-        borderColor: primary),
+      name: 'Fabrics',
+      imagePath: 'assets/images/fabrics.png',
+      borderColor: primary,
+      isUsed: false,
+    ),
     Item(
-        name: 'Rice Packs',
-        imagePath: 'assets/images/crops.png',
-        borderColor: Colors.blue),
+      name: 'Rice Packs',
+      imagePath: 'assets/images/crops.png',
+      borderColor: Colors.blue,
+      isUsed: false,
+    ),
     Item(
-        name: 'Fabrics',
-        imagePath: 'assets/images/fabrics.png',
-        borderColor: primary),
+      name: 'Electronics',
+      imagePath: 'assets/images/electronics.png',
+      borderColor: Colors.green,
+      isUsed: false,
+    ),
     Item(
-        name: 'Rice Packs',
-        imagePath: 'assets/images/crops.png',
-        borderColor: Colors.blue),
+      name: 'Furniture',
+      imagePath: 'assets/images/furniture.png',
+      borderColor: Colors.orange,
+      isUsed: false,
+    ),
     Item(
-        name: 'Fabrics',
-        imagePath: 'assets/images/fabrics.png',
-        borderColor: primary),
+      name: 'Machinery',
+      imagePath: 'assets/images/machinery.png',
+      borderColor: Colors.purple,
+      isUsed: false,
+    ),
     Item(
-        name: 'Rice Packs',
-        imagePath: 'assets/images/crops.png',
-        borderColor: Colors.blue),
+      name: 'Cement',
+      imagePath: 'assets/images/cement.png',
+      borderColor: Colors.red,
+      isUsed: false,
+    ),
+    Item(
+      name: 'Tyres',
+      imagePath: 'assets/images/tyre.png',
+      borderColor: Colors.yellow,
+      isUsed: false,
+    ),
+    Item(
+      name: 'Logs',
+      imagePath: 'assets/images/logs.png',
+      borderColor: Colors.yellow,
+      isUsed: false,
+    ),
+    Item(
+      name: 'Books',
+      imagePath: 'assets/images/books.png',
+      borderColor: Colors.purple,
+    ),
+    Item(
+      name: 'Toys',
+      imagePath: 'assets/images/toys.png',
+      borderColor: Colors.red,
+    ),
+    Item(
+      name: 'Appliances',
+      imagePath: 'assets/images/appliances.png',
+      borderColor: Colors.yellow,
+    ),
+    Item(
+      name: 'Jewelry',
+      imagePath: 'assets/images/jewelry.png',
+      borderColor: Colors.indigo,
+    ),
+    Item(
+      name: 'Cosmetics',
+      imagePath: 'assets/images/cosmetics.png',
+      borderColor: Colors.pink,
+    ),
+    Item(
+      name: 'Food Items',
+      imagePath: 'assets/images/food.png',
+      borderColor: Colors.deepOrange,
+    ),
+    Item(
+      name: 'Plants',
+      imagePath: 'assets/images/plants.png',
+      borderColor: Colors.teal,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: _buildAppBar(context),
       body: SingleChildScrollView(
         child: Column(
@@ -59,7 +135,7 @@ class _RequestFormState extends State<RequestForm> {
               child: ElevatedButton(
                 onPressed: () {
                   // Add item to the grid
-                  // _addItem();
+                  _addItem();
                 },
                 child: const Text('Add Item'),
               ),
@@ -169,6 +245,8 @@ class _RequestFormState extends State<RequestForm> {
   }
 
   Widget _buildItemGrid(BuildContext context) {
+    final usedItems = items.where((item) => item.isUsed).toList();
+
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -176,9 +254,9 @@ class _RequestFormState extends State<RequestForm> {
         crossAxisCount: 3, // Number of cards per row
         childAspectRatio: 1, // Maintain a 1:1 aspect ratio for cards
       ),
-      itemCount: items.length,
+      itemCount: usedItems.length,
       itemBuilder: (BuildContext context, int index) {
-        return _buildItemCard(context, items[index]);
+        return _buildItemCard(context, usedItems[index]);
       },
     );
   }
@@ -188,9 +266,19 @@ class _RequestFormState extends State<RequestForm> {
     double cardHeight = fluidHeight(context, 20);
 
     return GestureDetector(
+      onTap: () {
+        if (items.contains(item)) {
+          // Toggle the isUsed attribute only if the item is in the items list
+          setState(() {
+            // item.isUsed = !item.isUsed;
+          });
+        }
+      },
       onLongPress: () {
-        // Show a confirmation dialog when the item is long-pressed
-        _showDeleteConfirmationDialog(context, item);
+        if (items.contains(item)) {
+          // Show a confirmation dialog when the item is long-pressed
+          _showDeleteConfirmationDialog(context, item);
+        }
       },
       child: Card(
         margin: EdgeInsets.symmetric(
@@ -253,20 +341,108 @@ class _RequestFormState extends State<RequestForm> {
     );
   }
 
-  void _addItem(Item item) {
-    setState(() {
-      items.add(item);
-    });
+  void _addItem() {
+    List<Item> unusedItems = items.where((item) => !item.isUsed).toList();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          child: Container(
+            width: fluidWidth(
+                context, 90), // Set the width to 90% of the screen width
+            height: fluidHeight(
+                context, 80), // Set the height to 80% of the screen height
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Text(
+                    'Select an item to add',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: unusedItems.map((item) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8.0,
+                            horizontal: 16.0,
+                          ),
+                          child: ListTile(
+                            leading: Image.asset(
+                              item.imagePath,
+                              width: fluidWidth(context, 20),
+                              height: fluidWidth(context,
+                                  20), // Adjust the image size as needed
+                            ),
+                            title: Text(item.name),
+                            onTap: () {
+                              // Update isUsed to true for the selected item
+                              setState(() {
+                                item.isUsed = true;
+                              });
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ElevatedButton(
+                    // custom styling
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 35,
+                        vertical: 5,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pop(); // Close the dialog without selecting an item
+                    },
+                    child: const Text('Close'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   void _removeItem(Item item) {
     setState(() {
+      item.isUsed = false;
       items.remove(item);
     });
   }
 
-  Widget _buildSendRequestButton(
-      BuildContext context, String text) {
+  Widget _buildSendRequestButton(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40.0),
       child: Center(
@@ -293,15 +469,6 @@ class _RequestFormState extends State<RequestForm> {
       ),
     );
   }
-}
-
-class Item {
-  final String name;
-  final String imagePath;
-  final Color borderColor;
-
-  Item(
-      {required this.name, required this.imagePath, required this.borderColor});
 }
 
 // Text Input Builder
