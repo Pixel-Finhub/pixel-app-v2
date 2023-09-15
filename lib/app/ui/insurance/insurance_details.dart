@@ -4,7 +4,71 @@ import 'package:pixel_insurance_v2/app/ui/auth/payment/basic_package.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class _VerticalTimelineCard extends StatelessWidget {
+  _VerticalTimelineCard({
+    Key? key,
+    required this.stepTitle,
+    required this.stepDescription,
+  }) : super(key: key);
+
+  final String stepTitle;
+  final String stepDescription;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: const BorderSide(
+          color: primary,
+          width: 1,
+        ),
+      ),
+      elevation: 0,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.fromLTRB(
+              fluidWidth(context, 4), // Adjust the left padding
+              fluidHeight(context, 1), // Adjust the top padding
+              fluidWidth(context, 4), // Adjust the right padding
+              fluidHeight(context, 1), // No bottom padding
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  stepTitle,
+                  style: TextStyle(
+                    fontSize:
+                        fluidFontSize(context, 18), // Adjust the font size
+                    color: Colors.grey[800],
+                  ),
+                ),
+                Container(
+                    height: fluidHeight(context,
+                        2)), // Adjust the space between title and description
+                Text(
+                  stepDescription,
+                  style: TextStyle(
+                    fontSize:
+                        fluidFontSize(context, 15), // Adjust the font size
+                    color: Colors.grey[700],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class InsuranceCoverage {
   final String title;
@@ -109,7 +173,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          'assets/images/burning-truck.jpg',
+                          'assets/images/basic.jpg',
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -133,7 +197,7 @@ class InsuranceDetailsPage extends StatelessWidget {
                             color: Colors.white, // Text color
                             fontSize: fluidFontSize(
                                 context, 25), // Adjust the font size as needed
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w300,
                           ),
                         ),
                       ),
@@ -339,8 +403,8 @@ class InsuranceDetailsPage extends StatelessWidget {
                   ),
 
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: fluidWidth(context, 5)),
+                    padding: EdgeInsets.all(
+                        fluidWidth(context, 5)),
                     child: Text(
                       'Claim Process',
                       textAlign: TextAlign.left,
@@ -349,44 +413,51 @@ class InsuranceDetailsPage extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
+                  //  timelines tiles
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: fluidWidth(context, 5),
-                      vertical: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildClaimProcessStep(
-                          context,
-                          'Take photos of the damaged goods',
-                          Icons
-                              .camera_alt_rounded, // Replace with the icon you want
-                        ),
-                        _buildClaimProcessStep(
-                          context,
-                          'Fill in the claim form',
-                          Icons
-                              .assignment_rounded, // Replace with the icon you want
-                        ),
-                        _buildClaimProcessStep(
-                          context,
-                          'Submit the claim form',
-                          Icons.send_rounded, // Replace with the icon you want
-                        ),
-                        _buildClaimProcessStep(
-                          context,
-                          'Wait for approval',
-                          Icons
-                              .access_time_rounded, // Replace with the icon you want
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        // You can add more content here as needed
-                      ],
-                    ),
+                        horizontal: fluidWidth(context, 5)),
+                    child: Column(children: [
+                      _buildVerticalTimelineTile(
+                        context,
+                        'Step 1: Take photos',
+                        'Take detailed photos of the damaged goods from different angles, ensuring clarity and visibility of the damage. Make sure to capture any serial numbers or labels if applicable.',
+                        Icons.camera_alt,
+                      ),
+                      SizedBox(
+                        height: fluidHeight(
+                            context, 2), // Adjust the space between cards
+                      ),
+                      _buildVerticalTimelineTile(
+                        context,
+                        'Step 2: Fill in form',
+                        'Fill in the claim form with accurate information. Include all relevant details about the shipment, damage, and any supporting documents such as invoices or receipts.',
+                        Icons.assignment,
+                      ),
+                      SizedBox(
+                        height: fluidHeight(
+                            context, 2), // Adjust the space between cards
+                      ),
+                      _buildVerticalTimelineTile(
+                        context,
+                        'Step 3: Submit the form',
+                        'Submit the completed claim form to the insurance provider through their designated channel. Double-check that all required documents are attached for a smooth review process.',
+                        Icons.send,
+                      ),
+                      SizedBox(
+                        height: fluidHeight(
+                            context, 2), // Adjust the space between cards
+                      ),
+                      _buildVerticalTimelineTile(
+                        context,
+                        'Step 4: Wait for approval',
+                        'After submitting the claim, be patient and await approval. The insurance provider will assess the submitted information and documents before issuing a decision.',
+                        Icons.access_time,
+                      ),
+                    ]),
                   ),
+
+                  // end timeline contnet
                 ],
               ),
               buildBuyButton(context, 'Continue to Payment', Icons.payment),
@@ -399,75 +470,65 @@ class InsuranceDetailsPage extends StatelessWidget {
   }
 }
 
-Widget _buildClaimProcessStep(
-    BuildContext context, String text, IconData iconData) {
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.1),
-          blurRadius: 2,
-          offset: const Offset(1, 2),
-        ),
-      ],
-    ),
-    padding: const EdgeInsets.all(10),
-    margin: const EdgeInsets.symmetric(vertical: 10),
-    child: Row(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.blue, // Adjust the color as needed
+Widget buildBuyButton(BuildContext context, String text, IconData iconData) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 40.0),
+    child: Center(
+      child: SizedBox(
+        height: 50,
+        width: 230,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
           ),
-          padding: const EdgeInsets.all(10),
+          child: Text(
+            'Continue to Payment',
+            style: TextStyle(
+                fontSize: fluidFontSize(context, 14),
+                fontWeight: FontWeight.w400),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildVerticalTimelineTile(
+  BuildContext context,
+  String stepTitle,
+  String stepDescription,
+  IconData iconData,
+) {
+  return TimelineTile(
+    alignment: TimelineAlign.manual,
+    lineXY: 0.1, // Adjust this value to move the line position
+    isFirst: true,
+    isLast: true,
+    indicatorStyle: const IndicatorStyle(
+      width: 20,
+      color: Colors.blue,
+    ),
+    startChild: SizedBox.fromSize(
+      size: const Size(50, 50), // Adjust the size of the timeline line
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: primary,
+        ),
+        child: Center(
           child: Icon(
             iconData,
             color: Colors.white,
           ),
         ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: fluidFontSize(context, 15),
-            ),
-          ),
-        ),
-      ],
+      ),
     ),
-  );
-}
-
-Widget buildBuyButton(BuildContext context, String text, IconData iconData) {
-  return Container(
-    width: fluidWidth(context, 60),
-    height: fluidHeight(context, 5.8),
-    margin: EdgeInsets.symmetric(
-        horizontal: fluidWidth(context, 5), vertical: fluidHeight(context, 5)),
-    child: ElevatedButton(
-      onPressed:() {
-                Get.to(() => const BasicPackagePaymentPage());
-              },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue, // Change button color as needed
-        padding: const EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-      ),
-      child: Text(
-        'Continue to Payment',
-        style: TextStyle(
-          fontSize: fluidFontSize(context, 18),
-          fontWeight: FontWeight.bold,
-          color: Colors.white, // Change text color as needed
-        ),
-      ),
+    endChild: _VerticalTimelineCard(
+      stepTitle: stepTitle,
+      stepDescription: stepDescription,
     ),
   );
 }
