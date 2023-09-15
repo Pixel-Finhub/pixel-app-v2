@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pixel_insurance_v2/app/ui/auth/payment/basic_package.dart';
 import 'package:pixel_insurance_v2/app/ui/shared/custom_nav.dart';
 import 'package:pixel_insurance_v2/app/ui/utils/dimensions.dart';
 import 'package:pixel_insurance_v2/app/ui/theme/app_colors.dart';
